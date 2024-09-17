@@ -342,7 +342,7 @@
             "type": "flexi-heading",
             "settings": {
               "heading": "<strong>Wildly Convenient Seafood Delivery<\/strong>",
-              "font_size": 32,
+              "font_size": 38,
               "mb_font_size": "0.8",
               "text_align": "left",
               "max_width": 2400,
@@ -390,12 +390,26 @@
               "border_radius": 24,
               "text_align": "left"
             }
+          },
+          "custom_image_eiygNA": {
+            "type": "custom-image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/box_with_transparent_background.png",
+              "link": "",
+              "position": "left",
+              "max_width": 400,
+              "border_radius": 0,
+              "display_options": "bl-hide-mobile",
+              "top_padding": 0,
+              "bottom_padding": 0
+            }
           }
         },
         "block_order": [
           "flexi_heading_n38BYG",
           "flexi_description_xk3JQf",
-          "custom_steps_gMGBUp"
+          "custom_steps_gMGBUp",
+          "custom_image_eiygNA"
         ],
         "settings": {
           "columns": "1fr 1fr 1fr",
