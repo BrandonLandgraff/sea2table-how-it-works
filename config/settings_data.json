@@ -399,7 +399,7 @@
         ],
         "settings": {
           "columns": "1fr 1fr 1fr",
-          "bg_color": "linear-gradient(180deg, rgba(248, 251, 253, 1), rgba(146, 176, 207, 1) 100%)",
+          "bg_color": "linear-gradient(90deg, rgba(248, 251, 253, 1), rgba(146, 176, 207, 1) 100%)",
           "bg_mobile_color": "linear-gradient(180deg, rgba(248, 251, 253, 1), rgba(146, 176, 207, 1) 100%)",
           "bg_image_size": "cover",
           "image_alignment_x": "center",
