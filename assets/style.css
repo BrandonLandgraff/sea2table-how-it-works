@@ -457,7 +457,7 @@ a.quick-add-button-variants-custom {
 @media only screen and (min-width: 991px) {
   #bundleapp-subscriptions-portal .bundleapp-modal {
     margin-top: 0 !important;
-    padding-top: clamp(125px,8.3vw,200px)!important;
+    padding-top: clamp(0px,6vw,200px)!important;
     z-index: 1;
   }
 }

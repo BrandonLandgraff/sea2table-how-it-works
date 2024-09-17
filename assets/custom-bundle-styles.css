@@ -89,7 +89,7 @@
   }
   #bundleapp-subscriptions-portal .bundleapp-modal {
     padding-top: 0 !important;
-    margin-top: clamp(125px, 8.3vw, 200px) !important;
+    margin-top: clamp(60px, 6vw, 200px) !important;
     z-index: 1;
   }
   .awtomatic-plans-container label:not(.selected, .awtomatic-plans-no-plan) {
@@ -240,8 +240,9 @@
     gap: 2vw;
     color: #f9660d;
     font-weight: 600;
-    padding-bottom: 6vw;
+    padding-bottom: 0vw;
     align-items: center;
+    margin: 0px;
   }
   /*div.awt-filters-container button:not(.chakra-button.awt-filter-button) {
     display: none;

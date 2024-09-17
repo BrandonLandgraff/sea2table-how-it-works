@@ -273,6 +273,14 @@
                     {% render 'custom-steps', block: block %}
                     </div>
 
+                {% when 'custom-description' %}
+                  <div
+                    class="flexi--app-block--{{ block.id }} {% unless request.design_mode %}{% if animation and limit_animation %}fade-in{% else %}css-fade-in{% endif %}{% endunless %}"
+                    {{ block.shopify_attributes }}
+                  >
+                    {% render 'custom-description', block: block %}
+                  </div>
+
                 {% endcase %}
             {% endfor %}
             </div>
@@ -569,6 +577,18 @@
             "default": "Describe a how your brand works using 1-2 sentances."
           },
           {
+            "type": "inline_richtext",
+            "id": "code",
+            "label": "Coupon code",
+            "default": "7YEARS"
+          },
+          {
+            "type": "color",
+            "id": "code_color",
+            "label": "Code color",
+            "default": "#000000"
+          },
+          {
             "type": "range",
             "id": "description_font_size",
             "min": 0,
@@ -698,6 +718,38 @@
                 "label": "Hide on mobile"
               }
             ]
+          },
+          {
+            "type": "header",
+            "content": "TEXT"
+          },
+          {
+            "type": "inline_richtext",
+            "id": "top_text",
+            "label": "Top Text",
+            "default": "100% Proudly USA"
+          },
+          {
+            "type": "inline_richtext",
+            "id": "bottom_text",
+            "label": "Bottom Text",
+            "default": "Wild American Seafood"
+          },
+          {
+            "type": "range",
+            "id": "description_font_size",
+            "min": 0,
+            "max": 100,
+            "step": 1,
+            "unit": "px",
+            "label": "Description font size",
+            "default": 14
+          },
+          {
+            "type": "color",
+            "id": "font_color",
+            "label": "Font color",
+            "default": "#000000"
           },
           {
             "type": "header",
@@ -1252,6 +1304,183 @@
     {
       "type": "flexi-description",
       "name": "Description",
+      "settings": [
+        {
+          "type": "header",
+          "content": "TEXT",
+          "info": "⚠️ Adjust some colors and styles using the [Flexi app](/admin/apps/brandons-theme-ext-1)."
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Description text",
+          "default": "<p>Add and remove blocks to display brand or product information.</p>"
+        },
+        {
+          "type": "header",
+          "content": "BASIC SETTINGS"
+        },
+        {
+          "type": "range",
+          "id": "font_size",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "px",
+          "label": "Font size",
+          "default": 18
+        },
+        {
+          "type": "select",
+          "id": "mb_font_size",
+          "label": "Font size (mobile)",
+          "default": "0.95",
+          "options": [
+            {
+              "value": "0.8",
+              "label": "Small"
+            },
+            {
+              "value": "0.95",
+              "label": "Medium"
+            },
+            {
+              "value": "1",
+              "label": "large"
+            }
+          ]
+        },
+        {
+          "type": "color",
+          "id": "font_color",
+          "label": "Font color",
+          "default": "#000000"
+        },
+        {
+          "type": "select",
+          "id": "text_align",
+          "label": "Text alignment",
+          "default": "left",
+          "options": [
+            {
+              "label": "Left",
+              "value": "left"
+            },
+            {
+              "label": "Center",
+              "value": "center"
+            },
+            {
+              "label": "Right",
+              "value": "right"
+            }
+          ]
+        },
+        {
+          "type": "select",
+          "id": "justify_content",
+          "label": "Positon",
+          "default": "left",
+          "options": [
+            {
+              "value": "left",
+              "label": "Left"
+            },
+            {
+              "value": "center",
+              "label": "Center"
+            },
+            {
+              "value": "right",
+              "label": "Right"
+            }
+          ]
+        },
+        {
+          "type": "header",
+          "content": "ADVANCED SETTINGS"
+        },
+        {
+          "type": "range",
+          "id": "max_width",
+          "min": 24,
+          "max": 2400,
+          "step": 24,
+          "unit": "px",
+          "label": "Set max width",
+          "default": 384
+        },
+        {
+          "type": "range",
+          "id": "line_height",
+          "min": 0,
+          "max": 100,
+          "step": 5,
+          "label": "Line height",
+          "default": 50
+        },
+        {
+          "type": "range",
+          "id": "letter_spacing",
+          "label": "Letter spacing",
+          "default": 0,
+          "min": 0,
+          "max": 100,
+          "step": 1
+        },
+        {
+          "type": "header",
+          "content": "VISIBILITY"
+        },
+        {
+          "type": "select",
+          "id": "display_options",
+          "label": "Visible On",
+          "default": "bl-hide-none",
+          "options": [
+            {
+              "value": "bl-hide-none",
+              "label": "All Screens"
+            },
+            {
+              "value": "bl-hide-desktop",
+              "label": "Mobile"
+            },
+            {
+              "value": "bl-hide-mobile",
+              "label": "Desktop"
+            }
+          ]
+        },
+        {
+          "type": "header",
+          "content": "SPACING"
+        },
+        {
+          "type": "range",
+          "id": "padding_top",
+          "min": 0,
+          "max": 96,
+          "step": 2,
+          "unit": "px",
+          "label": "Top spacing",
+          "default": 6
+        },
+        {
+          "type": "range",
+          "id": "padding_bottom",
+          "min": 0,
+          "max": 96,
+          "step": 2,
+          "unit": "px",
+          "label": "Bottom spacing",
+          "default": 6
+        }
+      ]
+    },
+    {
+      "type": "custom-description",
+      "name": "Sub description",
       "settings": [
         {
           "type": "header",

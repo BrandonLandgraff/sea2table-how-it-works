@@ -33,10 +33,40 @@
     height: auto;
     margin: 0px;
 }
+
+/* CUSTOM TEXT */
+.flexi-text,
+.flexi-text p {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
+    background: none;
+    text-decoration: none;
+    text-align: inherit;
+}
+
+.description-{{ blockid }},
+.description-{{ blockid }} p {
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    color: {{ block.settings.font_color }};
+    font-size: {{ block.settings.description_font_size }}px;
+    line-height: 1.3em;
+    padding: 6px 0px;
+}
 {%- endstyle -%}
 
 {% if block.settings.image != blank %}
     <div id="flexi-image" class="bl-image-{{ block.id }} {{ block.settings.display_options }}">
+
+        {% if block.settings.top_text != blank %}
+            <span class="description-{{ blockid }} flexi-text">
+                <p>{{ block.settings.top_text }}</p>
+            </span>
+        {% endif %}
+
         {% if block.settings.link != blank %}
             <a href="{{ block.settings.link }}">
                 {{ block.settings.image | image_url: width: 1500 | image_tag: loading: 'lazy', class: 'lazy-load' }}
@@ -44,6 +74,13 @@
         {% else %}
             {{ block.settings.image | image_url: width: 1500 | image_tag: loading: 'lazy', class: 'lazy-load' }}
         {% endif %}
+
+        {% if block.settings.bottom_text != blank %}
+            <span class="description-{{ blockid }} flexi-text">
+                <p>{{ block.settings.bottom_text }}</p>
+            </span>
+        {% endif %}
+
     </div>
 {% else %}
   <div id="flexi-image" class="bl-image-{{ block.id }} {{ block.settings.display_options }}">

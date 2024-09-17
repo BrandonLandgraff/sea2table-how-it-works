@@ -127,7 +127,11 @@
                     <span class="description-{{ blockid }} flexi-text"><p>{{ block.settings.description_2 }}</p></span>
                 {% endif %}
                 {% if block.settings.description_3 %}
-                    <span class="description-{{ blockid }} flexi-text"><p>{{ block.settings.description_3 }}</p></span>
+                    <span class="description-{{ blockid }} flexi-text">
+                        <p>{{ block.settings.description_3 }} 
+                            <span class="description-{{ blockid }} flexi-text" style="color: {{ block.settings.code_color }};">{{ block.settings.code }}</span>
+                        </p>
+                    </span>
                 {% endif %}
             </div>
 

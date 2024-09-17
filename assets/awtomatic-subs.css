@@ -621,10 +621,6 @@ label#\ every\ 8\ weeks:before {
   .bundle-container:before {
     font-size: 42px;
   }
-
-  #bundleapp-subscriptions-portal .bundle-container {
-    padding-top: 0px !important;
-  }
 }
 
 /* Expanding the more details */
