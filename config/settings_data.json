@@ -350,7 +350,7 @@
               "font_color": "#1a4760",
               "line_height": 10,
               "letter_spacing": 0,
-              "display_options": "bl-hide-mobile",
+              "display_options": "bl-hide-none",
               "padding_top": 0,
               "padding_bottom": 0
             }
@@ -358,7 +358,7 @@
           "flexi_description_xk3JQf": {
             "type": "flexi-description",
             "settings": {
-              "description": "<p>Just select your delivery frequency, pick your favorite seafood, and it will show up at your doorstep!<\/p>",
+              "description": "<p><strong>Just select your delivery frequency, pick your favorite seafood, and it will show up at your doorstep!<\/strong><\/p>",
               "font_size": 18,
               "mb_font_size": "0.95",
               "font_color": "#1a4760",
@@ -367,7 +367,7 @@
               "max_width": 384,
               "line_height": 50,
               "letter_spacing": 0,
-              "display_options": "bl-hide-mobile",
+              "display_options": "bl-hide-none",
               "padding_top": 6,
               "padding_bottom": 6
             }
