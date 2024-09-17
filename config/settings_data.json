@@ -347,7 +347,7 @@
               "text_align": "left",
               "max_width": 2400,
               "justify_content": "left",
-              "font_color": "#000000",
+              "font_color": "#1a4760",
               "line_height": 10,
               "letter_spacing": 0,
               "display_options": "bl-hide-none",
@@ -358,10 +358,10 @@
           "flexi_description_xk3JQf": {
             "type": "flexi-description",
             "settings": {
-              "description": "<p>Add and remove blocks to display brand or product information.<\/p>",
+              "description": "<p>Just select your delivery frequency, pick your favorite seafood, and it will show up at your doorstep!<\/p>",
               "font_size": 18,
               "mb_font_size": "0.95",
-              "font_color": "#000000",
+              "font_color": "#1a4760",
               "text_align": "left",
               "justify_content": "left",
               "max_width": 384,
@@ -371,11 +371,31 @@
               "padding_top": 6,
               "padding_bottom": 6
             }
+          },
+          "custom_steps_gMGBUp": {
+            "type": "custom-steps",
+            "settings": {
+              "title": "<strong>7th Anniversary Sale<\/strong>",
+              "font_size": 24,
+              "title_font_color": "#1a4760",
+              "subtitle": "<strong>FREE HALIBUT FOR SALE<\/strong>",
+              "subtitle_font_size": 18,
+              "subtitle_font_color": "#f9660d",
+              "description_1": "<strong>1. Add at least $179 of seafood to your cart.<\/strong>",
+              "description_2": "<strong>2. Add a 2-pack of Halibut to your cart.<\/strong>",
+              "description_3": "<strong>3. Enter promo code 7YEARS at checkout<\/strong>",
+              "description_font_size": 18,
+              "font_color": "#1a4760",
+              "background_color": "#e3edf5",
+              "border_radius": 24,
+              "text_align": "left"
+            }
           }
         },
         "block_order": [
           "flexi_heading_n38BYG",
-          "flexi_description_xk3JQf"
+          "flexi_description_xk3JQf",
+          "custom_steps_gMGBUp"
         ],
         "settings": {
           "columns": "1fr 1fr 1fr",
@@ -387,7 +407,7 @@
           "overlay_color": "#000000",
           "opacity": 60,
           "display_options": "bl-hide-none",
-          "align_items": false,
+          "align_items": true,
           "width": 1200,
           "padding_top": 60,
           "padding_bottom": 60
