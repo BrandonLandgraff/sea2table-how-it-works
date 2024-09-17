@@ -1,0 +1,133 @@
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+  integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+  crossorigin="anonymous"
+  referrerpolicy="no-referrer"
+>
+
+{%- liquid
+  assign blockid = block.id
+
+  assign heading = block.settings.heading
+  assign description = block.settings.description
+  assign name = block.settings.name
+
+  assign name_color = block.settings.name_color
+  assign name_font_size = block.settings.name_font_size
+  assign scaled_name_font_size = block.settings.name_font_size | times: 0.95 | round
+
+  assign heading_color = block.settings.heading_color
+  assign heading_font_size = block.settings.heading_font_size
+  assign scaled_heading_font_size = block.settings.heading_font_size | times: 0.85 | round
+
+  assign description_color = block.settings.description_color
+  assign description_font_size = block.settings.description_font_size
+  assign scaled_description_font_size = block.settings.description_font_size | times: 0.95 | round
+-%}
+
+{% style %}
+  #flexi-block-{{ blockid }} {
+      display: block;
+      height: 100%;
+      width: 100%;
+  }
+
+  #flexi-block-{{ blockid }} .flexi-card-container {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      height: 100%;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      position: relative;
+  }
+
+  .flexi-review-component-{{ blockid }} {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+
+    padding-bottom: 12px;
+  }
+
+  .flexi-star-wrapper-{{ blockid }} {
+    display: flex;
+    gap: 2px;
+  }
+
+  #flexi-block-{{ blockid }} .flexi-card-container .flexi-heading {
+      position: relative;
+      align-self: stretch;
+      color: {{ heading_color }};
+      font-size: {{ heading_font_size }}px;
+      letter-spacing: 0;
+      line-height: normal;
+
+      padding: 0px 0px .5em 0px !important;
+      margin: 0px !important;
+  }
+
+  #flexi-block-{{ blockid }} .flexi-card-container .flexi-description,
+  #flexi-block-{{ blockid }} .flexi-card-container .flexi-description p {
+      position: relative;
+      align-self: stretch;
+      color: {{ description_color }};
+      font-size: {{ description_font_size }}px;
+      letter-spacing: 0;
+      line-height: 1.3em;
+      max-width: 512px;
+
+      padding: 0px !important;
+      margin: 0px !important;
+  }
+
+  #flexi-block-{{ blockid }} .flexi-card-container .flexi-name {
+      position: relative;
+      align-self: stretch;
+      color: {{ name_color }};
+      font-size: {{ name_font_size }}px;
+      letter-spacing: 0;
+      line-height: normal;
+
+      padding: 0px !important;
+      margin: 0px !important;
+  }
+
+  @media only screen and (max-width: 768px) {
+      #flexi-block-{{ blockid }} .flexi-card-container .flexi-name {
+          font-size: {{ scaled_name_font_size }}px;
+      }
+      #flexi-block-{{ blockid }} .flexi-card-container .flexi-heading {
+          font-size: {{ scaled_heading_font_size }}px;
+      }
+      #flexi-block-{{ blockid }} .flexi-card-container .flexi-description {
+          font-size: {{ scaled_description_font_size }}px;
+      }
+  }
+
+  .flexi-review-top {
+      padding-bottom: 0.5em;
+  }
+{% endstyle %}
+
+<div id="flexi-block-{{ blockid }}">
+  <div class="flexi-card-container">
+    <div class="flexi-card-wrapper">
+      <div class="flexi-review-top">
+        {% if heading != blank %}
+          <div class="flexi-heading">{{ heading }}</div>
+        {% endif %}
+
+        {% if description != blank %}
+          <p class="flexi-description">{{ description }}</p>
+        {% endif %}
+      </div>
+
+      {% if name != blank %}
+        <div class="flexi-name">{{ name }}</div>
+      {% endif %}
+    </div>
+  </div>
+</div>

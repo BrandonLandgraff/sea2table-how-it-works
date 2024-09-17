@@ -1,0 +1,187 @@
+{%- liquid
+    assign blockid = block.id
+    assign scaled_font_size = block.settings.title_font_size | times: 0.9 | round
+    assign scaled_description_font_size = block.settings.description_font_size | times: 0.9 | round
+    assign equal_width = block.settings.equal_width
+  
+    assign line_height = block.settings.line_height
+    assign letter_spacing  = block.settings.letter_spacing
+  -%}
+  
+  {% style %}
+    .flexi-tabs-block {
+        display: flex;
+        height: 100%;
+        width: 100%;
+    }
+  
+    {% if equal_width %}
+    .bl--block-wrapper--{{ blockid }} {
+        width: 100%;
+    }
+    {% else %}
+    .bl-tab-{{ block.id }} {
+      margin-right: 24px;
+    }
+    {% endif %}
+  
+    .bl-tabs-{{ block.id }} {
+        display: flex;
+        width: 100%;
+        overflow: hidden;
+    }
+  
+    .bl-tab-{{ block.id }} {
+        border: none;
+        outline: none;
+        cursor: pointer;
+        padding: {{ block.settings.spacing }}px 0px {{ block.settings.spacing }}px 0px;
+        position: relative;
+        background-color: transparent;
+        color: {{ block.settings.title_color }}; /* Active text color */
+        opacity: 0.6; /* Inactive opacity */
+        transition: color 0.3s, opacity 0.3s;
+        width: 100%;
+        flex-basis: 1;
+        font-size: {{ block.settings.title_font_size }}px;
+    }
+  
+    .bl-tab-{{ block.id }}::after {
+        content: '';
+        display: block;
+        height: {% if block.settings.thicken %}2px{% else %}1px{% endif %};
+        width: 100%; /* Full width for faint line */
+        background-color: {{ block.settings.title_color }}; /* Inactive text color */
+        opacity: 0.2; /* Faint appearance */
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        transition: background-color 0.3s, opacity 0.3s;
+    }
+
+    .bl-tab-{{ block.id }}:before {
+        content: '';
+        display: block;
+        height: {% if block.settings.thicken %}2px{% else %}1px{% endif %};
+        width: 0; /* Start with no width for drawing effect */
+        background-color: {{ block.settings.active_underline_color }}; /* Active underline color */
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        transition: width 0.3s;
+    }
+
+    .bl-tab-{{ block.id }}:hover:before,
+    .bl-tab-{{ block.id }}.active:before {
+        width: 100%; /* Expand to full width on hover/active */
+    }
+
+  
+    .bl-tab-{{ block.id }}.active {
+      opacity: 1;
+      color: {{ block.settings.title_color }};
+    }
+  
+    .bl-tab-content-{{ block.id }} {
+        padding: {{ block.settings.spacing }}px 0px;
+        border-top: none;
+    }
+  
+    .bl-tab-content-{{ block.id }} p,
+    .bl-tab-content-{{ block.id }} h1,
+    .bl-tab-content-{{ block.id }} h2,
+    .bl-tab-content-{{ block.id }} h3,
+    .bl-tab-content-{{ block.id }} h4,
+    .bl-tab-content-{{ block.id }} h5,
+    .bl-tab-content-{{ block.id }} h6,
+    .bl-tab-content-{{ block.id }} li {
+        padding: 4px 0px;
+        border-top: none;
+        color: {{ block.settings.description_color }};
+        margin: 0px !important;
+        line-height: {{ line_height | times: 0.01 | plus: 1 }}em;
+        letter-spacing: {{ letter_spacing | times: 0.01 }}rem;
+        font-size: {{ block.settings.description_font_size }}px;
+    }
+  
+    @media (max-width: 768px) {
+      .bl-tab-content-{{ block.id }} p,
+      .bl-tab-content-{{ block.id }} h1,
+      .bl-tab-content-{{ block.id }} h2,
+      .bl-tab-content-{{ block.id }} h3,
+      .bl-tab-content-{{ block.id }} h4,
+      .bl-tab-content-{{ block.id }} h5,
+      .bl-tab-content-{{ block.id }} h6,
+      .bl-tab-content-{{ block.id }} li {
+        font-size: {{ block.settings.scaled_description_font_size }}px;
+      }
+    }
+  
+    @media (max-width: 768px) {
+      .bl-tab-{{ block.id }} {
+        font-size: {{ scaled_font_size }}px;
+      }
+    }
+  {% endstyle %}
+  
+  <div
+    class="flexi-tabs-block"
+    style="justify-content: start; padding-top: {{ block.settings.padding_top }}px; padding-bottom: {{ block.settings.padding_bottom }}px;"
+  >
+    <div class="bl--block-wrapper--{{ blockid }}">
+      <div class="bl-tabs-{{ block.id }}">
+        <button class="bl-tab-{{ block.id }} active" onclick="openTab('{{ block.id }}', 1)">
+          {{ block.settings.heading_1 }}
+        </button>
+        {% if block.settings.heading_2 != blank %}
+          <button class="bl-tab-{{ block.id }}" onclick="openTab('{{ block.id }}', 2)">
+            {{ block.settings.heading_2 }}
+          </button>
+        {% endif %}
+        {% if block.settings.heading_3 != blank %}
+          <button class="bl-tab-{{ block.id }}" onclick="openTab('{{ block.id }}', 3)">
+            {{ block.settings.heading_3 }}
+          </button>
+        {% endif %}
+      </div>
+      <div id="bl-tab1-{{ block.id }}" class="bl-tab-content-{{ block.id }}">
+        {% if block.settings.product_description %}{{ product.description }}{% else %}{{ block.settings.description_1 }}{% endif %}
+      </div>
+      {% if block.settings.description_2 != blank %}
+        <div id="bl-tab2-{{ block.id }}" class="bl-tab-content-{{ block.id }}" style="display:none;">
+          {{ block.settings.description_2 }}
+        </div>
+      {% endif %}
+      {% if block.settings.description_3 != blank %}
+        <div id="bl-tab3-{{ block.id }}" class="bl-tab-content-{{ block.id }}" style="display:none;">
+          {{ block.settings.description_3 }}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+  
+  <script>
+    const openTab = (blockId, tabIndex) => {
+      const blockTabs = document.querySelectorAll('.bl-tab-' + blockId);
+      const blockContents = document.querySelectorAll('.bl-tab-content-' + blockId);
+  
+      // Hide all tab contents and remove active class from tabs
+      for (let i = 0; i < blockContents.length; i++) {
+        blockContents[i].style.display = 'none';
+        blockTabs[i].classList.remove('active');
+      }
+  
+      // Show the specific tab content and add the active class
+      document.getElementById('bl-tab' + tabIndex + '-' + blockId).style.display = 'block';
+      blockTabs[tabIndex - 1].classList.add('active');
+    };
+  
+    document.addEventListener('DOMContentLoaded', () => {
+      // Call openTab on page load to show the first tab of each block
+      const blocks = document.querySelectorAll('.bl--block-wrapper--{{ blockid }}');
+      blocks.forEach((block) => {
+        const blockId = block.id.replace('bl--block-wrapper--', '');
+        openTab(blockId, 1);
+      });
+    });
+  </script>

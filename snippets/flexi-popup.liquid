@@ -1,0 +1,226 @@
+{%- liquid
+    assign blockid = block.id
+    assign scaled_text_font_size = block.settings.text_font_size | times: 0.9 | round
+    assign scaled_font_size = block.settings.font_size | times: 0.9 | round
+    assign scaled_description_font_size = block.settings.description_font_size | times: 0.9 | round
+    assign line_height = block.settings.line_height
+    assign letter_spacing  = block.settings.letter_spacing 
+  
+    assign json_data = shop.metafields.flexi.flexistyling.value
+    assign borderRadius = json_data.borderRadius
+  
+    if json_data == blank
+      assign borderRadius = 8
+    endif
+  -%}
+  
+  {% style %}
+  #showFlexiPopup-{{ blockid }} {
+      position: relative;
+      background: none;
+      color: {{ block.settings.text_font_color }};
+      font-size: {{ block.settings.text_font_size }}px !important;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      text-decoration: none;
+      font: inherit;
+      outline: none;
+      overflow: hidden;  /* This ensures the pseudo-elements don't extend outside of the button */
+      line-height: 1.3em;    /* Just to give some space for the underline */
+  }
+  
+  @media (max-width: 768px) {
+      #showFlexiPopup-{{ blockid }} {
+          font-size: {{ scaled_text_font_size }}px;
+      }
+  }
+  
+  /* The initial underline */
+  #showFlexiPopup-{{ blockid }}::before {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      height: 1px;
+      background-color: {{ block.settings.text_font_color }};
+      transform: scaleX(1);
+      transition: transform 0.3s ease;
+  }
+  
+  #showFlexiPopup-{{ blockid }}:hover::before {
+      transform: scaleX(0);  /* Hide the initial line */
+  }
+  
+  .flexi-popup {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0,0,0,0.4);
+      backdrop-filter: blur(5px);
+      z-index: 999999;
+  }
+  
+  .flexi-popup-content {
+      background-color: #fff;
+      padding: 42px 20px 20px 20px;
+      width: 70%;
+      max-width: 500px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border-radius: {{ borderRadius }}px;
+      margin-top: 24px;
+  }
+  
+  @media (max-width: 768px) {
+      .flexi-popup-content {
+          width: 95%;
+      }
+  }
+  
+  .flexi-close-btn {
+      position: absolute;
+      top: 12px;
+      left: 16px;
+      background: none;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+      transition: opacity 0.3s ease; /* This ensures a smooth transition effect when hovering */
+      opacity: 1;  /* Default opacity */
+  }
+  
+  .flexi-close-btn:hover {
+      opacity: 0.7;  /* Reduced opacity when hovered */
+  }
+  
+  /* HEADING */
+  .flexi-header {
+      margin: 0;
+      padding: 0;
+      border: 0;
+      font-size: 100%; /* This will make the font size the same as the parent element */
+      vertical-align: baseline;
+      color: inherit;
+      background: none;
+      text-decoration: none;
+      text-align: inherit;
+  }
+  #flexi-header-{{ blockid }} {
+    font-size: {{ block.settings.font_size }}px;
+    color: {{ block.settings.font_color }};
+    line-height: normal;
+  }
+  @media (max-width: 768px) {
+    #flexi-header-{{ blockid }} {
+      font-size: {{ scaled_font_size }}px;
+    }
+  }
+  
+  /* IMAGE */
+  .bl-image-{{ block.id }} {
+      width: 100%;
+      height: 100%;
+      max-width: {{ block.settings.max_width }}px;
+      margin-bottom: 8px;
+  }
+  .bl-image-{{ block.id }} img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      border-radius: {{ borderRadius }}px;
+  }
+  
+  /* DESCRIPTION */
+  #flexi-description-{{ block.id }} p,
+  #flexi-description-{{ block.id }} h1,
+  #flexi-description-{{ block.id }} h2,
+  #flexi-description-{{ block.id }} h3,
+  #flexi-description-{{ block.id }} h4,
+  #flexi-description-{{ block.id }} h5,
+  #flexi-description-{{ block.id }} a,
+  #flexi-description-{{ block.id }} ul,
+  #flexi-description-{{ block.id }} li {
+      margin: 0;
+      padding: 0;
+      border: 0;
+      vertical-align: baseline;
+      background: none;
+      text-decoration: none;
+      text-align: inherit;
+      font-size: {{ block.settings.description_font_size }}px;
+      color: {{ block.settings.description_font_color }};
+      line-height: {{ line_height | times: 0.01 | plus: 1 }}em;
+      letter-spacing: {{ letter_spacing | times: 0.01 }}rem;
+  }
+  @media (max-width: 768px) {
+      #flexi-description-{{ block.id }} p,
+      #flexi-description-{{ block.id }} h1,
+      #flexi-description-{{ block.id }} h2,
+      #flexi-description-{{ block.id }} h3,
+      #flexi-description-{{ block.id }} h4,
+      #flexi-description-{{ block.id }} h5,
+      #flexi-description-{{ block.id }} a,
+      #flexi-description-{{ block.id }} ul,
+      #flexi-description-{{ block.id }} li {
+          font-size: {{ scaled_description_font_size }}px;
+      }
+  }
+  {% endstyle %}
+  
+  <!-- Main Content and Popup -->
+  <button id="showFlexiPopup-{{ blockid }}">{{ block.settings.text }}</button>
+  
+  <div class="flexi-popup" id="flexi-popup-{{ blockid }}">
+    <div class="flexi-popup-content">
+        <button class="flexi-close-btn" id="closeFlexiPopup-{{ blockid }}">&#10005;</button>
+        <div style="display: flex; flex-direction: column; gap: 4px;">
+          {% if block.settings.heading != blank %}
+              <h2 id="flexi-header-{{ blockid }}" class="flexi-header">{{ block.settings.heading }}</h2>
+          {% endif %}
+          {% if block.settings.image != blank %}
+              <div id="flexi-image" class="bl-image-{{ block.id }}">
+                      {{ block.settings.image | image_url: width: 1080 | image_tag: loading: 'lazy', class: 'lazy-load' }}
+              </div>
+          {% endif %}
+          {% if block.settings.description != blank %}
+              <div class="bl-description-component-{{ block.id }}">
+                  <span id="flexi-description-{{ block.id }}" class="bl-description-{{ block.id }}">{{ block.settings.description }}</span>
+              </div>
+          {% endif %}
+        </div>
+    </div>
+  </div>
+  
+  <script>
+    window.addEventListener('load', function() {
+      const showPopupButton = document.getElementById("showFlexiPopup-{{ blockid }}");
+      const popup = document.getElementById("flexi-popup-{{ blockid }}");
+      const closePopupButton = document.getElementById("closeFlexiPopup-{{ blockid }}");
+      const originalParent = popup.parentElement;
+  
+      showPopupButton.addEventListener("click", function() {
+          document.body.appendChild(popup);
+          popup.style.display = "block";
+      });
+  
+      closePopupButton.addEventListener("click", function() {
+          popup.style.display = "none";
+          originalParent.appendChild(popup);
+      });
+  
+      window.onclick = function(event) {
+          if (event.target == popup) {
+              popup.style.display = "none";
+              originalParent.appendChild(popup);
+          }
+      }
+    });
+  </script>

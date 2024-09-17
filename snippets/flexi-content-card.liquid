@@ -1,0 +1,263 @@
+
+{%- liquid
+    assign blockid = block.id
+
+    assign bg_color = block.settings.bg_color
+    assign grid_layout = block.settings.grid_layout
+    assign max_width = block.settings.max_width
+    
+    assign image = block.settings.image
+
+    assign subheading = block.settings.subheading
+    assign subheading_color = block.settings.subheading_color
+    assign subheading_font_size = block.settings.subheading_font_size
+    assign scaled_subheading_font_size = block.settings.subheading_font_size | times: 0.95 | round
+    assign title = block.settings.title
+    assign font_size = block.settings.font_size
+    assign scaled_font_size = block.settings.font_size | times: 0.85 | round
+    assign description = block.settings.description
+    assign description_font_size = block.settings.description_font_size
+    assign font_color = block.settings.font_color
+
+    assign link = block.settings.link
+    assign btn_text =  block.settings.btn_text
+    assign btn_color = block.settings.btn_color
+    assign btn_bg_color = block.settings.btn_bg_color
+
+    assign json_data = shop.metafields.flexi.flexistyling.value
+    assign borderRadius = json_data.borderRadius
+    assign borderThickness = json_data.borderThickness
+
+    if json_data == blank
+      assign borderRadius = 8
+      assign borderThickness = 0
+    endif
+
+    
+    if section.index <= 3
+        assign loading_strategy = 'eager'
+        assign fetch_priority = 'high'
+      else
+        assign loading_strategy = 'lazy'
+        assign fetch_priority = 'auto'
+      endif
+    
+      assign widths = '165, 360, 535, 750, 1070, 1500'
+    
+    
+      assign img_alt = image.alt | escape
+-%}
+
+{%- capture sizes -%}
+    (min-width: 1200px) calc((1200px - 100px) / 2),
+    (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)
+{%- endcapture -%}
+
+
+{% style %}
+.flexi-column-block-{{ blockid }} {
+    width: 100%;
+    height: 100%;
+} 
+
+.flexi-text,
+.flexi-text p {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
+    background: none;
+    text-decoration: none;
+    text-align: inherit;
+}
+
+.grid-{{ blockid }} {
+    display: grid;
+    grid-template-columns: {{ grid_layout }};
+    width: 100%;
+    height: 100%;
+    gap: 2em;
+    text-align: left;
+    border-radius: {{ borderRadius }}px;
+
+    {% if bg_color != blank and bg_color != 'rgba(0,0,0,0)' %}
+        background-color: {{ bg_color }};
+    {% endif %}
+}
+
+@media only screen and (max-width: 768px) {
+    .grid-{{ blockid }} {
+        grid-template-columns: 1fr;
+        gap: 1em;
+    }
+}
+
+.flexi-image-{{ blockid }} {
+    width: 100%;
+    height: fit-content;
+}
+.flexi-image-{{ blockid }} img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    {% if bg_color != blank and bg_color != 'rgba(0,0,0,0)' %}
+        border-radius: {{ borderRadius }}px 0px 0px {{ borderRadius }}px;
+    {% else %}
+        border-radius: {{ borderRadius }}px;
+    {% endif %}
+    object-fit: cover;
+    height: auto;
+}
+.flexi-image-{{ blockid }} svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    {% if bg_color != blank and bg_color != 'rgba(0,0,0,0)' %}
+        border-radius: {{ borderRadius }}px 0px 0px {{ borderRadius }}px;
+    {% else %}
+        border-radius: {{ borderRadius }}px;
+    {% endif %}
+    background-color: #D4D4D4;
+    margin: 0px;
+    transition: transform 0.5s ease;
+}
+@media only screen and (max-width: 768px) {
+    .flexi-image-{{ blockid }} svg,
+    .flexi-image-{{ blockid }} img {
+        {% if bg_color != blank and bg_color != 'rgba(0,0,0,0)' %}
+            border-radius: {{ borderRadius }}px {{ borderRadius }}px 0px 0px;
+        {% else %}
+            border-radius: {{ borderRadius }}px;
+        {% endif %}
+    }
+}
+.flexi-image-{{ blockid }} a {
+    display: block;
+    position: relative;
+    width: 100%;
+    height: auto;
+    margin: 0px;
+}
+
+.flexi-content-{{ blockid }} {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: .5em;
+    width: 100%;
+    max-width: {{ max_width }}px;
+    margin: auto;
+}
+
+@media only screen and (max-width: 768px) {
+    .flexi-content-{{ blockid }} {
+        {% if bg_color != blank and bg_color != 'rgba(0,0,0,0)' %}
+            padding: 0px 1em 1em 1em;
+        {% endif %}
+    }
+}
+
+.subheading-{{ blockid }} {
+    color: {{ subheading_color }};
+    font-size: {{ subheading_font_size }}px;
+    letter-spacing: 0;
+    line-height: normal;
+}
+
+.title-{{ blockid }} {
+    color: {{ font_color }};
+    font-size: {{ font_size }}px;
+}
+
+@media only screen and (max-width: 768px) {
+    .title-{{ blockid }} {
+        font-size: {{ scaled_font_size }}px;
+    }
+    .subheading-{{ blockid }} {
+        font-size: {{ scaled_subheading_font_size }}px;
+    }
+}
+
+.description-{{ blockid }},
+.description-{{ blockid }} p {
+    color: {{ font_color }};
+    font-size: {{ description_font_size }}px;
+    line-height: 1.3em;
+}
+
+.flexi-view-btn-{{ blockid }} {
+    display: block;
+    text-decoration: none;
+
+    font-size: 14px;
+    color: {{ btn_color }}; 
+    border-radius: {{ borderRadius }}px;
+    padding: 12px 36px;
+    width: fit-content;
+    transition: opacity 0.3s ease;
+    text-align: center;
+    line-height: normal;
+    cursor: pointer;
+
+    background-color: {{ btn_bg_color }}; 
+    border: {{ borderThickness }}px solid {{ accent_color }};
+}
+.flexi-view-btn-{{ blockid }}:hover {
+    opacity: 0.7;
+}
+
+{% endstyle %}
+
+
+<div 
+    class="flexi-column-block-{{ blockid }}"
+  >
+        <div class="grid-{{ blockid }}">
+
+            {% if image != blank %}
+                <div id="flexi-image" class="flexi-image-{{ blockid }}">
+                    {% if link != blank %}
+                        <a href="{{ link }}">
+                            {{ image | image_url: width: 1500 | image_tag: 
+                                class: 'img-animation', 
+                                sizes: sizes, 
+                                widths: widths, 
+                                loading: loading_strategy, 
+                                fetchpriority: fetch_priority,
+                                alt: img_alt
+                            }}
+                        </a>
+                    {% else %}
+                        {{ image | image_url: width: 1500 | image_tag: 
+                            class: 'img-animation', 
+                            sizes: sizes, 
+                            widths: widths, 
+                            loading: loading_strategy, 
+                            fetchpriority: fetch_priority,
+                            alt: img_alt 
+                        }}
+                    {% endif %}
+                </div>
+            {% else %}
+                <div id="flexi-image" class="flexi-image-{{ blockid }}">
+                        {{ 'product-1' | placeholder_svg_tag }}  
+                </div>
+            {% endif %}
+
+            <div class="flexi-content-{{ blockid }}">
+                {% if subheading != blank %}
+                    <div class="subheading-{{ blockid }} flexi-subheading">{{ subheading }}</div>
+                {% endif %}
+                {% if title %}
+                    <h4 class="title-{{ blockid }} flexi-text">{{ title }}</h4>
+                {% endif %}
+                {% if description %}
+                    <span class="description-{{ blockid }} flexi-text"><p>{{ description }}</p></span>
+                {% endif %}
+                {% if btn_text != blank %}
+                    <a href="{{ link }}" class="flexi-view-btn-{{ blockid }}">{{ btn_text }}</a>
+                {% endif %}
+            </div>
+
+    </div>
+</div>

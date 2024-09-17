@@ -1,0 +1,69 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+{%- liquid
+    assign sectionid = section.id
+
+    assign star_type = section.settings.star_type
+    assign icon_size = section.settings.icon_size
+    assign star_color = section.settings.star_color
+
+    assign reviews_text = section.settings.reviews_text
+    assign review_url = section.settings.review_url
+    assign font_color = section.settings.font_color
+    assign font_size = section.settings.font_size
+    assign reviews_text = section.settings.reviews_text
+    assign reviews_text = section.settings.reviews_text
+
+    -%}
+
+{% style %}
+.flexi-review-component-{{ sectionid }} {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.flexi-star-wrapper-{{ sectionid }} {
+  display: flex;
+  gap: 2px;
+}
+
+.flexi-review-link-{{ sectionid }} {
+  text-decoration: underline;
+  color: black;
+  font-size: 18px;
+}
+
+#flexi-rotating-review-text {
+    padding: 0px;
+    margin: 0px;
+    line-height: normal;
+    letter-spacing: normal;
+}
+{% endstyle %}
+
+
+<div class="flexi-review-component-{{ sectionid }}">
+    <div class="flexi-star-wrapper-{{ sectionid }}">
+        <i class="fa-solid fa-star" style="font-size: {{ icon_size }}px; color: {{ star_color }};"></i>
+        <i class="fa-solid fa-star" style="font-size: {{ icon_size }}px; color: {{ star_color }};"></i>
+        <i class="fa-solid fa-star" style="font-size: {{ icon_size }}px; color: {{ star_color }};"></i>
+        <i class="fa-solid fa-star" style="font-size: {{ icon_size }}px; color: {{ star_color }};"></i>
+
+        {% case star_type %}
+            {% when '4' %}
+            <i class="fa-regular fa-star" style="font-size: {{ icon_size }}px; color: {{ star_color }};"></i>
+            {% when '4.5' %}
+            <i class="fa-solid fa-star-half-stroke" style="font-size: {{ icon_size }}px; color: {{ star_color }};"></i>
+            {% when '5' %}
+            <i class="fa-solid fa-star" style="font-size: {{ icon_size }}px; color: {{ star_color }};"></i>
+        {% endcase %}
+
+    </div>
+    {% if reviews_text != blank %}
+        {% if review_url != blank %}
+            <a href="{{ review_url }}" style="color: {{ font_color }}; font-size: {{ font_size }}px;">{{ reviews_text }}</a>
+        {% else %}
+            <p id="flexi-rotating-review-text" style="color: {{ font_color }}; font-size: {{ font_size }}px;">{{ reviews_text }}</p>
+        {% endif %}
+    {% endif %}
+</div>

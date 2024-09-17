@@ -1,0 +1,251 @@
+{%- liquid
+    assign sectionid = section.id
+
+    assign link = product.url
+
+    assign card_bg_color = section.settings.card_bg_color
+
+    assign product_image = product.images[0].src
+    assign img_alt = product.images[0].alt | escape
+    assign image_height = section.settings.image_height
+
+    assign title_color = section.settings.title_color
+    assign title_font_size = section.settings.title_font_size
+    assign scaled_title_font_size = section.settings.title_font_size | times: 0.85 | round
+
+    assign price_color = section.settings.price_color
+    assign price_font_size = section.settings.price_font_size
+    assign scaled_price_font_size = section.settings.price_font_size | times: 0.95 | round
+
+    assign json_data = shop.metafields.flexi.flexistyling.value
+    assign borderRadius = json_data.borderRadius
+
+    if json_data == blank
+      assign borderRadius = 8
+    endif
+    
+    if section.index <= 3
+        assign loading_strategy = 'eager'
+        assign fetch_priority = 'high'
+      else
+        assign loading_strategy = 'lazy'
+        assign fetch_priority = 'auto'
+      endif
+    
+      assign widths = '165, 360, 535, 750, 1070, 1500'
+    -%}
+    {%- capture sizes -%}
+      (min-width: 1200px) calc((1200px - 100px) / 2),
+      (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)
+    {%- endcapture -%}
+
+{% style %}
+#flexi-block-{{ sectionid }} {
+    height: 100%;
+    width: 100%;
+}
+
+#flexi-block-{{ sectionid }} .flexi-card-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    gap: 12px;
+    position: relative;
+    background-color: {{ card_bg_color }};
+    border-radius: {{ borderRadius }}px;
+    min-height: auto;
+}
+
+#flexi-block-{{ sectionid }} .flexi-card-container .flexi-image {
+    position: relative;
+    flex: 1;
+    align-self: stretch;
+    width: 100%;
+    flex-grow: 1;
+    object-fit: cover;
+}
+
+#flexi-block-{{ sectionid }} .flexi-card-container .flexi-card-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    align-items: flex-start;
+    gap: 0.5em;
+
+    {% if card_bg_color != blank and card_bg_color != 'rgba(0,0,0,0)' %}
+        padding: 0px 16px 16px 16px;
+    {% endif %}
+
+    position: relative;
+    align-self: stretch;
+    flex-grow: 1;
+}
+
+#flexi-block-{{ sectionid }} .flexi-card-container .flexi-title {
+    position: relative;
+    align-self: stretch;
+    color: {{ title_color }};
+    font-size: {{ title_font_size }}px;
+    letter-spacing: 0;
+    line-height: normal;
+
+    padding: 0px !important;
+    margin: 0px !important;
+}
+
+#flexi-block-{{ sectionid }} .flexi-title-link {
+    text-decoration: none;
+    letter-spacing: 0;
+    line-height: normal;
+    padding: 0px !important;
+    margin: 0px !important;
+}
+
+#flexi-block-{{ sectionid }} .flexi-card-container .flexi-price,
+#flexi-block-{{ sectionid }} .flexi-card-container .flexi-price p {
+    position: relative;
+    align-self: stretch;
+    color: {{ price_color }};
+    font-size: {{ price_font_size }}px;
+    letter-spacing: 0;
+    line-height: normal;
+
+    padding: 0px !important;
+    margin: 0px !important;
+}
+
+#flexi-block-{{ sectionid }} #flexi-sale-price {
+    display: flex;
+    gap: 6px;
+}
+
+#flexi-block-{{ sectionid }} #flexi-callout {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background-color: white;
+    color: black;
+    padding: 4px 8px;
+    border-radius: {{ borderRadius }}px;
+    font-size: 10px;
+    z-index: 10;
+    font-weight: bold;
+}
+
+@media only screen and (max-width: 768px) {
+    #flexi-block-{{ sectionid }} .flexi-card-container .flexi-title {
+        font-size: {{ scaled_title_font_size }}px;
+    }
+    #flexi-block-{{ sectionid }} .flexi-card-container .flexi-price {
+        font-size: {{ scaled_price_font_size }}px;
+    }
+}
+
+.flexi-image-{{ sectionid }} {
+    display: block;
+    width: 100%;
+    height: fit-content;
+}
+.flexi-image-{{ sectionid }} a {
+    overflow: hidden;
+
+    {% if card_bg_color != blank and card_bg_color != 'rgba(0,0,0,0)' %}
+        border-radius: {{ borderRadius }}px {{ borderRadius }}px 0px 0px;
+    {% else %}
+        border-radius: {{ borderRadius }}px;
+    {% endif %}
+}
+.flexi-image-{{ sectionid }} img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    {% if card_bg_color != blank and card_bg_color != 'rgba(0,0,0,0)' %}
+        border-radius: {{ borderRadius }}px {{ borderRadius }}px 0px 0px;
+    {% else %}
+        border-radius: {{ borderRadius }}px;
+    {% endif %}
+    object-fit: cover;
+    height: {{ image_height }};
+    overflow: hidden;
+}
+.flexi-image-{{ sectionid }} svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    {% if card_bg_color != blank and card_bg_color != 'rgba(0,0,0,0)' %}
+        border-radius: {{ borderRadius }}px {{ borderRadius }}px 0px 0px;
+    {% else %}
+        border-radius: {{ borderRadius }}px;
+    {% endif %}
+    background-color: #D4D4D4;
+    margin: 0px;
+    transition: transform 0.5s ease;
+}
+.flexi-image-{{ sectionid }} img:hover {
+    transform: scale(1.1);
+    transition: transform 0.5s ease;
+}
+.flexi-image-{{ sectionid }} svg:hover {
+    transform: scale(1.1);
+}
+.flexi-image-{{ sectionid }} a {
+    display: block;
+    position: relative;
+    width: 100%;
+    height: auto;
+    margin: 0px;
+}
+
+{% endstyle %}
+
+
+<div id="flexi-block-{{ sectionid }}">
+    <div class="flexi-card-container">
+
+        <!-- Determine the discount percentage and display it in the callout badge -->
+        {% if product.compare_at_price != blank and product.compare_at_price > product.price %}
+            {% assign discount_price = product.compare_at_price | minus: product.price %}
+            {% assign discount_percentage = discount_price | times: 1.0 | divided_by: product.compare_at_price | times: 100 | round %}
+            <div id="flexi-callout">
+                <div class="flexi-callout-text">{{ discount_percentage }}% OFF</div>
+            </div>
+        {% endif %}
+
+        {% if product_image != blank %}
+            <div id="flexi-image" class="flexi-image-{{ sectionid }}">
+                    <a href="{{ link }}">
+                        {{ product_image | image_url: width: 512 | image_tag: 
+                            sizes: sizes, 
+                            widths: widths, 
+                            loading: loading_strategy, 
+                            fetchpriority: fetch_priority,
+                            alt: img_alt
+                        }}
+                    </a>
+            </div>
+       {% endif %}
+
+        <div class="flexi-card-wrapper">
+
+            {% if product.title != blank %}
+                <a class="flexi-title-link" href="{{ link }}">
+                    <div class="flexi-title">{{ product.title }}</div>
+                </a>
+            {% endif %}
+
+            <div class="flexi-price">
+                {% if product.compare_at_price != blank and product.compare_at_price > product.price %}
+                    <div id="flexi-sale-price">
+                        <p class="flexi-original-price" style="text-decoration: line-through; opacity: .5;">{{ product.compare_at_price | money }}</p>
+                        <p class="flexi-sale-price">{{ product.price | money }}</p>
+                    </div>
+                {% elsif product.price != blank %}
+                    <p>{{ product.price | money }}</p>
+                {% endif %}
+            </div>
+            
+        </div>
+    </div>
+</div>

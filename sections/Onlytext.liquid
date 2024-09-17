@@ -1,0 +1,75 @@
+<style>
+  .bluediv {
+        background: #F2F7FA;
+    padding: 48px 17px;
+    margin-bottom: 30px;
+}
+  section.metafields h2 {
+    color: #1A4760;
+    font-family: var(--body-font-stack);
+    font-size: 42px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 1.68px;
+    margin: 0;
+    padding: 0;
+}
+  section.metafields p {
+    color: #1A4760;
+    font-family: var(--body-font-stack);
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 32px;
+    letter-spacing: 0.8px;
+    margin: 0;
+    padding: 15px 0px 0px;
+}
+  section.metafields .bluediv h2 {
+    color: #1A4760;
+    font-size: 42px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 1.68px;
+    font-family: var(--body-font-stack);
+    padding: 0;
+    margin: 0;
+}
+  section.metafields .bluediv p {
+    color: #1A4760;
+    font-family: var(--body-font-stack);
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 32px;
+    letter-spacing: 0.8px;
+    margin: 0;
+    padding: 15px 0px 0px;
+}
+  section.metafields {
+    margin-bottom: 50px;
+    padding: 0px 5.9vw;
+}
+</style>
+<section class="metafields">
+  {{ collection.metafields.custom.below_product_content }}
+</section>
+{% schema %}
+  {
+    "name": "Text",
+    "settings": [
+      {
+        "type": "text",
+        "id": "metafieldtext",
+        "label": "Add Text",
+      }
+    ],
+    "presets": [
+        {
+            "name": "Text"
+        }
+    ]
+  }
+{% endschema %}

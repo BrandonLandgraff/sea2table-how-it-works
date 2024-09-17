@@ -1,0 +1,668 @@
+{%- liquid
+    assign blockid = block.id
+
+    assign discount_color = section.settings.discount_color
+    assign text_color = section.settings.text_color
+    assign variant_outline_color =section.settings.variant_outline_color
+    assign accent_color = section.settings.accent_color
+    assign active_color = section.settings.active_color
+
+    assign subheading = block.settings.subheading
+    assign atc_text = section.settings.atc_text
+    assign title = product.title
+
+    assign bg_color = block.settings.bg_color
+
+    assign product_image = product.images[0].src
+
+    assign link = product.url
+    
+    assign image = block.settings.image
+    assign image_height = block.settings.image_height
+
+    assign subheading_color = block.settings.subheading_color
+    assign subheading_font_size = block.settings.subheading_font_size
+    assign scaled_subheading_font_size = block.settings.subheading_font_size | times: 0.95 | round
+
+    assign title_color = section.settings.text_color
+    assign title_font_size = block.settings.title_font_size
+    assign scaled_title_font_size = block.settings.title_font_size | times: 0.85 | round
+
+    assign price_color = block.settings.price_color
+    assign price_font_size = block.settings.price_font_size
+    assign scaled_price_font_size = block.settings.price_font_size | times: 0.95 | round
+
+    assign selected_variant = product.selected_or_first_available_variant
+
+    assign unique_id = 'flexi-' | append: section.id | append: '-' | append: block.id
+    assign form_id = unique_id | append: '-product-form'
+
+    assign json_data = shop.metafields.flexi.flexistyling.value
+    assign borderRadius = json_data.borderRadius
+    assign borderThickness = json_data.borderThickness
+  
+    if json_data == blank
+        assign borderRadius = 8
+        assign borderThickness = 1
+    endif
+
+    if section.index <= 3
+        assign loading_strategy = 'eager'
+        assign fetch_priority = 'high'
+      else
+        assign loading_strategy = 'lazy'
+        assign fetch_priority = 'auto'
+      endif
+    
+      assign widths = '165, 360, 535, 750, 1070, 1500'
+    
+    
+      assign img_alt = image.alt | escape
+    -%}
+    {%- capture sizes -%}
+      (min-width: 1200px) calc((1200px - 100px) / 2),
+      (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)
+    {%- endcapture -%}
+
+{% style %}
+#flexi-block-{{ blockid }} {
+    height: 100%;
+    width: 100%;
+}
+
+#flexi-block-{{ blockid }} .flexi-card-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    gap: 12px;
+    position: relative;
+    background-color: {{ bg_color }};
+    border-radius: {{ borderRadius }}px;
+    min-height: auto;
+}
+
+#flexi-block-{{ blockid }} .flexi-card-container .flexi-image {
+    position: relative;
+    flex: 1;
+    align-self: stretch;
+    width: 100%;
+    flex-grow: 1;
+    object-fit: cover;
+}
+
+#flexi-block-{{ blockid }} .flexi-card-container .flexi-card-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    align-items: flex-start;
+    gap: 8px;
+
+    {% if bg_color != blank and bg_color != 'rgba(0,0,0,0)' %}
+        padding: 0px 16px 16px 16px;
+    {% endif %}
+
+    position: relative;
+    align-self: stretch;
+    flex-grow: 1;
+}
+
+#flexi-block-{{ blockid }} .flexi-card-container .flexi-subheading {
+    position: relative;
+    align-self: stretch;
+    color: {{ subheading_color }};
+    font-size: {{ subheading_font_size }}px;
+    letter-spacing: 0;
+    line-height: normal;
+
+    padding: 0px !important;
+    margin: 0px !important;
+}
+
+#flexi-block-{{ blockid }} .flexi-card-container .flexi-title {
+    position: relative;
+    align-self: stretch;
+    color: {{ title_color }};
+    font-size: {{ title_font_size }}px;
+    letter-spacing: 0;
+    line-height: normal;
+
+    padding: 0px !important;
+    margin: 0px !important;
+}
+
+#flexi-block-{{ blockid }} .flexi-title-link {
+    text-decoration: none;
+    letter-spacing: 0;
+    line-height: normal;
+    padding: 0px !important;
+    margin: 0px !important;
+}
+
+#flexi-block-{{ blockid }} .flexi-card-container .flexi-price,
+#flexi-block-{{ blockid }} .flexi-card-container .flexi-price p {
+    position: relative;
+    align-self: stretch;
+    color: {{ price_color }};
+    font-size: {{ price_font_size }}px;
+    letter-spacing: 0;
+    line-height: normal;
+
+    padding: 0px !important;
+    margin: 0px !important;
+}
+
+#flexi-block-{{ blockid }} #flexi-sale-price {
+    display: flex;
+    gap: 6px;
+}
+
+#flexi-block-{{ blockid }} #flexi-callout {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background-color: {{ discount_color }};
+    color: black;
+    padding: 4px 8px;
+    border-radius: {{ borderRadius }}px;
+    font-size: 10px;
+    z-index: 10;
+    font-weight: bold;
+}
+
+@media only screen and (max-width: 768px) {
+    #flexi-block-{{ blockid }} .flexi-card-container .flexi-subheading {
+        font-size: {{ scaled_subheading_font_size }}px;
+    }
+    #flexi-block-{{ blockid }} .flexi-card-container .flexi-title {
+        font-size: {{ scaled_title_font_size }}px;
+    }
+    #flexi-block-{{ blockid }} .flexi-card-container .flexi-price {
+        font-size: {{ scaled_price_font_size }}px;
+    }
+}
+
+.flexi-image-{{ blockid }} {
+    display: block;
+    width: 100%;
+    height: fit-content;
+}
+.flexi-image-{{ blockid }} a {
+    overflow: hidden;
+
+    {% if bg_color != blank and bg_color != 'rgba(0,0,0,0)' %}
+        border-radius: {{ borderRadius }}px {{ borderRadius }}px 0px 0px;
+    {% else %}
+        border-radius: {{ borderRadius }}px;
+    {% endif %}
+}
+.flexi-image-{{ block.id }} img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    {% if bg_color != blank and bg_color != 'rgba(0,0,0,0)' %}
+        border-radius: {{ borderRadius }}px {{ borderRadius }}px 0px 0px;
+    {% else %}
+        border-radius: {{ borderRadius }}px;
+    {% endif %}
+    object-fit: cover;
+    height: {{ image_height }};
+    overflow: hidden;
+}
+.flexi-image-{{ block.id }} svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    {% if bg_color != blank and bg_color != 'rgba(0,0,0,0)' %}
+        border-radius: {{ borderRadius }}px {{ borderRadius }}px 0px 0px;
+    {% else %}
+        border-radius: {{ borderRadius }}px;
+    {% endif %}
+    background-color: #D4D4D4;
+    margin: 0px;
+    transition: transform 0.5s ease;
+}
+.flexi-image-{{ blockid }} img:hover {
+    transform: scale(1.1);
+    transition: transform 0.5s ease;
+}
+.flexi-image-{{ blockid }} svg:hover {
+    transform: scale(1.1);
+}
+.flexi-image-{{ block.id }} a {
+    display: block;
+    position: relative;
+    width: 100%;
+    height: auto;
+    margin: 0px;
+}
+
+/* PRODUCT VARIANTS */
+.flexi-blocks-container--{{ section.id }} {
+    width: 100%;
+}
+.flexi-variant-wrapper {
+    border: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    min-width: 0 !important;
+}
+.variant-option-input {
+    display: none;
+    appearance: none;
+}
+variant-selector {
+    display: block;
+    width: 100%;
+    max-width: 600px;
+}
+
+.flexi-radio-legend-label-{{ block.id }} {
+    font-size: 14px;
+    font-weight: bold;
+    color: {{ text_color }};
+}
+
+@media (max-width: 768px) {
+    .flexi-radio-legend-label-{{ block.id }} {
+        font-size: 14px;
+    }
+}
+
+.flexi-blocks-container--{{ section.id }} .flexi-variants-purchase-options-label .label-content {
+    display: inline-block;
+    padding: 6px 14px;
+    margin: 0px;
+    border: {{ borderThickness }}px solid {{ variant_outline_color }};
+    border-radius: {{ borderRadius }}px;
+    text-align: center;
+    background-color: transparent;
+    color: {{ text_color }};
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+    font-size: 14px;
+}
+
+@media (max-width: 768px) {
+    .flexi-blocks-container--{{ section.id }} .flexi-variants-purchase-options-label .label-content {
+        font-size: 14px;
+    }
+}
+
+.flexi-variants-purchase-options-label:first-child .label-content {
+    margin-left: 0px;
+}
+
+.flexi-blocks-container--{{ section.id }} .variant-option-input:checked + .label-content {
+    background-color: {{ accent_color }}; 
+    border: {{ borderThickness }}px solid {{ accent_color }};
+    color: {{ active_color }};
+    font-size: 14px;
+}
+
+.flexi-product-form-wrapper {
+    margin-top: 4px;
+}
+.flexi-add-to-cart-{{ block.id }} {
+    display: inline-block;
+    text-decoration: none;
+
+    font-size: 14px;
+    width: 100%;
+    color: {{ active_color }}; 
+    border-radius: {{ borderRadius }}px;
+    padding: 12px 36px;
+    transition: opacity 0.3s ease;
+    text-align: center;
+    line-height: normal;
+    cursor: pointer;
+
+    background-color: {{ accent_color }}; 
+    border: {{ borderThickness }}px solid {{ accent_color }};
+}
+.flexi-add-to-cart-{{ block.id }}:hover {
+    opacity: 0.7;
+}
+.flexi-add-to-cart-wrapper button[disabled=disabled], 
+.flexi-add-to-cart-wrapper button:disabled {
+    cursor: not-allowed; 
+    color: #666666;
+    border: none;
+    background-color: #cccccc;
+}
+{% endstyle %}
+
+
+<div id="flexi-block-{{ blockid }}">
+    <div class="flexi-card-container">
+
+        <!-- Determine the discount percentage and display it in the callout badge -->
+        {% if product.compare_at_price != blank and product.compare_at_price > product.price %}
+            {% assign discount_price = product.compare_at_price | minus: product.price %}
+            {% assign discount_percentage = discount_price | times: 1.0 | divided_by: product.compare_at_price | times: 100 | round %}
+            <div id="flexi-callout">
+                <div class="flexi-callout-text">{{ discount_percentage }}% OFF</div>
+            </div>
+        {% endif %}
+
+        {% if product_image != blank %}
+            <div id="flexi-image" class="flexi-image-{{ blockid }}">
+                {% if image != blank %}
+                    <a href="{{ link }}">
+                        {{ image | image_url: width: 512 | image_tag:
+                            sizes: sizes, 
+                            widths: widths, 
+                            loading: loading_strategy, 
+                            fetchpriority: fetch_priority,
+                            alt: img_alt 
+                        }}
+                    </a>
+                {% else %}
+                    <a href="{{ link }}">
+                        {{ product_image | image_url: width: 512 | image_tag: 
+                            sizes: sizes, 
+                            widths: widths, 
+                            loading: loading_strategy, 
+                            fetchpriority: fetch_priority,
+                            alt: img_alt 
+                        }}
+                    </a>
+                {% endif %}
+            </div>
+        {% else %}
+            <div id="flexi-image" class="flexi-image-{{ blockid }}">
+                {% if image != blank %}
+                    <a href="{{ link }}">
+                        {{ image | image_url: width: 512 | image_tag: 
+                            sizes: sizes, 
+                            widths: widths, 
+                            loading: loading_strategy, 
+                            fetchpriority: fetch_priority,
+                            alt: img_alt 
+                        }}
+                    </a>
+                {% else %}
+                    <a href="{{ link }}">
+                        {{ 'product-1' | placeholder_svg_tag }}  
+                    </a>
+                {% endif %}
+            </div>
+        {% endif %}
+
+        <div class="flexi-card-wrapper">
+
+            {% if subheading != blank %}
+                <div class="flexi-subheading">{{ subheading }}</div>
+            {% endif %}
+
+            {% if title != blank %}
+                <a class="flexi-title-link" href="{{ link }}">
+                    <div class="flexi-title">{{ title }}</div>
+                </a>
+            {% else %}
+                <div class="flexi-title">Product card</div>
+            {% endif %}
+
+            {% if product != blank %}
+                <div class="flexi-blocks-container--{{ section.id }}">
+                    <div class="flexi-product-card-container-{{ section.id }}" id="{{ unique_id }}">
+                        {% unless product.has_only_default_variant %}
+                            <variant-selector data-block-id="{{ block.id }}" data-url="{{ product.url }}" data-section="{{ block.id }}" id="{{ unique_id }}-variant-selector">
+                                {%- for option in product.options_with_values -%}
+                                    <fieldset class="flexi-variant-wrapper">
+                                        <legend class="flexi-radio-legend">
+                                            <span class="flexi-radio-legend-label-{{ block.id }}">{{ option.name }}</span>
+                                        </legend>
+                                        <div class="flexi-purchase-options-wrapper">
+                                            <div class="flexi-variants-purchase-options">
+                                                {%- for value in option.values -%}
+                                                    <label class="flexi-variants-purchase-options-label" for="{{ block.id }}-{{ option.position }}-{{ forloop.index0 }}" id="variantlabel-{{ option.position }}-{{ forloop.index0 }}">
+                                                        <input class="variant-option-input" type="radio" id="{{ block.id }}-{{ option.position }}-{{ forloop.index0 }}"
+                                                            name="{{ option.name }}-{{ block.id }}"
+                                                            value="{{ value | escape }}"
+                                                            {% if option.selected_value == value %}checked{% endif %}
+                                                            >
+                                                        <span class="label-content">{{ value }}</span>
+                                                    </label>
+                                                {%- endfor -%}
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                    <script type="application/json">
+                                        {{ product.variants | json }}
+                                    </script>
+                                {%- endfor -%}
+            
+                            </variant-selector>
+                        {% endunless %}
+                        <div class="flexi-product-form-wrapper">
+                            {% form 'product', product, id: form_id, novalidate: 'novalidate' %}
+                
+                                <input type="hidden" name="id" value="{{ selected_variant.id }}" id="flexi-form-id-{{ block.id }}">
+                                <input type="hidden" name="quantity" value="1" id="flexi-product-quantity-form-{{ block.id }}">
+                                <input type="hidden" name="selling_plan" value="">
+                        
+                                <div class="flexi-add-to-cart-wrapper">
+                                    <button type="submit" name="add" id="flexi-add-to-cart-{{ block.id }}" data-block-id="{{ block.id }}" class="flexi-add-to-cart-{{ block.id }} flexi-ajax-add-to-cart"
+                                        {% if selected_variant.available == false %}
+                                            disabled
+                                        {% endif %}
+                                    >
+                                        <div class="loader" id="add-to-cart-loader-{{ block.id }}" style="display:none;"></div>
+                                        <span id="flexi-add-to-cart-text-{{ block.id }}">
+                                            {% if selected_variant.available == false %}
+                                                Sold out 
+                                            {% else %}
+                                                <span id="flexi-price-{{ block.id }}" class="flexi-price-{{ block.id }}">{{ selected_variant.price | money }}</span> - {{ atc_text }}
+                                            {% endif %}
+                                        </span>
+                                    </button>                                                    
+                                </div>
+            
+                            {% endform %}
+                        </div>  
+                    </div>
+                </div>
+            {% else %}
+            <div class="flexi-blocks-container--{{ section.id }}">
+                <div class="flexi-product-form-wrapper">
+                    <div class="flexi-add-to-cart-wrapper">
+                        <button type="submit" name="add" id="flexi-add-to-cart-{{ block.id }}" class="flexi-add-to-cart-{{ block.id }} flexi-ajax-add-to-cart">
+                            <span id="flexi-add-to-cart-text-{{ block.id }}">
+                                <span id="flexi-price-{{ block.id }}" class="flexi-price-{{ block.id }}">$24.99</span> - {{ atc_text }}
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+            
+            
+
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    console.log({{ selected_variant | json }});
+    
+    function loadedForm() {
+
+        const formatter = new Intl.NumberFormat('en-US', {
+            style: 'currency',
+            currency: 'USD',
+        });
+      
+        class VariantSelector extends HTMLElement {
+            constructor() {
+                super();
+                this.addEventListener("change", this.onVariantChange);
+            }
+            onVariantChange() {
+                console.log('{{ product.title }}');
+                this.blockID = this.dataset.blockId;
+                this.getSelectedOptions();
+                this.getSelectedVariant();
+                this.updateFormID();
+                this.updatePrice();
+                this.updateCheckoutButton(); // Add this line
+            }
+            getSelectedOptions() {
+                const fieldsets = Array.from(this.querySelectorAll('fieldset'));
+                this.variantoptions = fieldsets.map((fieldset) => {
+                    return Array.from(fieldset.querySelectorAll('input')).find((radio) => radio.checked).value;
+              });
+              console.log(this.variantoptions);
+            }
+            getVariantJSON() {
+                this.variantData = this.variantData || JSON.parse(this.querySelector('[type="application/json"]').textContent);
+                return this.variantData;
+            }
+            getSelectedVariant() {
+                const variants = this.getVariantJSON();
+                this.currentVariant = variants.find((variant) => {
+                    return !variant.options.map((option, index) => {
+                        return this.variantoptions[index] === option;
+                    }).includes(false);
+                });
+                
+                console.log(this.currentVariant);
+
+            }
+            updateFormID() {
+                console.log("UPDATE ID");
+                console.log(this.currentVariant.id);
+                let form_input = document.querySelector(`#flexi-form-id-${this.blockID}`);
+                console.log(form_input);
+                form_input.value = this.currentVariant.id;
+                console.log('#{{ form_id }}');
+            }
+            updatePrice() {
+              const currencyToLocaleMap = {
+                  'USD': 'en-US',
+                  'EUR': 'fr-FR',
+                  'GBP': 'en-GB',
+                  'CAD': 'en-CA',
+                  'AUD': 'en-AU',
+                  'JPY': 'ja-JP',
+                  'CNY': 'zh-CN',
+                  'HKD': 'zh-HK',
+                  'NZD': 'en-NZ',
+                  'CHF': 'de-CH',
+                  'ZAR': 'en-ZA',
+                  'SEK': 'sv-SE',
+                  'NOK': 'nb-NO',
+                  'DKK': 'da-DK',
+                  'INR': 'en-IN',
+                  'SGD': 'en-SG',
+                  'MXN': 'es-MX',
+                  'BRL': 'pt-BR',
+                  'RUB': 'ru-RU',
+                  'PLN': 'pl-PL',
+                  'PHP': 'en-PH',
+                  'TRY': 'tr-TR',
+                  'THB': 'th-TH',
+                  'MYR': 'ms-MY',
+                  'IDR': 'id-ID',
+                  'TWD': 'zh-TW',
+                  'VND': 'vi-VN',
+                  'KRW': 'ko-KR',
+                  'AED': 'ar-AE'
+                };
+                
+                const formatPrice = (price, currency) => {
+                    const locale = currencyToLocaleMap[currency] || 'en-US';
+                    return new Intl.NumberFormat(locale, {
+                        style: 'currency',
+                        currency: currency,
+                    }).format(price);
+                };
+                
+                const currency = "{{ shop.currency }}"; // Ensure this gets replaced properly
+                const adjustedPrice = this.currentVariant.price / 100;
+            
+                const adjustedPriceElement = document.querySelector(`#flexi-price-${this.blockID}`);
+                
+                if (adjustedPriceElement) adjustedPriceElement.innerHTML = formatPrice(adjustedPrice, currency);
+
+            }
+            updateCheckoutButton() {
+              const checkoutButton = document.querySelector(`#flexi-add-to-cart-${this.blockID}`);
+              if (this.currentVariant && this.currentVariant.available) {
+                  checkoutButton.disabled = false;
+              } else {
+                  checkoutButton.disabled = true;
+              }
+            }
+        }
+        customElements.define("variant-selector", VariantSelector);
+
+        /* AJAX ADD TO CART */
+        const buttons = document.querySelectorAll('.flexi-ajax-add-to-cart');
+        buttons.forEach(button => {
+            button.addEventListener('click', function(event) {
+                const blockID = button.dataset.blockId;
+                handleAddToCartClick(event, blockID);
+            });
+            console.log(button);
+        });
+        
+        {% if section.settings.no_redirect == false %}
+            function handleAddToCartClick(event, blockID) {
+                event.preventDefault();
+                console.log('ADD TO CART CLICK WORKED');
+                console.log('Block ID:', blockID);
+        
+                const loader = document.getElementById(`add-to-cart-loader-${blockID}`);
+                const buttonText = document.getElementById(`flexi-add-to-cart-text-${blockID}`);
+                const variantAJAXId = document.querySelector(`#flexi-form-id-${blockID}`).value;
+                const quantity = document.querySelector(`#flexi-product-quantity-form-${blockID}`).value;
+        
+                loader.style.display = "inline-block";
+                buttonText.innerHTML = "";
+        
+                addToCartAjax(variantAJAXId, quantity, loader, buttonText);
+            }
+            
+            function addToCartAjax(variantAJAXId, quantity, loader, buttonText) {
+
+                console.log(variantAJAXId);
+                
+                fetch('/cart/add.js', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-Requested-With': 'XMLHttpRequest'
+                    },
+                    body: JSON.stringify({
+                        id: variantAJAXId,
+                        quantity: parseInt(quantity)
+                    })
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(response.statusText);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    // Hide loader and change button text to "Added"
+                    loader.style.display = "none";
+                    buttonText.innerHTML = "Added";
+                })
+                .catch(error => {
+                    console.error('There was an error adding the item to the cart:', error);
+                    alert('There was an error adding the item to the cart.');
+                });
+            }
+        {% endif %}
+        
+      }
+      
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", loadedForm);
+      } else {
+        loadedForm();
+      }
+</script>

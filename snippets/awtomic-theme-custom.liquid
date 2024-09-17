@@ -1,0 +1,141 @@
+<script>
+  window.bundleapp = window.bundleapp || {};
+  window.bundleapp.settings = Object.assign({}, window.bundleapp.settings || {}, {
+    bab: {
+      productImage: 840,
+    },
+  });
+
+  window.addEventListener('awtomic-cp-loaded', function () {
+    document.body.classList.add('awtomic-customer-portal-open');
+  });
+
+  document.addEventListener('DOMContentLoaded', function () {
+    var pathname = window.location.pathname;
+
+    if (pathname.startsWith('/tools/bundle-subscriptions')) {
+      document.body.classList.add('awtomic-customer-portal-open');
+    }
+  });
+</script>
+
+
+{% comment %} Custom popup {% endcomment %}
+ <script>
+  document.addEventListener("DOMContentLoaded", function() {
+    // Function to get URL parameters
+    function getUrlParams() {
+        let params = {};
+        window.location.search.substring(1).split("&").forEach(function(item) {
+            let [key, value] = item.split("=");
+            params[key] = value;
+        });
+        return params;
+    }
+
+    // Function to show popup
+    function showPopup(title, image, description) {
+        // Create backdrop
+        let backdrop = document.createElement('div');
+        backdrop.style.position = 'fixed';
+        backdrop.style.top = '0';
+        backdrop.style.left = '0';
+        backdrop.style.width = '100%';
+        backdrop.style.height = '100%';
+        backdrop.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+        backdrop.style.zIndex = '99999';
+        document.body.appendChild(backdrop);
+
+        // Create popup container
+        let popup = document.createElement('div');
+        popup.style.position = 'fixed';
+        popup.style.top = '50%';
+        popup.style.left = '50%';
+        popup.style.transform = 'translate(-50%, -50%)';
+        popup.style.padding = '20px';
+        popup.style.backgroundColor = '#fff';
+        popup.style.borderRadius = '10px';
+        popup.style.boxShadow = '0px 0px 10px rgba(0, 0, 0, 0.1)';
+        popup.style.zIndex = '100000';
+
+        // Create title
+        let popupTitle = document.createElement('h2');
+        popupTitle.innerHTML = title;
+
+        // Create image
+        let popupImage = document.createElement('img');
+        popupImage.src = image;
+        popupImage.style.width = '100%';
+
+        // Create description
+        let popupDescription = document.createElement('p');
+        popupDescription.innerHTML = description;
+        popupDescription.style.margin = '20px auto';
+
+        // Create close button
+        let closeButton = document.createElement('button');
+        closeButton.innerText = 'X';
+        closeButton.style.fontWeight = 'bold';
+        closeButton.style.position = 'absolute';
+        closeButton.style.top = '10px';
+        closeButton.style.right = '10px';
+        closeButton.style.background = 'none';
+        closeButton.style.border = 'none';
+        closeButton.style.fontSize = '20px';
+        closeButton.style.cursor = 'pointer';
+        closeButton.addEventListener('click', function() {
+            document.body.removeChild(popup);
+            document.body.removeChild(backdrop);
+        });
+
+        // Create "Get Started" button
+        let getStartedButton = document.createElement('button');
+        getStartedButton.innerText = 'Get Started';
+        getStartedButton.style.display = 'block';
+        getStartedButton.style.margin = '20px auto';
+        getStartedButton.style.padding = '10px 20px';
+        getStartedButton.style.fontSize = '16px';
+        getStartedButton.style.cursor = 'pointer';
+        getStartedButton.style.color = "#fff";
+        getStartedButton.style.fontWeight = "bold";
+        getStartedButton.style.backgroundColor = "#f9660d";
+        getStartedButton.style.borderRadius =  '8px';
+        getStartedButton.addEventListener('click', function() {
+            document.body.removeChild(popup);
+            document.body.removeChild(backdrop);
+        });
+
+        // Append elements to popup
+        popup.appendChild(closeButton);
+        popup.appendChild(popupTitle);
+        if (image) {
+          popup.appendChild(popupImage);
+        }
+        popup.appendChild(popupDescription);
+        popup.appendChild(getStartedButton);
+
+        // Append popup to body
+        document.body.appendChild(popup);
+    }
+
+    // Check if URL contains "bundle-subscriptions/bundle/7421575397537"
+    if (window.location.pathname.includes("bundle-subscriptions/bundle/7421575397537")) {
+        let params = getUrlParams();
+
+        if (params.hasOwnProperty('testA')) {
+            showPopup('Test A Title', 'https://placehold.it/600x400/black', 'This is the description for Test A');
+        } else if (params.hasOwnProperty('testB')) {
+            showPopup('Test B Title', 'imageB.jpg', 'This is the description for Test B');
+        }
+        // Add more conditions as needed for other URL params
+    }
+});
+</script>
+{% comment %} End Custom popup {% endcomment %}
+
+<style>
+  .bundle-product-card__price > span,
+  .bundle-container > footer span[modifiers="strikethrough"] {
+    display: none;
+  }
+</style>

@@ -1,0 +1,187 @@
+{%- liquid
+  assign blockid = block.id
+
+  assign bg_image = block.settings.bg_image
+  assign mb_bg_image = block.settings.mb_bg_image
+
+  assign gap = section.settings.gap
+
+  assign alpha = block.settings.opacity | divided_by: 100.0
+
+  assign heading_color = block.settings.heading_color
+  assign heading_font_size = block.settings.heading_font_size
+  assign scaled_heading_font_size = block.settings.heading_font_size | times: 0.85 | round
+
+  assign description_color = block.settings.description_color
+  assign description_font_size = block.settings.description_font_size
+  assign scaled_description_font_size = block.settings.description_font_size | times: 0.95 | round
+-%}
+
+{% style %}
+  #flexi-block-{{ blockid }} {
+      display: block;
+      position: relative;
+      height: 100%;
+      width: 100%;
+      padding: {{ block.settings.increase_padding }}em;
+      overflow: hidden;
+  }
+
+  @media (max-width: 767px) {
+    #flexi-block-{{ blockid }} {
+        padding: 1em;
+    }
+  }
+
+  /* BACKGROUND IMAGE */
+  #flexi-block-{{ blockid }}::before {
+      content: '';
+      position: absolute;
+      z-index: -1;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      {% if bg_image != blank %}
+          background: linear-gradient(0deg, {{ block.settings.overlay_color | color_modify: 'alpha', alpha }}, {{ block.settings.overlay_color | color_modify: 'alpha', alpha }}), url('{{ block.settings.bg_image | img_url: '512x' }}');
+      {% else %}
+      background: linear-gradient(0deg, {{ block.settings.overlay_color | color_modify: 'alpha', alpha }}, {{ block.settings.overlay_color | color_modify: 'alpha', alpha }}), url('{{ 'flexi-placeholder-background.png' | asset_url }}');
+      {% endif %}
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+  }
+  @media (max-width: 767px) {
+      #flexi-block-{{ blockid }}::before {
+          {% if mb_bg_image != blank %}
+              background: linear-gradient(0deg, {{ block.settings.overlay_color | color_modify: 'alpha', alpha }}, {{ block.settings.overlay_color | color_modify: 'alpha', alpha }}), url('{{ block.settings.mb_bg_image | img_url: '512x' }}');
+              background-size: cover;
+              background-position: center;
+              background-repeat: no-repeat;
+          {% endif %}
+      }
+  }
+  #flexi-block-{{ blockid }}:hover::before{
+      transform: scale(1.1);
+      transition: transform 0.5s ease;
+  }
+
+  {% if gap >= 1 %}
+      #flexi-block-{{ blockid }} {
+          border-radius: {{ section.settings.border_radius }}px;
+      }
+  {% endif %}
+
+  @media only screen and (max-width: 768px) {
+      #flexi-block-{{ blockid }} {
+          aspect-ratio: 1 / 1;
+      }
+  }
+
+  #flexi-block-{{ blockid }} .flexi-card-container {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      height: 100%;
+      align-items: center;
+      gap: 12px;
+      position: relative;
+      background-color: {{ bg_color }};
+      border-radius: {{ border_radius }}px;
+      min-height: auto;
+  }
+
+  #flexi-block-{{ blockid }} .flexi-card-container .flexi-image {
+      position: relative;
+      flex: 1;
+      align-self: stretch;
+      width: 100%;
+      flex-grow: 1;
+      object-fit: cover;
+  }
+
+  #flexi-block-{{ blockid }} .flexi-card-container .flexi-card-wrapper {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      align-items: flex-start;
+      gap: {{ block.settings.gap }}px;
+
+      position: relative;
+      align-self: stretch;
+      flex-grow: 1;
+  }
+
+  #flexi-block-{{ blockid }} .flexi-card-container .flexi-heading {
+      position: relative;
+      align-self: stretch;
+      color: {{ heading_color }};
+      font-size: {{ heading_font_size }}px;
+      letter-spacing: 0;
+      line-height: normal;
+
+      padding: 0px !important;
+      margin: 0px !important;
+  }
+
+  #flexi-block-{{ blockid }} .flexi-heading-link {
+      text-decoration: none;
+      letter-spacing: 0;
+      line-height: normal;
+      padding: 0px !important;
+      margin: 0px !important;
+  }
+
+  #flexi-block-{{ blockid }} .flexi-card-container .flexi-description,
+  #flexi-block-{{ blockid }} .flexi-card-container .flexi-description p {
+      position: relative;
+      align-self: stretch;
+      color: {{ description_color }};
+      font-size: {{ description_font_size }}px;
+      letter-spacing: 0;
+      line-height: normal;
+
+      padding: 0px !important;
+      margin: 0px !important;
+  }
+
+  @media only screen and (max-width: 768px) {
+      #flexi-block-{{ blockid }} .flexi-card-container .flexi-heading {
+          font-size: {{ scaled_heading_font_size }}px;
+      }
+      #flexi-block-{{ blockid }} .flexi-card-container .flexi-description {
+          font-size: {{ scaled_description_font_size }}px;
+      }
+  }
+
+  .flexi-block-wrapper-link-{{ blockid }} {
+      text-decoration: none;
+  }
+{% endstyle %}
+{% capture block %}
+<div id="flexi-block-{{ blockid }}">
+    <div class="flexi-card-container">
+        <div class="flexi-card-wrapper">
+
+
+            {% if block.settings.heading != blank %}
+                <div class="flexi-heading">{{ block.settings.heading }}</div>
+            {% endif %}
+
+            {% if block.settings.description != blank %}
+                <p class="flexi-description">{{ block.settings.description }}</p>
+            {% endif %}
+            
+
+        </div>
+    </div>
+</div>
+{% endcapture %}
+
+{% if link != blank %}
+  <a class="flexi-block-wrapper-link-{{ blockid }}" href="{{ link }}">
+    {{ block }}
+  </a>
+{% else %}
+  {{ block }}
+{% endif %}

@@ -1,0 +1,202 @@
+{%- liquid
+  assign blockid = block.id
+
+  assign quote_icon = block.settings.quote_icon
+
+  assign info = block.settings.info
+  assign description = block.settings.description
+  assign name = block.settings.name
+
+  assign bg_color = block.settings.bg_color
+
+  assign name_color = block.settings.name_color
+  assign name_font_size = block.settings.name_font_size
+  assign scaled_name_font_size = block.settings.name_font_size | times: 0.95 | round
+
+  assign info_color = block.settings.info_color
+  assign info_font_size = block.settings.info_font_size
+  assign scaled_info_font_size = block.settings.info_font_size | times: 0.85 | round
+
+  assign description_color = block.settings.description_color
+  assign description_font_size = block.settings.description_font_size
+  assign scaled_description_font_size = block.settings.description_font_size | times: 0.95 | round
+
+  assign json_data = shop.metafields.flexi.flexistyling.value
+  assign borderRadius = json_data.borderRadius
+
+  if json_data == blank
+    assign borderRadius = 8
+  endif
+-%}
+
+{% style %}
+  #flexi-block-{{ blockid }} {
+      display: block;
+      height: 100%;
+      width: 100%;
+  }
+
+  #flexi-block-{{ blockid }} .flexi-card-container {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      height: 100%;
+      align-items: center;
+      gap: 12px;
+      position: relative;
+      background-color: {{ bg_color }};
+      border-radius: {{ borderRadius }}px;
+      min-height: auto;
+  }
+
+  .flexi-testimonial-component-{{ blockid }} {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+
+    padding-bottom: 12px;
+  }
+
+  .flexi-star-wrapper-{{ blockid }} {
+    display: flex;
+    gap: 2px;
+  }
+
+  #flexi-block-{{ blockid }} .flexi-card-container .flexi-card-wrapper {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      align-items: flex-start;
+      gap: 6px;
+
+      {% if bg_color != blank and bg_color != 'rgba(0,0,0,0)' %}
+          padding: 16px;
+      {% endif %}
+
+      position: relative;
+      align-self: stretch;
+      flex-grow: 1;
+
+      justify-content: space-between;
+  }
+
+  #flexi-block-{{ blockid }} .flexi-card-container .flexi-info {
+      position: relative;
+      align-self: stretch;
+      color: {{ info_color }};
+      font-size: {{ info_font_size }}px;
+      letter-spacing: 0;
+      line-height: normal;
+
+      padding: 0px !important;
+      margin: 0px !important;
+  }
+
+
+  #flexi-block-{{ blockid }} .flexi-card-container .flexi-description,
+  #flexi-block-{{ blockid }} .flexi-card-container .flexi-description p {
+      position: relative;
+      align-self: stretch;
+      color: {{ description_color }};
+      font-size: {{ description_font_size }}px;
+      letter-spacing: 0;
+      line-height: normal;
+
+      padding: 0px !important;
+      margin: 6px 0px 0px 0px !important;
+  }
+
+  #flexi-block-{{ blockid }} .flexi-card-container .flexi-name {
+      position: relative;
+      align-self: stretch;
+      color: {{ name_color }};
+      font-size: {{ name_font_size }}px;
+      letter-spacing: 0;
+      line-height: normal;
+
+      padding: 0px !important;
+      margin: 0px !important;
+  }
+
+  @media only screen and (max-width: 768px) {
+      #flexi-block-{{ blockid }} .flexi-card-container .flexi-name {
+          font-size: {{ scaled_name_font_size }}px;
+      }
+      #flexi-block-{{ blockid }} .flexi-card-container .flexi-info {
+          font-size: {{ scaled_info_font_size }}px;
+      }
+      #flexi-block-{{ blockid }} .flexi-card-container .flexi-description {
+          font-size: {{ scaled_description_font_size }}px;
+      }
+  }
+
+  .flexi-image-{{ blockid }} {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      overflow: hidden;
+  }
+  .flexi-image-{{ blockid }} img {
+      display: block;
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: cover;
+  }
+
+  .flexi-testimonial-top {
+      padding-bottom: 24px;
+  }
+
+  .flexi-testimonial-bottom {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+  }
+
+{% endstyle %}
+
+<div id="flexi-block-{{ blockid }}">
+  <div class="flexi-card-container">
+    <div class="flexi-card-wrapper">
+      <div class="flexi-testimonial-top">
+        <div class="flexi-testimonial-component-{{ blockid }}">
+          <div class="flexi-star-wrapper-{{ blockid }}">
+            {% case quote_icon %}
+              {% when 'block' %}
+                {% render 'flexi-block-icon', block: block %}
+              {% when 'circle' %}
+                {% render 'flexi-circle-icon', block: block %}
+              {% when 'normal' %}
+                {% render 'flexi-normal-icon', block: block %}
+              {% when 'rounded' %}
+                {% render 'flexi-rounded-icon', block: block %}
+            {% endcase %}
+          </div>
+        </div>
+
+        {% if description != blank %}
+          <p class="flexi-description">{{ description }}</p>
+        {% endif %}
+      </div>
+
+      <div class="flexi-testimonial-bottom">
+      {% if block.settings.image != blank %}
+        <div id="flexi-image" class="flexi-image-{{ blockid }}">
+          {{ block.settings.image | image_url: width: 312 | image_tag }}
+        </div>
+      {% endif %}
+
+      {% if name != blank %}
+        <div class="flexi-name">{{ name }}</div>
+      {% endif %}
+
+      {% if info != blank %}
+        <div class="flexi-info">{{ info }}</div>
+      {% endif %}
+    </div>
+    </div>
+  </div>
+</div>

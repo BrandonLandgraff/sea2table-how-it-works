@@ -1,0 +1,227 @@
+{{ 'gsa-image--comparison-subscription.css' | asset_url | stylesheet_tag }}
+
+{% case section.settings.colors %}
+  {% when 'white' %}
+    {%- assign color_scheme = 'homepage-sections-wrapper--white' -%}
+  {% when 'light' %}
+    {%- assign color_scheme = 'homepage-sections-wrapper--light' -%}
+  {% when 'accent' %}
+    {%- assign color_scheme = 'homepage-sections-wrapper--accent' -%}
+  {% when 'dark' %}
+    {%- assign color_scheme = 'homepage-sections-wrapper--dark' -%}
+{% endcase %}
+
+<section class="cstm-us-apart">
+  <div
+    class="subscription-section-wrapper homepage-sections-wrapper {{ color_scheme }}"
+    data-wetheme-section-type="image--logo-list" data-wetheme-section-id="{{ section.id }}"
+  >
+    <div class="wrapper show-on-scroll logo-bar-section--{{ section.id }}">
+      {% if section.settings.title != blank %}
+        <div class="sitewide--title-wrapper">
+          <h4 class="subtitle-subscription">{{ section.settings.subtitle }}</h4>
+          <h2 class="homepage-sections--title">{{ section.settings.title | escape }}</h2>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+    
+    
+  <div>  
+    <div class="scroll-container">
+      <div class="gridscroll">
+        <img src="{{ section.settings.image | img_url: '2048x' }}" alt="" class="desktop-image">
+        <img src="{{ section.settings.mob_image | img_url: 'master' }}" alt="" class="mobile-image" style="display:none;">
+        {% comment %}
+          {{ section.settings.image | img_url: '2048x' | img_tag }}
+          {% endcomment %}
+      </div>
+    </div>
+  </div>
+  
+  <div
+    class="subscription-section-wrapper homepage-sections-wrapper {{ color_scheme }}"
+    data-wetheme-section-type="image--logo-list" data-wetheme-section-id="{{ section.id }}"
+  >
+    <div class="wrapper show-on-scroll logo-bar-section--{{ section.id }}">
+      <div class="get-started-section">
+          <a href="{{ section.settings.btn_link }}" class="abtest-original homepage-featured-box-btn get-started-btn plus-animated-button">
+              {{ section.settings.btn_label | default: 'Shop Now' }}
+              {%- render 'plus-animated-button', context: 'markup' -%}
+          </a>  
+          <h5 id="under-button-comparison">{{ section.settings.btn_under }}</h5>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  @media only screen and (max-width: 768px) {
+    .scroll-container {
+      width: 100%;
+      height: auto;
+      background: transparent;
+    }
+    .gridscroll {
+      width: 100%;
+      height: auto;
+    }
+  }
+</style>
+
+{% schema %}
+{
+    "name": {
+        "en": "Image Comparison",
+        "de": "Vorgestellte Logos",
+        "es": "Logotipos destacados",
+        "fr": "Logos en vedette",
+        "pt-PT": "Logótipos em destaque"
+    },
+    "class": "homepage-section--logo-bar-wrapper show-on-scroll",
+    "settings": [
+        {
+            "type": "select",
+            "id": "colors",
+            "label": {
+                "en": "Color scheme",
+                "de": "Farbschema",
+                "es": "Esquema de colores",
+                "fr": "Palette de couleurs",
+                "pt-PT": "Esquema de cores"
+            },
+            "default": "white",
+            "options": [
+                {
+                    "value": "white",
+                    "label": {
+                        "en": "White",
+                        "de": "Weiß",
+                        "es": "Blanco",
+                        "fr": "Blanc",
+                        "pt-PT": "Branco"
+                    }
+                },
+                {
+                    "value": "light",
+                    "label": {
+                        "en": "Light",
+                        "de": "Licht",
+                        "es": "Luz",
+                        "fr": "Clair",
+                        "pt-PT": "Claro"
+                    }
+                },
+                {
+                    "value": "accent",
+                    "label": {
+                        "en": "Feature",
+                        "de": "Eigenschaft",
+                        "es": "Destacado",
+                        "fr": "Caractéristique",
+                        "pt-PT": "Funcionalidade"
+                    }
+                },
+                {
+                    "value": "dark",
+                    "label": {
+                        "en": "Dark",
+                        "de": "Dunkel",
+                        "es": "Oscuro",
+                        "fr": "Foncé",
+                        "pt-PT": "Escuro"
+                    }
+                }
+            ],
+            "info": {
+                "en": "The colors in each 'scheme' can be changed in the 'General settings' > 'Colors' section of your admin",
+                "de": "Die Farben in jedem „Schema“ können im Bereich „Allgemeine Einstellungen“ > „Farben“ Ihres Administrators geändert werden ",
+                "es": "Los colores en cada «esquema» pueden cambiarse en la sección «Ajustes generales» > «Colores» de tu administrador",
+                "fr": "Les couleurs de chaque « palette » peuvent être changées dans la section « Paramètres généraux » > « Couleurs » de votre administrateur",
+                "pt-PT": "As cores em cada \"esquema\" podem serl alteradas na secção \"Definições gerais\" > \"Cores\" do seu painel de administração"
+            }
+        },
+        {
+            "type": "text",
+            "id": "title",
+            "label": {
+                "en": "Heading",
+                "de": "Überschrift",
+                "es": "Encabezado",
+                "fr": "Rubrique",
+                "pt-PT": "Título"
+            },
+            "default": {
+                "en": "As seen in",
+                "de": "Wie gesehen in",
+                "es": "Visto en",
+                "fr": "Comme on peut le voir dans",
+                "pt-PT": "Conforme visto em"
+            }
+        },
+		{
+            "type": "image_picker",
+            "id": "image",
+            "label": {
+                "en": "Image",
+                "de": "Bild",
+                "es": "Imagen",
+                "fr": "Image",
+                "pt-PT": "Imagem"
+            }
+        },
+        {
+              "type": "image_picker",
+              "id": "mob_image",
+              "label": {
+                  "en": "Mobile Image",
+                  "de": "Mobile Bild",
+                  "es": "Mobile Imagen",
+                  "fr": "Mobile Image",
+                  "pt-PT": "Mobile Imagem"
+              }
+          },
+        {
+            "type": "text",
+            "id": "subtitle",
+            "label": "Subtitle Text",
+            "default": "WHY US?"
+        },
+        {
+            "type": "url",
+            "id": "btn_link",
+            "label": "Button URL"
+          },
+          {
+            "type": "text",
+            "id": "btn_label",
+            "label": "Button Label"
+          },
+          {
+            "type": "text",
+            "id": "btn_under",
+            "label": "Under Button Text",
+            "default": "Reschedule, update selection, cancel anytime"
+          }
+    ],
+    "presets": [
+        {
+            "name": {
+                "en": "Image Comparison",
+                "de": "Logoliste",
+                "es": "Lista de logotipos",
+                "fr": "Liste des logos",
+                "pt-PT": "Lista de logótipos"
+            },
+            "category": {
+                "en": "Image",
+                "de": "Bild",
+                "es": "Imagen",
+                "fr": "Image",
+                "pt-PT": "Imagem"
+            }
+        }
+    ]
+}
+{% endschema %}
+

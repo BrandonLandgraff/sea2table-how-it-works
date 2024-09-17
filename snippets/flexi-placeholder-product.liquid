@@ -1,0 +1,70 @@
+
+{%- liquid
+  assign json_data = shop.metafields.flexi.flexistyling.value
+  assign borderRadius = json_data.borderRadius
+
+  if json_data == blank
+      assign borderRadius = 8
+  endif
+-%}
+
+
+{% style %}
+.flexi-placeholder-product {
+display: flex;
+flex-direction: column;
+gap: 18px;
+}
+.flexi-placeholder-product h5 {
+font-size: 10px;
+line-height: 1.3em;
+letter-spacing: .3em;
+margin: 0px;
+padding: 0px;
+padding-bottom: .5em;
+color: #707170;
+}
+.flexi-placeholder-product h3 {
+font-size: 42px;
+line-height: 1.3em;
+margin: 0px;
+padding: 0px;
+color: black;
+}
+.flexi-placeholder-product p {
+font-size: 18px;
+line-height: 1.3em;
+max-width: 350px;
+margin: 0px;
+padding: 0px;
+color: black;
+}
+#flexi-add-to-cart-placeholder {
+  display: inline-block;
+  text-decoration: none;
+  font-size: 18px;
+  width: 100%;
+  color: white;
+  border-radius: {{ borderRadius }}px;
+  padding: 12px 36px;
+  transition: opacity 0.3s ease;
+  text-align: center;
+  line-height: normal;
+  cursor: pointer;
+  background-color: black; 
+  border: 1px solid black;
+  max-width: 250px;
+}
+{% endstyle %}
+<div class="flexi-placeholder-product">
+  <div class="flexi-placeholder-product-text">
+      <h5>RECOMMENDED</h5>
+      <h3>Product Title</h3>
+  </div>
+  <p class="{% if animation %}fade-in{% endif %}">Once you add a product through the theme customizer, you'll be able to add, and edit blocks.</p>
+  <button type="submit" name="add" id="flexi-add-to-cart-placeholder">
+      <span id="flexi-add-to-cart-text-placeholder">
+          <span id="flexi-price-placeholder">$24.99</span> - Add to cart
+      </span>
+  </button>
+</div>

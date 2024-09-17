@@ -1,0 +1,317 @@
+{%- liquid
+    assign blockid = block.id
+
+    assign bg_color = block.settings.bg_color
+    assign gap = block.settings.gap
+
+    assign product_image = product.images[0].src
+
+    assign link = product.url
+    
+    assign image = block.settings.image
+    assign image_height = block.settings.image_height
+
+    assign subheading_color = block.settings.subheading_color
+    assign subheading_font_size = block.settings.subheading_font_size
+    assign scaled_subheading_font_size = block.settings.subheading_font_size | times: 0.95 | round
+
+    assign title_color = block.settings.title_color
+    assign title_font_size = block.settings.title_font_size
+    assign scaled_title_font_size = block.settings.title_font_size | times: 0.85 | round
+
+    assign price_color = block.settings.price_color
+    assign price_font_size = block.settings.price_font_size
+    assign scaled_price_font_size = block.settings.price_font_size | times: 0.95 | round
+
+    assign json_data = shop.metafields.flexi.flexistyling.value
+    assign borderRadius = json_data.borderRadius
+
+    if json_data == blank
+      assign borderRadius = 8
+    endif
+    
+    if section.index <= 3
+        assign loading_strategy = 'eager'
+        assign fetch_priority = 'high'
+      else
+        assign loading_strategy = 'lazy'
+        assign fetch_priority = 'auto'
+      endif
+    
+      assign widths = '165, 360, 535, 750, 1070, 1500'
+    
+    
+      assign img_alt = image.alt | escape
+    -%}
+    {%- capture sizes -%}
+      (min-width: 1200px) calc((1200px - 100px) / 2),
+      (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)
+    {%- endcapture -%}
+
+{% style %}
+#flexi-block-{{ blockid }} {
+    height: 100%;
+    width: 100%;
+}
+
+#flexi-block-{{ blockid }} .flexi-card-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    gap: 12px;
+    position: relative;
+    background-color: {{ bg_color }};
+    border-radius: {{ borderRadius }}px;
+    min-height: auto;
+}
+
+#flexi-block-{{ blockid }} .flexi-card-container .flexi-image {
+    position: relative;
+    flex: 1;
+    align-self: stretch;
+    width: 100%;
+    flex-grow: 1;
+    object-fit: cover;
+}
+
+#flexi-block-{{ blockid }} .flexi-card-container .flexi-card-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    align-items: flex-start;
+    gap: {{ gap }}px;
+
+    {% if bg_color != blank and bg_color != 'rgba(0,0,0,0)' %}
+        padding: 0px 16px 16px 16px;
+    {% endif %}
+
+    position: relative;
+    align-self: stretch;
+    flex-grow: 1;
+}
+
+#flexi-block-{{ blockid }} .flexi-card-container .flexi-subheading {
+    position: relative;
+    align-self: stretch;
+    color: {{ subheading_color }};
+    font-size: {{ subheading_font_size }}px;
+    letter-spacing: 0;
+    line-height: normal;
+
+    padding: 0px !important;
+    margin: 0px !important;
+}
+
+#flexi-block-{{ blockid }} .flexi-card-container .flexi-title {
+    position: relative;
+    align-self: stretch;
+    color: {{ title_color }};
+    font-size: {{ title_font_size }}px;
+    letter-spacing: 0;
+    line-height: normal;
+
+    padding: 0px !important;
+    margin: 0px !important;
+}
+
+#flexi-block-{{ blockid }} .flexi-title-link {
+    text-decoration: none;
+    letter-spacing: 0;
+    line-height: normal;
+    padding: 0px !important;
+    margin: 0px !important;
+}
+
+#flexi-block-{{ blockid }} .flexi-card-container .flexi-price,
+#flexi-block-{{ blockid }} .flexi-card-container .flexi-price p {
+    position: relative;
+    align-self: stretch;
+    color: {{ price_color }};
+    font-size: {{ price_font_size }}px;
+    letter-spacing: 0;
+    line-height: normal;
+
+    padding: 0px !important;
+    margin: 0px !important;
+}
+
+#flexi-block-{{ blockid }} #flexi-sale-price {
+    display: flex;
+    gap: 6px;
+}
+
+#flexi-block-{{ blockid }} #flexi-callout {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background-color: white;
+    color: black;
+    padding: 4px 8px;
+    border-radius: {{ borderRadius }}px;
+    font-size: 10px;
+    z-index: 10;
+    font-weight: bold;
+}
+
+@media only screen and (max-width: 768px) {
+    #flexi-block-{{ blockid }} .flexi-card-container .flexi-subheading {
+        font-size: {{ scaled_subheading_font_size }}px;
+    }
+    #flexi-block-{{ blockid }} .flexi-card-container .flexi-title {
+        font-size: {{ scaled_title_font_size }}px;
+    }
+    #flexi-block-{{ blockid }} .flexi-card-container .flexi-price {
+        font-size: {{ scaled_price_font_size }}px;
+    }
+}
+
+.flexi-image-{{ blockid }} {
+    display: block;
+    width: 100%;
+    height: fit-content;
+}
+.flexi-image-{{ blockid }} a {
+    overflow: hidden;
+
+    {% if bg_color != blank and bg_color != 'rgba(0,0,0,0)' %}
+        border-radius: {{ borderRadius }}px {{ borderRadius }}px 0px 0px;
+    {% else %}
+        border-radius: {{ borderRadius }}px;
+    {% endif %}
+}
+.flexi-image-{{ block.id }} img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    {% if bg_color != blank and bg_color != 'rgba(0,0,0,0)' %}
+        border-radius: {{ borderRadius }}px {{ borderRadius }}px 0px 0px;
+    {% else %}
+        border-radius: {{ borderRadius }}px;
+    {% endif %}
+    object-fit: cover;
+    height: {{ image_height }};
+    overflow: hidden;
+}
+.flexi-image-{{ block.id }} svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    {% if bg_color != blank and bg_color != 'rgba(0,0,0,0)' %}
+        border-radius: {{ borderRadius }}px {{ borderRadius }}px 0px 0px;
+    {% else %}
+        border-radius: {{ borderRadius }}px;
+    {% endif %}
+    background-color: #D4D4D4;
+    margin: 0px;
+    transition: transform 0.5s ease;
+}
+.flexi-image-{{ blockid }} img:hover {
+    transform: scale(1.1);
+    transition: transform 0.5s ease;
+}
+.flexi-image-{{ blockid }} svg:hover {
+    transform: scale(1.1);
+}
+.flexi-image-{{ block.id }} a {
+    display: block;
+    position: relative;
+    width: 100%;
+    height: auto;
+    margin: 0px;
+}
+
+{% endstyle %}
+
+
+<div id="flexi-block-{{ blockid }}">
+    <div class="flexi-card-container">
+
+        <!-- Determine the discount percentage and display it in the callout badge -->
+        {% if product.compare_at_price != blank and product.compare_at_price > product.price %}
+            {% assign discount_price = product.compare_at_price | minus: product.price %}
+            {% assign discount_percentage = discount_price | times: 1.0 | divided_by: product.compare_at_price | times: 100 | round %}
+            <div id="flexi-callout">
+                <div class="flexi-callout-text">{{ discount_percentage }}% OFF</div>
+            </div>
+        {% endif %}
+
+        {% if product_image != blank %}
+            <div id="flexi-image" class="flexi-image-{{ blockid }}">
+                {% if image != blank %}
+                    <a href="{{ link }}">
+                        {{ image | image_url: width: 512 | image_tag: 
+                            sizes: sizes, 
+                            widths: widths, 
+                            loading: loading_strategy, 
+                            fetchpriority: fetch_priority,
+                            alt: img_alt 
+                        }}
+                    </a>
+                {% else %}
+                    <a href="{{ link }}">
+                        {{ product_image | image_url: width: 512 | image_tag: 
+                            sizes: sizes, 
+                            widths: widths, 
+                            loading: loading_strategy, 
+                            fetchpriority: fetch_priority,
+                            alt: img_alt
+                        }}
+                    </a>
+                {% endif %}
+            </div>
+        {% else %}
+            <div id="flexi-image" class="flexi-image-{{ blockid }}">
+                {% if image != blank %}
+                    <a href="{{ link }}">
+                        {{ image | image_url: width: 512 | image_tag: 
+                            sizes: sizes, 
+                            widths: widths, 
+                            loading: loading_strategy, 
+                            fetchpriority: fetch_priority,
+                            alt: img_alt 
+                        }}
+                    </a>
+                {% else %}
+                    <a href="{{ link }}">
+                        {{ 'product-1' | placeholder_svg_tag }}  
+                    </a>
+                {% endif %}
+            </div>
+        {% endif %}
+
+        <div class="flexi-card-wrapper">
+
+            {% if block.settings.subheading != blank %}
+                <div class="flexi-subheading">{{ block.settings.subheading }}</div>
+            {% endif %}
+
+            {% if product.title != blank %}
+                <a class="flexi-title-link" href="{{ link }}">
+                    <div class="flexi-title">{{ product.title }}</div>
+                </a>
+            {% else %}
+                <a class="flexi-title-link" href="{{ link }}">
+                    <div class="flexi-title">Product card</div>
+                </a>
+            {% endif %}
+
+            <div class="flexi-price">
+                {% if product.compare_at_price != blank and product.compare_at_price > product.price %}
+                    <div id="flexi-sale-price">
+                        <p class="flexi-original-price" style="text-decoration: line-through; opacity: .5;">{{ product.compare_at_price | money }}</p>
+                        <p class="flexi-sale-price">{{ product.price | money }}</p>
+                    </div>
+                {% elsif product.price != blank %}
+                    <p>{{ product.price | money }}</p>
+                {% else %}
+                    <p>$24.00</p>
+                {% endif %}
+            </div>
+            
+            
+
+        </div>
+    </div>
+</div>

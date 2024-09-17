@@ -1,0 +1,56 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+{%- liquid
+    assign blockid = block.id
+    -%}
+
+{% style %}
+/* DEFAULT STYLES */
+.flexi-review-component-{{ blockid }} {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.flexi-star-wrapper-{{ blockid }} {
+  display: flex;
+  gap: 2px;
+}
+
+.flexi-review-link-{{ blockid }} {
+  text-decoration: underline;
+  color: black;
+  font-size: 18px;
+}
+
+{% endstyle %}
+
+<div class="flexi-reviews-block {{ block.settings.display_options }}" style="display: flex; height: 100%; width: 100%; justify-content: {{ block.settings.justify_content }}; padding-top: {{ block.settings.top_padding }}px; padding-bottom: {{ block.settings.bottom_padding }}px;">
+    <div class="flexi--block-wrapper--{{ blockid }}" style="max-width: 100%;">
+        <div class="flexi-review-component-{{ blockid }}">
+            <div class="flexi-star-wrapper-{{ blockid }}">
+                <i class="fa-solid fa-star" style="font-size: {{ block.settings.icon_size }}px; color: {{ block.settings.star_color }};"></i>
+                <i class="fa-solid fa-star" style="font-size: {{ block.settings.icon_size }}px; color: {{ block.settings.star_color }};"></i>
+                <i class="fa-solid fa-star" style="font-size: {{ block.settings.icon_size }}px; color: {{ block.settings.star_color }};"></i>
+                <i class="fa-solid fa-star" style="font-size: {{ block.settings.icon_size }}px; color: {{ block.settings.star_color }};"></i>
+
+                {% case block.settings.star_type %}
+                  {% when '4' %}
+                    <i class="fa-regular fa-star" style="font-size: {{ block.settings.icon_size }}px; color: {{ block.settings.star_color }};"></i>
+
+                  {% when '4.5' %}
+                    <i class="fa-solid fa-star-half-stroke" style="font-size: {{ block.settings.icon_size }}px; color: {{ block.settings.star_color }};"></i>
+              
+                  {% when '5' %}
+                    <i class="fa-solid fa-star" style="font-size: {{ block.settings.icon_size }}px; color: {{ block.settings.star_color }};"></i>
+              
+                  {% else %}
+                    {% comment %} NOTHING {% endcomment %}
+                {% endcase %}
+
+            </div>
+            {% if block.settings.reviews_text != blank %}
+                <a href="{{ block.settings.review_url }}" style="color: {{ block.settings.font_color }}; font-size: {{ block.settings.font_size }}px;">{{ block.settings.reviews_text }}</a>
+            {% endif %}
+          </div>
+    </div>
+</div>

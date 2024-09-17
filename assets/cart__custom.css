@@ -1,0 +1,29 @@
+.cart__row {
+  position: unset;
+}
+.floating-submit-buttons {
+  position: absolute;
+  top: 0;
+  right: 1vw;
+  z-index: 1;
+}
+@media only screen and (max-width: 767px) {
+  .sitewide--title-wrapper {
+    margin-bottom: 18vw;
+  }
+  .floating-submit-buttons input {
+    font-size: 4.5vw;
+    padding: 3vw 5.7vw;
+  }
+  .floating-submit-buttons {
+    top: 16vw;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    max-width: 100vw;
+    gap: 2vw;
+    right: unset;
+  }
+  .template-cart h1.page--title {
+    font-size: 9.9vw;
+  }
+}

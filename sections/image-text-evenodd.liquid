@@ -1,0 +1,137 @@
+<style>
+  section#iamgecontent-area {
+    padding: 60px 0px;
+}
+  .mulldiv {
+    font-size: 0;
+        display: flex;
+}
+  .mulldiv:nth-child(even) {
+        flex-direction: row;
+  }
+.mulldiv:nth-child(odd) {
+        flex-direction: row-reverse;
+  }
+  .imagedivss {
+    width: 50%;
+    display: inline-block;
+    vertical-align: top;
+}
+  .content-divss {
+    width: 50%;
+    display: inline-block;
+    vertical-align: top;
+    padding: 30px;
+}
+  .mulldiv:nth-child(odd) .content-divss{
+    padding-left: 5.9vw;
+  }
+  .mulldiv:nth-child(even) .content-divss{
+    padding-right: 5.9vw;
+  }
+  .content-divss h2 {
+    color: #1A4760;
+    font-family: var(--body-font-stack);
+    font-size: 42px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 1.68px;
+    padding: 0;
+    margin: 0;
+}
+ .content-divss p{
+    color: #1A4760;
+    font-family: var(--body-font-stack);
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 32px; /* 160% */
+    letter-spacing: 0.8px;
+   margin: 0;
+   padding: 15px 0px 0px;
+  }
+  .imagedivss img {
+    height: 100%;
+    object-fit: cover;
+}
+  @media only screen and (max-width: 1380px){
+    .content-divss h2 {
+      font-size: 30px;
+    }
+  }
+   @media only screen and (max-width: 991px){
+     .mulldiv:nth-child(even) {
+          flex-direction: column;
+      }
+     .mulldiv:nth-child(odd) {
+          flex-direction: column;
+      }
+     .imagedivss {
+        width: 100%;
+     }
+     .content-divss {
+        width: 100%;
+     }
+     .mulldiv:nth-child(even) .content-divss {
+          padding: 5.9vw;
+          text-align: center;
+      }
+     .mulldiv:nth-child(odd) .content-divss {
+        padding: 5.9vw;
+        text-align: center;
+    }
+   }
+</style>
+<section class="iamgecontent-area" id="iamgecontent-area">
+   {% for block in section.blocks %}  
+    {% case block.type %}
+      {% when 'image' %}  
+        <div class="mulldiv">
+          <div class="imagedivss">
+            <img src="{{ block.settings.images | img_url: 'master' }}" alt="{{ block.settings.images.alt }}" />
+          </div>
+          <div class="content-divss">
+            <h2>{{ block.settings.heading }}</h2>
+            <p>{{ block.settings.content }}</p>
+          </div>
+        </div>
+    {% endcase %} 
+  {% endfor %}
+</section>
+{% schema %}
+  {
+    "name": "Image Text Left Right",
+    "settings": [
+      
+    ],
+    "blocks": [
+      {
+        "type": "image",
+        "name": "Image",
+        "settings": [
+          {
+            "id": "images",
+            "type": "image_picker",
+            "label": "Add Image"
+          },
+          {
+            "id": "heading",
+            "type": "text",
+            "label": "Add Heading"
+          },
+          {
+            "id": "content",
+            "type": "textarea",
+            "label": "Add content"
+          }
+        ]
+      },
+    ],
+    "presets": [
+        {
+            "name": "Image Text Left Right"
+        }
+    ]
+  }
+{% endschema %}

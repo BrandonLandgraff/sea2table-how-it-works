@@ -1,0 +1,991 @@
+/* ------------ Remove Bottom Banner ------------ */
+#fsb_container { 
+	display: none !important;
+}
+
+/* ---------- AWTOMIC STYLING - UPDATING BLACK ----------- */
+:root {
+--chakra-colors-black: #1A4760 !important;
+--chakra-colors-gray-800: #1A4760 !important;
+}
+
+.bundleapp-btn--text {
+  color: #1A4760 !important;
+}
+
+.bundle-button--pause {
+  color: #1A4760 !important;
+}
+
+.bundle-button--skip {
+  color: #1A4760 !important;
+}
+
+/* ---------- AWTOMIC STYLING ----------- */
+/* Show top shipping bar */
+.bundleapp-modal {
+  margin-top: 42px;
+}
+
+@media only screen and (max-width: 433px) {
+  .bundleapp-modal {
+    margin-top: 48px;
+  }
+}
+
+/* General Button Styling */
+.bundle-button {
+    border-radius: 8px !important;
+    border: 1px solid rgba(249, 102, 13, 0.6) !important;
+}
+
+.awtomatic-plans-container .selected {
+  background-color: #F9660D !important;
+}
+  
+.awtomatic-plans-container label:first-child {
+    border-radius: 8px !important;
+    border: 1px solid rgba(45, 172, 243, 0.7) !important;
+}
+  
+.bundleapp-modal__container--complete-screen main:before {
+    content: "";
+    background: url(https://cdn.shopify.com/s/files/1/0486/3282/3969/files/WHY_CHOOSE_US_v2.png?v=1666024507);
+    background-size: cover;
+    width: 250px;
+    border-radius: 8px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    padding: 195px 120px;
+}
+
+/* Product Card Desktop */
+.bundle-product-card {
+  width: 300px !important;
+}
+
+.addon-container .bundle-product-card {
+  width: 100% !important;
+}
+
+.addon-container > div {
+  justify-content: flex-start;
+}
+
+/* Quantity Selectors */
+.bundle-product-card__quantity-button-container {
+    background-color: #f9660d !important;
+    color: #fff !important;
+    font-weight: bold !important;
+    border-color: #f9660d !important;
+    border-radius: 0.5rem !important;
+    line-height: 1.2rem !important;
+}
+
+.bundle-product-card__quantity-button-container--button svg {
+    fill: white !important;
+}
+
+.awtomatic-sizes-container {
+  display: none !important;
+}
+  
+.bundle-text--subheading {
+  font-weight: bold !important;
+  color: #1a4760 !important;
+  font-size: 20px !important;
+}
+
+.bundle-text--subheading:after {
+  content: ':';
+}
+  
+/* Add To Cart */
+.bundle-container footer span {
+  color: #1A4760;
+}
+  
+.bundle-container footer button {
+  border: none !important;
+}
+  
+.bundle-button.button--primary:enabled {
+  background-color: #f9660d !important;
+}
+  
+/* Removing Progress Bar */
+.awtomatic-progress-container {
+	display: none !important;  
+}
+  
+/* Changing Header */
+.bundleapp-modal__container--complete-screen--header-container p {
+  display: none !important;  
+}
+  
+.bundleapp-modal__container--complete-screen header {
+  padding: 0.5em 2em 0em 2em !important;
+}
+
+.bundle-container {
+  padding-bottom: 125px !important;
+}
+
+@media only screen and (max-width: 768px) {
+  .bundle-container {
+  	padding-top: 0px !important;  
+    padding-bottom: 150px !important;
+  }
+}
+.bundle-container footer {
+  background-color: white;
+  padding: 40px;
+  height: 10px !important;
+}
+  
+.awtomatic-bab-options-container {
+  width: 90% !important;
+}
+  
+/* One Time Selected */
+.awtomatic-plans-container .selected label:first-child {
+	background-color: #2DACF3 !important;  
+}
+  
+/* Reversing Options Order */
+/* .awtomatic-plans-container {
+  flex-direction: row-reverse !important;
+} */
+  
+/* Adding Most Popular Tag */
+.awtomatic-plans-container label:nth-child(4):before {
+    content:'Subscribe & Save';
+    color:white;
+    background-color: #1A4760;
+	border-radius: 4px;
+  	padding: 2px 12px;
+  	font-size: 12px;
+    position: relative;
+    top: -22px;
+    left: 130px;
+    margin-left: -130px;
+}
+
+.awtomatic-plans-container label:nth-child(3):before {
+    content:'Subscribe & Save';
+    color:white;
+    background-color: #1A4760;
+	border-radius: 4px;
+  	padding: 2px 12px;
+  	font-size: 12px;
+    position: relative;
+    top: -22px;
+    left: 130px;
+    margin-left: -130px;
+}
+  
+.awtomatic-plans-container label:nth-child(2):before {
+    content:'Subscribe & Save';
+    color:white;
+    background-color: #1A4760;
+	border-radius: 4px;
+  	padding: 4px 20px;
+  	font-size: 12px;
+    position: relative;
+    top: -22px;
+    left: 138px;
+    margin-left: -150px;
+}
+  
+/* Adding in breadcrumbs for desktop */
+.bundle-stepper-header {
+    display: block !important;
+}
+  
+.bundle-stepper-header {
+  height: 65px !important;
+}
+  
+.bundle-stepper-wrapper {
+  margin-bottom: 0px !important;
+}
+  
+.bundle-stepper-counter--complete {
+  background-color: #F9660D !important;
+}
+  
+.bundle-stepper-item--complete:after {
+  border-bottom-color: #F9660D !important;
+}
+  
+.bundle-step-label {
+  font-size: 14px !important;
+  font-weight: bold !important;
+} 
+  
+
+/* Mobile ---- 768px or less ---- */
+@media only screen and (max-width: 768px) {
+/* Product Card */
+  .bundle-product-card {
+    width: 150px !important;
+    padding: 5px !important;
+  } 
+  
+  .bundle-product-card div {
+    width: 142px !important; 
+  }
+  
+  #lazy-container {
+  	width: 142px !important;
+  }
+  
+  /* Two Column Grid */
+  .bundle-scrollable-section {
+  	grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)) !important;
+    row-gap: 1rem !important;
+  }
+  
+  /* Shipping Info Removed */
+  .awtomatic-bab-options-container:before {
+    display: none;
+  }
+  
+  /* Back Button */
+  .bundle-container footer .button--secondary {
+  	display: none;
+  }
+  
+  .bundle-container footer div:first-child div:first-child div:first-child{
+/*     width: 250px; */
+    font-size: 0px;
+  }
+  
+  .bundle-container footer div:first-child div:first-child div:first-child:after {
+    content: 'Delivery Options'; 
+    position: relative;
+/*     left: 8px; */
+/*     top: -12px; */
+    margin-top: 12px;
+    color: black !important;
+    font-weight: bold !important;
+    padding: 8px 16px; !important;
+    border: 1px solid rgba(249, 102, 13, 0.6) !important;
+    border-radius: 8px;
+    color: white !important;
+    background-color: #F9660D;
+    font-size: 16px;
+  }
+  
+  .bundleapp-selectwrap {
+  	display: none !important;
+  }
+  
+  .bundle-container footer {
+  	height: 0px !important;
+  }
+  
+  /* Centering Add to Cart Button */
+  .bundle-container footer div:first-child div:nth-child(4) {
+  	margin: auto;
+    grid-gap: 12px !important;
+  }
+  
+  .bundle-container footer div:first-child div:nth-child(3) {
+  	margin: auto;
+    padding-top: 8px;
+    gap: 0.5rem;
+    margin: 15px;
+  }
+  
+  /* Progress Container */
+  .awtomatic-progress-container {
+  	display: none !important;
+  }
+  
+  /* Selling Plan Options */
+/*   .awtomatic-selling-plans-container label {
+  	display: block !important;
+    margin-top: 12px;
+    width: 100%;
+  } */
+  .awtomatic-selling-plans-container label {
+    margin-top: 12px;
+  }
+  
+  /* Removing Title */
+  .bundleapp-modal__container--complete-screen--header-container:after {
+    display: none;
+  }
+  
+/* Centering Payment Options */
+  .awtomatic-bab-options-container {
+      margin: auto !important;  
+  }
+  
+/* Progress Stepper */
+.bundle-stepper-header {
+  height: 65px !important;
+}
+  
+.bundle-stepper-wrapper {
+  margin-bottom: 0px !important;
+}
+  
+.bundle-stepper-counter--complete {
+  background-color: #F9660D !important;
+}
+  
+.bundle-stepper-item--complete:after {
+  border-bottom-color: #F9660D !important;
+}
+  
+.bundle-step-label {
+  font-size: 10px !important;
+  font-weight: bold !important;
+} 
+  
+/* S2T Image  */
+.bundleapp-modal__container--complete-screen main:before {
+    content: "";
+    background: url(https://cdn.shopify.com/s/files/1/0486/3282/3969/files/WHY_CHOOSE_US_v2.png?v=1666024507);
+    background-size: cover;
+    width: 142px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    padding: 125px 80px;
+}
+  
+/* Reversing order of elements */
+/* .awtomatic-selling-plans-container div:nth-child(2) {
+    color: red;
+    display: flex !important;
+    flex-direction: column-reverse !important;
+} */
+  
+/* Variant Selectors */
+#no-plan { 
+  border: 1px solid rgba(45, 172, 243, 0.7) !important; 
+}
+/* 
+label#no-plan:before {
+    content: "Try Me";
+    color: #fff;
+    background-color: #1a4760;
+    border-radius: 4px;
+    padding: 2px 20px;
+    font-size: 12px;
+    position: relative;
+    top: -22px;
+    left: 80px;
+    margin-left: -80px;
+}   */
+  
+label#\ every\ 6\ weeks:before {
+    content:'Subscribe & Save';
+    color:white;
+    background-color: #1A4760;
+	border-radius: 4px;
+  	padding: 2px 12px;
+  	font-size: 12px;
+    position: relative;
+    top: -21px;
+    left: 130px;
+    margin-left: -132px;
+}   
+  
+label#\ every\ 4\ weeks:before {
+    content:'Subscribe & Save';
+    color:white;
+    background-color: #1A4760;
+	border-radius: 4px;
+  	padding: 2px 20px;
+  	font-size: 12px;
+    position: relative;
+    top: -22px;
+    left: 138px;
+    margin-left: -148px;
+}
+
+label#\ every\ 8\ weeks:before {
+    content:'Subscribe & Save';
+    color:white;
+    background-color: #1A4760;
+	border-radius: 4px;
+  	padding: 2px 20px;
+  	font-size: 12px;
+    position: relative;
+    top: -22px;
+    left: 138px;
+    margin-left: -148px;
+}
+
+}
+  
+  
+/* Customer Portal */
+.bundle-subs-detail-layout .awtomatic-line-edit-button {
+  background-color: #f9660d !important;
+  color: white !important;
+  padding: 8px 20px !important;
+}
+
+.bundle-card--next-order-date .bundleapp-flex button {
+  color: #f9660d !important;
+}
+  
+.bundle-card--sms button {
+  color: #f9660d !important;
+}
+  
+.bundle-card__button  {
+  color: #f9660d !important;
+}
+  
+  
+#bundleapp-subscriptions-portal .bundle-action-col-layout .bundle-card {
+  max-width: 100% !important;
+  border-radius: 8px;
+}
+  
+/* Customer Portal Edit Box */
+#bundleapp-subscriptions-portal .bundleapp-modal .bundleapp-modal__container--complete-screen .bundle-container footer div div:nth-child(2) {
+  gap: 8px !important;
+  padding-bottom: 8px;
+  margin: 0px;
+}
+  
+#bundleapp-subscriptions-portal .bundleapp-modal .bundleapp-modal__container--complete-screen .bundle-container footer div:first-child .bundle-text--body {
+	display: none;
+}
+  
+ 
+/* Adjusting the header */
+.site-header .site-header__wrapper .site-header__wrapper__right {
+  	justify-content: space-around !important;
+}
+  
+.site-nav li:first-child .site-nav__link:first-child {
+  background-color: #f9660d !important;
+  border-radius: 8px !important;
+}
+  
+.site-nav__dropdown li:first-child .site-nav__link:first-child {
+  background-color: transparent !important;
+}
+  
+@media only screen and (max-width: 875px) {
+  .site-header .site-header__wrapper .site-header__wrapper__right {
+    justify-content: flex-end !important;
+  }
+  
+  .mobile-nav>.mobile-nav__item:first-child {
+  	background-color: #f9660d !important;
+  }
+
+  .mobile-nav>.mobile-nav__item:first-child a {
+    color: #ffffff !important;
+    font-weight: bold;
+  }
+  
+  #customer_login_link {
+  	background-color: white;
+  }
+}
+  
+.bundle-button--order-now {
+  color: white !important;
+}
+ 
+/* Adjusting Header --- Adding Free Shipping label and x - .subscription-overlay-open  */
+/* .bundleapp-modal__container--complete-screen:before {
+	content: 'FAST, FREE SHIPPING ON ORDERS $99+';
+    width: 100vw;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+      background-color: #1A4760;
+    text-align: center;
+    padding: 4px 0px;
+} */
+  
+.bundleapp-modal__container--complete-screen--header-container button {
+  border: none !important;
+  top: 35px !important;
+  right: 24px !important;
+  margin-bottom: 12px !important;
+}
+
+/* Removing Freqency Editing */
+.bundle-card--frequency {
+	display: none !important;
+}
+
+
+/* My Subscriptions Page */
+#bundle-app .bundleapp-subscriptions-list__title {
+  font-size: 36px;
+  color: #1a4760;
+}
+.bundle-product-card__title {
+    color: #88b0d1;
+    font-weight: 700 !important;
+    text-decoration: underline;
+}
+
+/* Scrollable BaB Error */
+@media only screen and (min-width: 1010px) {
+  .bundleapp-modal__container--complete-screen .bundle-container main {
+    max-width: none;
+    padding: 0rem;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .bundleapp-modal__container--complete-screen .bundle-container main {
+    max-width: none;
+    padding: 0rem 5rem;
+  }
+}
+
+@media only screen and (min-width: 1500px) {
+  .bundleapp-modal__container--complete-screen .bundle-container main {
+    max-width: none;
+    padding: 0rem 10rem;
+  }
+}
+
+@media only screen and (min-width: 1700px) {
+  .bundleapp-modal__container--complete-screen .bundle-container main {
+    max-width: none;
+    padding: 0rem 15rem;
+  }
+}
+
+@media only screen and (min-width: 1800px) {
+  .bundleapp-modal__container--complete-screen .bundle-container main {
+    max-width: none;
+    padding: 0rem 20rem;
+  }
+}
+
+@media only screen and (min-width: 2000px) {
+  .bundleapp-modal__container--complete-screen .bundle-container main {
+    max-width: none;
+    padding: 0rem 30rem;
+  }
+}
+
+@media only screen and (min-width: 2300px) {
+  .bundleapp-modal__container--complete-screen .bundle-container main {
+    max-width: none;
+    padding: 0rem 40rem;
+  }
+}
+
+@media only screen and (min-width: 2950px) {
+  .bundleapp-modal__container--complete-screen .bundle-container main {
+    max-width: none;
+    padding: 0rem 60rem;
+  }
+}
+
+@media only screen and (min-width: 3600px) {
+  .bundleapp-modal__container--complete-screen .bundle-container main {
+    max-width: none;
+    padding: 0rem 75rem;
+  }
+}
+
+/* Removing Breadcrumbs on Desktop */
+.bundle-stepper-header {
+  display: none !important;  
+}
+
+/* Adding Header */
+.bundle-container:before {
+  content: 'Shop All Combos & Seafood:';
+  margin: auto;
+  font-weight: bold;
+  color: #1A4760;
+  padding-bottom: 4px;
+}
+
+@media only screen and (min-width: 768px) {
+  .bundle-container:before {
+    font-size: 42px;
+  }
+
+  #bundleapp-subscriptions-portal .bundle-container {
+    padding-top: 0px !important;
+  }
+}
+
+/* Expanding the more details */
+@media screen and (min-width: 768px) {
+  .slide-panel-container {
+    width: 500px !important;
+  }
+
+/*   Slide Out Styling */
+  .image-slider-button svg {
+    width: 60px !important;
+    height: 60px !important;
+  }
+
+  .awtomic-image-carousel .next {
+    right: 28px !important;
+  }
+
+  #slidepanel-title {
+    font-size: 48px !important;
+    padding-top: 24px;
+  }
+
+  .bundle-text--body {
+    font-size: 18px !important;
+  }
+
+  .bundle-text--body .mini-header {
+    font-size: 24px !important;
+    padding-top: 18px;
+    font-family: var(--body-font-stack) !important;
+  }
+
+  .mini-header {
+    font-size: 24px !important;
+  }
+}
+
+/* Slideout Mobile Adjustments */
+  .bundle-text--body {
+    font-size: 20px !important;
+    line-height: 24px !important;
+  }
+
+  .bundle-text--body .mini-header {
+    font-size: 24px !important;
+    padding-top: 18px;
+    font-family: var(--body-font-stack) !important;
+  }
+
+  .mini-header {
+    font-size: 20px !important;
+  }
+
+  #slidepanel-title {
+    font-size: 26px !important;
+    padding-top: 24px;
+  }
+
+/* Scrollbar */
+/* width */
+::-webkit-scrollbar {
+  display: block !important;
+  width: 0px;
+  height: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+/*   box-shadow: inset 0 0 4px grey !important;  */
+  border: solid 1px #F2F7FA;
+  border-radius: 8px !important;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  border-radius: 12px !important;
+  background: #F9660D !important;
+}
+
+/* Handle on hover */
+@media screen and (max-width: 512px) {
+  #bundleapp-subscriptions-portal .bundle-container {
+    padding: 0px 0px 150px 0px !important;
+/*     padding-left: 0px !important;
+    padding-right: 0px !important; */
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .awt-img-carousel-viewport div:first-child {
+    height: 100% !important;
+  }
+}
+
+  .awt-img-carousel-viewport div:first-child {
+    height: 100% !important;
+  }
+
+.slide-panel-container .bundle-text--heading {
+  display: none;
+}
+
+.slide-panel-container .bundle-text--body {
+  color: #1A4760;
+}
+
+/* .bundle-product-card__quantity-button-container--button svg {
+fill: #1a4760!important;
+}
+.bundle-product-card__quantity-button-container {
+background-color: #fff!important;
+color: #1a4760!important;
+font-weight: 700!important;
+border-color: #f9660d!important;
+border-radius: 0.5rem!important;
+line-height: 1rem!important;
+padding: 8px 12px !important;
+} */
+.bundle-product-card__title {
+color: #1a4760;
+font-weight: 700!important;
+text-decoration: underline;
+font-size: large !important;
+}
+
+/* Subscription Price */
+.bundle-product-card__price span:after {
+  content: 'SUBSCRIPTION PRICE';
+  display: inline-block;
+  font-size: 14px;
+  background-color: #E8EDEF;
+  color: #1A4760;
+  padding: 2px;
+  border-radius: 4px;
+  font-weight: bold;
+  margin: 8px;
+}
+
+@media only screen and (max-width: 768px) {
+  .bundle-product-card__price span:after {
+    font-size: 10px;
+  }
+}
+
+
+
+/* GSA MENU EDITS */
+#customer_login_link {
+    color: #1A4760 !important;
+    font-weight: 300;
+}
+
+
+
+/* ----- Brian's Changes ------ */
+.bundleapp-modal__container--complete-screen main:before {
+    display: none;
+}
+
+.bundleapp-modal {
+    margin-top: 165px;
+}
+
+body.awt-bab-open div#shopify-section-header {
+  z-index: 99999 !important;
+}
+body.awt-bab-open #shopify-section-header  header.site-header.medium--hide.small--hide {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 999999999999999;
+}
+
+
+
+body.awt-bab-open .site-header__logo.h1.site-title img {
+    width: clamp(70px, 25vw, 100px) !important;
+    padding-left: 5%;
+}
+
+@media (min-width: 768px) {
+    
+    .bundle-product-card {
+        width: 320px !important;
+        height: 100%;
+    }
+    
+    .bundleapp-modal__container--complete-screen .bundle-container main {
+        padding: 0;
+        max-width: 96%;
+        grid-row-gap: 0;
+    }
+    
+    .bundle-product-card__quantity-button-container {
+        margin-top: auto;
+    }
+    
+    .bundle-container {
+        padding-bottom: 0 !important;
+    }
+    
+    .awtomatic-plans-container {
+        margin-top: 30px;
+    }
+
+  .bundleapp-modal {
+    margin-top: 165px;
+  }
+
+}
+
+body.awt-bab-open .drawer.drawer--right.drawer--cart {
+    z-index: 99999999999;
+}
+
+body.awt-bab-open #shopify-section-announcement-bar {
+  display: none;
+}
+
+body.awt-bab-open div#DrawerOverlay {
+    z-index: 999999;
+}
+
+.bundle-product-card__quantity-button-container {
+  background-color: transparent !important;
+  color: #f9660d !important;
+}
+
+.bundle-product-card__quantity-button-container svg {
+  fill: #f9660d !important;
+}
+
+.selected .bundle-product-card__quantity-button-container {
+  background-color: #f9660d !important;
+  color: #fff !important;
+}
+
+.selected .bundle-product-card__quantity-button-container svg {
+  fill: #fff !important;
+}
+
+/** custom colors */
+:root {
+  --awt-primary-btn-bg-color: transparent;
+  --awt-primary-btn-bg-color-hover: #ffe2d0;
+  --awt-primary-btn-color: #f9660d;
+  --awt-primary-btn-color-hover: #e75900;
+  --awt-btn-border-radius: 5px;
+}
+/** end custom colors */
+
+
+/* Customer quantity button */
+div.bundle-product-card__quantity-button-container {
+  border-color: var(--awt-primary-btn-color);
+  border-width: 1px;
+  border-radius: var(--awt-btn-border-radius);
+  background-color: var(--awt-primary-btn-bg-color);
+  color: var(--awt-primary-btn-color);
+  font-weight: bold;
+  line-height: 15px;
+  padding: 0;
+}
+
+.bundle-product-card__quantity-button-container span {
+  padding: 14px 10px;
+}
+
+.bundle-product-card__quantity-button-container--button {
+  padding: 14px 10px;
+  border-radius: 0;
+  transition: background-color 0.3s;
+}
+
+.bundle-product-card__quantity-button-container--button:first-child {
+  border-top-left-radius: var(--awt-btn-border-radius);
+  border-bottom-left-radius: var(--awt-btn-border-radius);
+}
+.bundle-product-card__quantity-button-container--button:last-child {
+  border-top-right-radius: var(--awt-btn-border-radius);
+  border-bottom-right-radius: var(--awt-btn-border-radius);
+}
+
+button.bundle-product-card__quantity-button-container--button:hover {
+  background-color: var(--awt-primary-btn-bg-color-hover);
+}
+
+.bundle-product-card__quantity-button-container--button svg {
+  fill: var(--awt-primary-btn-color);
+}
+
+.bundle-product-card__quantity-button-container span {
+  line-height: 15px;
+}
+.bundle-product-card__quantity-button-container {
+  border-radius: 7px !important;
+}
+.bundle-product-card__quantity-button-container--button:hover svg {
+  fill: var(--awt-primary-btn-color) !important;
+}
+/* End Customer quantity button */
+
+@media only screen and (max-width: 768px) {
+  main.bundle-scrollable-section {
+      grid-template-columns: repeat(auto-fit,minmax(184px,1fr))!important;
+  }
+}
+
+@media screen and (max-width: 512px) {
+  #bundleapp-subscriptions-portal .bundle-container {
+      padding: 0 0 125px!important;
+  }
+}
+
+body.awtomic-customer-portal-open .footer-wrapper.fix-to-bottom {
+  position: initial;
+}
+body.awtomic-customer-portal-open .footer-wrapper svg {
+  display: inline;
+}
+/* ----- End Brian's Changes ------ */
+
+body.awt-bab-open .bundleapp-modal .bundleapp-modal__container--complete-screen > .bundle-container main {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  flex-direction: column; 
+}
+
+body.awt-bab-open section.bundle_section {
+  max-width: unset;
+}
+
+body.awt-bab-open div.bundle-product-card {
+  padding: 0;
+  position: relative;
+  height: 100%;
+}
+
+@media only screen and (max-width: 990px) {
+  body.awt-bab-open main.bundle-create-content section.bundle_section.bundle-section {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3.47vw;
+  }
+  body.awt-bab-open main.bundle-scrollable-section.bundle-create-content.step2 {
+    padding-inline: 0;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  body.awt-bab-open main.bundle-create-content section.bundle_section.bundle-section {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3.47vw;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  body.awt-bab-open  div#bundleapp-subscriptions-portal .bundle-product-card {
+    align-items: center;
+    display: flex;
+  }
+}

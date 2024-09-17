@@ -1,0 +1,98 @@
+{% comment %}
+  Added by Plus - April 2021
+
+  This customization adds an animated hook icon to buttons.
+
+  The 'context' parameter for the render tag (https://shopify.dev/docs/themes/liquid/reference/tags/theme-tags#render)
+  is used to denote whether we want to load the markup for the icon or the
+  applicable styles from this snippet.
+{% endcomment %}
+
+{%- if context == 'markup' -%}
+  <span class="plus-animated-button__hook">
+    <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+    <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+    <svg width="100%" height="100%" viewBox="0 0 267 989" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+        <g transform="matrix(1,0,0,1,-13736.8,-2200.86)">
+            <g transform="matrix(-3.86077,0,0,3.86077,36420.3,-8220.68)">
+                <path fill="#FFFFFF" d="M5822.46,2828.93C5829.02,2830.03 5834.03,2835.74 5834.03,2842.61C5834.03,2849.03 5829.66,2854.44 5823.73,2856.02L5823.76,2891.14C5823.78,2925.97 5823.79,2928.26 5823.92,2929.17C5824.37,2932.05 5824.97,2933.98 5826.2,2936.35C5828.95,2941.68 5833.69,2945.53 5839.46,2947.12C5840.87,2947.51 5842.15,2947.7 5844.05,2947.81C5847.02,2947.98 5849.88,2947.74 5852.13,2947.12C5857.9,2945.53 5862.64,2941.68 5865.4,2936.35C5866.63,2933.96 5867.27,2931.93 5867.65,2929.17C5867.76,2928.42 5867.8,2927.22 5867.84,2923.86L5867.86,2921.22L5859.04,2921.3L5865.86,2904.72C5870.13,2908.19 5874.12,2913.58 5875.33,2920.67L5875.34,2920.67L5875.34,2920.69C5875.36,2920.84 5875.39,2921 5875.41,2921.16L5875.33,2921.16L5875.3,2924.2C5875.26,2929.01 5875.23,2929.56 5874.86,2931.6C5873.98,2936.42 5872,2940.77 5868.88,2944.69C5868.04,2945.75 5865.6,2948.19 5864.53,2949.03C5860.09,2952.55 5855.39,2954.49 5849.65,2955.2C5848.46,2955.35 5843.13,2955.35 5841.94,2955.2C5836.2,2954.49 5831.5,2952.55 5827.06,2949.03C5826,2948.19 5823.55,2945.76 5822.71,2944.69C5819.6,2940.78 5817.61,2936.42 5816.73,2931.6C5816.28,2929.12 5816.31,2932.16 5816.29,2891.47L5816.26,2855.93C5810.5,2854.24 5806.29,2848.92 5806.29,2842.61C5806.29,2835.78 5811.24,2830.1 5817.74,2828.95L5817.74,2699.34L5822.46,2699.34L5822.46,2828.93ZM5820.16,2836.57C5823.49,2836.57 5826.2,2839.28 5826.2,2842.61C5826.2,2845.95 5823.49,2848.65 5820.16,2848.65C5816.83,2848.65 5814.12,2845.95 5814.12,2842.61C5814.12,2839.28 5816.83,2836.57 5820.16,2836.57Z" style="fill:white;"/>
+            </g>
+        </g>
+    </svg>
+  </span>
+{%- else if context == 'styles' -%}
+  <style>
+    .plus-animated-button {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .plus-animated-button:not(.plus-slider-button) {
+      padding-right: 40px !important;
+    }
+
+    .plus-animated-button.plus-slider-button {
+      padding-right: 60px !important;
+    }
+
+    .plus-animated-button__hook {
+      position: absolute;
+      bottom: 0;
+    }
+
+    .plus-animated-button:not(.plus-slider-button) .plus-animated-button__hook {
+      right: 15px;
+      width: 15px;
+    }
+
+    .plus-animated-button.plus-slider-button .plus-animated-button__hook {
+      right: 25px;
+      width: 20px;
+    }
+
+    .plus-animated-button__hook svg {
+      height: auto;
+      width: 100%;
+    }
+
+    @media screen and (max-width: 768px) {
+      .plus-animated-button.plus-slider-button {
+        padding-right: 45px !important;
+      }
+
+      .plus-animated-button.plus-slider-button .plus-animated-button__hook {
+        right: 15px;
+        width: 17px;
+      }
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      .plus-animated-button:hover .plus-animated-button__hook svg,
+      .plus-animated-button:focus .plus-animated-button__hook svg {
+        animation: wiggle-hook 3s infinite;
+      }
+    }
+
+    @keyframes wiggle-hook {
+      4% {
+        transform: rotate(5deg);
+      }
+      8% {
+        transform: rotate(-5deg);
+      }
+      12% {
+        transform: rotate(5deg);
+      }
+      16% {
+        transform: rotate(-5deg);
+      }
+      20% {
+        transform: rotate(5deg);
+      }
+      45% {
+        transform: translateY(-100%);
+      }
+    }
+  </style>
+{%- endif -%}
+

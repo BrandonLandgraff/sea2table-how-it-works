@@ -1,0 +1,279 @@
+{%- liquid
+    assign blockid = block.id
+
+    assign bg_color = block.settings.bg_color
+    assign border_radius = block.settings.border_radius
+
+    assign link = block.settings.link
+    
+    assign image = block.settings.image
+    assign image_height = block.settings.image_height
+
+    assign cta_color = block.settings.cta_color
+    assign cta_font_size = block.settings.cta_font_size
+    assign scaled_cta_font_size = block.settings.cta_font_size | times: 0.95 | round
+
+    assign heading_color = block.settings.heading_color
+    assign heading_font_size = block.settings.heading_font_size
+    assign scaled_heading_font_size = block.settings.heading_font_size | times: 0.85 | round
+
+    assign description_color = block.settings.description_color
+    assign description_font_size = block.settings.description_font_size
+    assign scaled_description_font_size = block.settings.description_font_size | times: 0.95 | round
+
+    if section.index <= 3
+        assign loading_strategy = 'eager'
+        assign fetch_priority = 'high'
+      else
+        assign loading_strategy = 'lazy'
+        assign fetch_priority = 'auto'
+      endif
+    
+      assign widths = '165, 360, 535, 750, 1070, 1500'
+    
+    
+      assign img_alt = image.alt | escape
+    -%}
+    {%- capture sizes -%}
+      (min-width: 1200px) calc((1200px - 100px) / 2),
+      (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)
+    {%- endcapture -%}
+
+{% style %}
+#flexi-block-{{ blockid }} {
+    height: 100%;
+}
+
+#flexi-block-{{ blockid }} .flexi-content-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+#flexi-block-{{ blockid }} .flexi-card-container {
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    width: 100%;
+    height: fit-content;
+    align-items: center;
+    gap: 12px;
+    position: relative;
+    background-color: {{ bg_color }};
+    border-radius: {{ border_radius }}px;
+}
+
+#flexi-block-{{ blockid }} .flexi-card-container .flexi-image {
+    position: relative;
+    flex: 1;
+    align-self: stretch;
+    width: 100%;
+    flex-grow: 1;
+    object-fit: cover;
+}
+
+#flexi-block-{{ blockid }} .flexi-card-container .flexi-card-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    align-items: flex-start;
+    gap: 6px;
+
+    {% if bg_color != blank and bg_color != 'rgba(0,0,0,0)' %}
+        padding: 16px 16px 16px 16px;
+    {% endif %}
+
+    position: relative;
+    align-self: stretch;
+    flex-grow: 1;
+}
+
+#flexi-block-{{ blockid }} .flexi-card-container .flexi-heading {
+    position: relative;
+    align-self: stretch;
+    color: {{ heading_color }};
+    font-size: {{ heading_font_size }}px;
+    letter-spacing: 0;
+    line-height: normal;
+
+    padding: 0px !important;
+    margin: 0px !important;
+}
+
+#flexi-block-{{ blockid }} .flexi-heading-link {
+    text-decoration: none;
+    letter-spacing: 0;
+    line-height: normal;
+    padding: 0px !important;
+    margin: 0px !important;
+}
+
+#flexi-block-{{ blockid }} .flexi-card-container-bottom {
+    display: flex;
+    flex-direction: column;
+    gap: .5em;
+}
+
+#flexi-block-{{ blockid }} .flexi-card-container-bottom .flexi-description,
+#flexi-block-{{ blockid }} .flexi-card-container-bottom .flexi-description p {
+    position: relative;
+    align-self: stretch;
+    color: {{ description_color }};
+    font-size: {{ description_font_size }}px;
+    letter-spacing: 0;
+    line-height: normal;
+
+    padding: 0px !important;
+    margin: 0px !important;
+}
+
+.flexi-link {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    color: inherit;
+    background: none;
+    text-decoration: none;
+    text-align: inherit;
+    position: relative;
+}
+#flexi-link-{{ blockid }} {
+  font-size: {{ cta_font_size }}px;
+  color: {{ cta_color }};
+  line-height: normal;
+  letter-spacing: normal;
+  position: relative;
+  width: fit-content;
+}
+#flexi-link-{{ blockid }}::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 1px;
+  background-color: {{ cta_color }};
+  transform: scaleX(1);
+  transition: transform 0.3s ease;
+}
+#flexi-link-{{ blockid }}:hover::after {
+  transform: scaleX(0);
+}
+
+@media only screen and (max-width: 768px) {
+    #flexi-block-{{ blockid }} .flexi-card-container .flexi-heading {
+        font-size: {{ scaled_heading_font_size }}px;
+    }
+    #flexi-block-{{ blockid }} .flexi-card-container-bottom .flexi-description {
+        font-size: {{ scaled_description_font_size }}px;
+    }
+    #flexi-block-{{ blockid }} .flexi-card-container-bottom .flexi-link {
+        font-size: {{ scaled_cta_font_size }}px;
+    }
+}
+
+.flexi-image-{{ blockid }} {
+    width: 100%;
+    height: fit-content;
+}
+.flexi-image-{{ block.id }} img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    {% if bg_color != blank and bg_color != 'rgba(0,0,0,0)' %}
+        border-radius: 0px {{ border_radius }}px {{ border_radius }}px 0px;
+    {% else %}
+        border-radius: {{ border_radius }}px;
+    {% endif %}
+    object-fit: cover;
+    height: {{ image_height }};
+}
+.flexi-image-{{ block.id }} svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    {% if bg_color != blank and bg_color != 'rgba(0,0,0,0)' %}
+        border-radius: 0px {{ border_radius }}px {{ border_radius }}px 0px;
+    {% else %}
+        border-radius: {{ border_radius }}px;
+    {% endif %}
+    background-color: #D4D4D4;
+    margin: 0px;
+}
+.flexi-image-{{ block.id }} a {
+    display: block;
+    position: relative;
+    width: 100%;
+    height: auto;
+    margin: 0px;
+}
+
+{% endstyle %}
+
+<div id="flexi-block-{{ blockid }}">
+
+    <div class="flexi-content-container">
+
+        <div class="flexi-card-container">
+            <div class="flexi-card-wrapper">
+                {% if block.settings.heading != blank %}
+                    {% if link != blank %}
+                        <a class="flexi-heading-link" href="{{ link }}">
+                            <div class="flexi-heading">{{ block.settings.heading }}</div>
+                        </a>
+                    {% else %}
+                        <div class="flexi-heading">{{ block.settings.heading }}</div>
+                    {% endif %}
+                {% endif %}
+            </div>
+
+            {% if image != blank %}
+                <div id="flexi-image" class="flexi-image-{{ blockid }}">
+                    {% if link != blank %}
+                        <a href="{{ link }}">
+                            {{ image | image_url: width: 512 | image_tag: 
+                                class: 'img-animation', 
+                                sizes: sizes, 
+                                widths: widths, 
+                                loading: loading_strategy, 
+                                fetchpriority: fetch_priority,
+                                alt: img_alt
+                            }}
+                        </a>
+                    {% else %}
+                        {{ image | image_url: width: 512 | image_tag: 
+                            class: 'img-animation', 
+                            sizes: sizes, 
+                            widths: widths, 
+                            loading: loading_strategy, 
+                            fetchpriority: fetch_priority,
+                            alt: img_alt 
+                        }}
+                    {% endif %}
+                </div>
+            {% else %}
+                <div id="flexi-image" class="flexi-image-{{ blockid }}">
+                {% if link != blank %}
+                    <a href="{{ link }}">
+                        {{ 'product-1' | placeholder_svg_tag }}  
+                    </a>
+                {% else %}
+                    {{ 'product-1' | placeholder_svg_tag }}  
+                {% endif %}
+                </div> 
+            {% endif %}
+        </div>
+
+        <div class="flexi-card-container-bottom">
+            {% if block.settings.description != blank %}
+                <p class="flexi-description">{{ block.settings.description }}</p>
+            {% endif %}
+            {% if block.settings.cta != blank %}
+                <a id="flexi-link-{{ blockid }}" class="flexi-link" href="{{ link }}">{{ block.settings.cta }}</a>
+            {% endif %}
+        </div>
+
+    </div>
+
+</div>

@@ -1,0 +1,1003 @@
+{{ 'gsa-template--product--subscription.css' | asset_url | stylesheet_tag }}
+
+<script>
+const accordionItems = document.querySelectorAll("[data-accordion] > details");
+
+const siblings = (el) => {
+  if (el.parentNode === null) return [];
+  return Array.prototype.filter.call(el.parentNode.children, function (child) {
+    return child !== el;
+  });
+};
+
+accordionItems.forEach((el) => {
+  el.addEventListener("click", () => {
+    const others = siblings(el);
+    others.forEach((sibling) => {
+      sibling.removeAttribute("open");
+    });
+  });
+});
+</script>
+
+{% comment %} Added by Plus - April 2021 {% endcomment %}
+{% if section.settings.plus_enable_animated_button %}
+  {%- render 'plus-animated-button', context: 'styles' -%}
+{%- endif -%}
+
+<div
+  {% if disabled_by_yoast_seo %}itemscope{% endif %} {% if disabled_by_yoast_seo %}itemtype="http://schema.org/Product"{% endif %}
+  data-wetheme-section-type="template--product" data-wetheme-section-id="{{ section.id }}"
+>
+  {%- comment -%}Auto-disabled. Yoast plugin is taking care of Meta Tags output.{%- endcomment -%}
+{%- if disabled_by_yoast_seo -%}
+{%- comment -%}Auto-disabled. Yoast plugin is taking care of Meta Tags output.{%- endcomment -%}
+{%- if disabled_by_yoast_seo -%}
+<meta {% if disabled_by_yoast_seo %}itemprop="url"{% endif %} content="{{ shop.url }}{{ product.url }}">
+{%- comment -%} End Yoast auto-disable. {%- endcomment -%}
+{%- endif -%}
+{%- comment -%} End Yoast auto-disable. {%- endcomment -%}
+{%- endif -%}
+  {%- comment -%}Auto-disabled. Yoast plugin is taking care of Meta Tags output.{%- endcomment -%}
+{%- if disabled_by_yoast_seo -%}
+<meta {% if disabled_by_yoast_seo %}itemprop="image"{% endif %} content="https:{{ product.featured_media.preview_image | img_url: 'grande' }}">
+{%- comment -%} End Yoast auto-disable. {%- endcomment -%}
+{%- endif -%}
+  {%- comment -%}Auto-disabled. Yoast plugin is taking care of Meta Tags output.{%- endcomment -%}
+{%- if disabled_by_yoast_seo -%}
+<meta {% if disabled_by_yoast_seo %}itemprop="brand"{% endif %} content="{{ product.vendor }}">
+{%- comment -%} End Yoast auto-disable. {%- endcomment -%}
+{%- endif -%}
+  {%- comment -%}Auto-disabled. Yoast plugin is taking care of Meta Tags output.{%- endcomment -%}
+{%- if disabled_by_yoast_seo -%}
+<meta {% if disabled_by_yoast_seo %}itemprop="sku"{% endif %} content="{{ product.selected_or_first_available_variant.sku }}">
+{%- comment -%} End Yoast auto-disable. {%- endcomment -%}
+{%- endif -%}
+
+  {% comment %}
+  Pick an option only makes sense together with dropdowns - we currently doesn't have pick_an_option
+  {% if section.settings.product_variant_style == 'dropdowns' and section.settings.pick_an_option %}
+    {% assign pick_an_option = true %}
+  {% else %}
+  {% endif %}
+  {% endcomment %}
+  {% assign pick_an_option = false %}
+
+  {% if pick_an_option %}
+    {%- assign current_variant = product.selected_variant -%}
+  {% else %}
+    {%- assign current_variant = product.selected_or_first_available_variant -%}
+  {% endif %}
+
+  {% assign on_sale = false %}
+  {% if current_variant.compare_at_price > current_variant.price %}
+    {% assign on_sale = true %}
+  {% endif %}
+
+  {%- assign product_description_width = '' -%}
+  {%- assign product_image_width = '' -%}
+  {% case section.settings.image_size %}
+    {% when 'small' %}
+      {%- assign product_description_width = 'large--seven-twelfths' -%}
+      {%- assign product_image_width = 'large--five-twelfths' -%}
+    {% when 'medium' %}
+      {%- assign product_description_width = 'large--six-twelfths' -%}
+      {%- assign product_image_width = 'large--six-twelfths' -%}
+    {% when 'large' %}
+      {%- assign product_description_width = 'large--five-twelfths' -%}
+      {%- assign product_image_width = 'large--seven-twelfths' -%}
+  {% endcase %}
+
+  <div class="product-media-templates">
+    {% assign featured_media = current_variant.featured_media | default: product.featured_media %}
+    {% render 'product-media-templates', product: product, section_id: section.id, featured_media_id: featured_media.id, enable_image_zoom: section.settings.enable_image_zoom, enable_video_loop: section.settings.enable_video_loop %}
+  </div>
+
+  {% assign style = 'full_width' %}
+  {% if section.settings.image-display == 'thumbnails' %}
+    {% assign style = section.settings.thumbnail_position %}
+  {% endif %}
+  {% if product.media.size <= 1 %}
+    {% comment %}No thumbnails when there's just one (or none) media{% endcomment %}
+    {% assign style = 'full_width' %}
+  {% endif %}
+  
+  
+  <div class="title-mobile">
+    <h1 {% if disabled_by_yoast_seo %}itemprop="name"{% endif %} class="product-details-product-title">{{ product.title }}</h1>
+    <!-- TrustBox widget - Horizontal -->
+    <div class="trustpilot-widget" style="margin-bottom: 8px; display: inline-block;" data-locale="en-US" data-template-id="5406e65db0d04a09e042d5fc" data-businessunit-id="5d4c95a03343a200014bac27" data-style-height="20px" data-style-width="100px" data-theme="light">
+      <a href="https://www.trustpilot.com/review/sea2table.com" target="_blank" rel="noopener">Trustpilot</a>
+    </div>
+    <h5 style="text-decoration: underline; font-weight: bold; font-size: 10px; margin: -16px 0px 0px 8px; padding-bottom: 12px;">
+      {{ section.settings.reviews_text }}
+    </h5>
+  </div>
+  
+  <!-- Fixed Add to Cart Button Start -->
+     <div class="fixed-add-to-cart">
+       <div class="cart-container-fixed">
+        <a href="{{ section.settings.btn_link }}" class="abtest-original homepage-featured-box-btn subscription-btn plus-animated-button">
+           {{ section.settings.btn_label | default: 'Shop Now' }}
+           {%- render 'plus-animated-button', context: 'markup' -%}
+        </a>  
+        <p>{{ section.settings.below_button }}</p> 
+       </div>
+     </div>
+  <!-- Fixed Add to Cart Button End -->
+  
+  <div class="c-sub product-form-vue">
+    <wetheme-product-form
+      inline-template
+      v-bind:initial-variant-id="{{ current_variant.id }}"
+      v-bind:product="product"
+      v-bind:product-section="productSection"
+      v-bind:theme="theme"
+      v-bind:slides-per-view="slidesPerView"
+      v-bind:is-featured-product="isFeaturedProduct"
+      v-bind:section-id="'{{ section.id }}'"
+      v-bind:thumbnail-changes-variant="{{ section.settings.thumbnail_changes_variant }}"
+      v-bind:has-thumbnails="{% if style != 'full_width' %}true{% else %}false{% endif %}"
+      v-bind:image-zoom-enabled="{{ section.settings.enable_image_zoom }}"
+      v-bind:video-loop-enabled="{{ section.settings.enable_video_loop }}"
+      v-bind:cart-method="'{{ settings.ajax_cart_method }}'"
+    >
+      <div class="product-single-wrapper">
+
+        <div
+          class="grid product-single product-sticky-wrapper{% if section.settings.product_variant_style == 'dropdowns' %} variant-dropdown-enabled{% else %} variant-swatches-enabled{% endif %}"
+          data-section-id="{{ section.id }}"
+        >
+          <div class="grid__item {{ product_image_width }} context mobile--no-top-margin">
+            {% render 'product-media', product: product, style: style, enable_image_zoom: section.settings.enable_image_zoom, hide_soldout_variants: section.settings.hide_soldout_variants %}
+          </div>
+
+          <div class="grid__item {{ product_description_width }}{% if section.settings.enable_sticky %} product-sticky{% endif %}">
+
+            <div>
+
+              {% if settings.enable-sale-badge %}
+                <div
+                  class="product-page--sale-badge{% unless current_variant.compare_at_price > current_variant.price %} js{% endunless %}"
+                  v-if="isSale"
+                >
+                  {{ 'products.product.on_sale' | t }}
+                </div>
+              {% endif %}
+
+              <div class="product-details-wrapper" {% if section.settings.show_sku %}data-show-sku="true"{% else %}data-show-sku="false"{% endif %}>
+                <div class="grid product-meta-header">
+                  {% if section.settings.show_vendor and product.vendor != "" %}
+                    <div class="grid__item product__meta--vendor large--one-half">
+                      <h4>{{ product.vendor | link_to_vendor }}</h4>
+                    </div>
+                  {% endif %}
+
+                  {% if section.settings.show_sku %}
+                    <div
+                      class="grid__item product__meta--sku large--one-half{% unless section.settings.show_vendor and product.vendor != "" %} push--large--one-half{% endunless %}{% if current_variant.sku == "" %} js{% endif %}"
+                      v-if="variant && variant.sku !== ''"
+                    >
+                      <h4>{{ 'customer.order.sku' | t }}: <span class="js__currentVariantSKU" v-text="variant.sku">{{ current_variant.sku }}</span></h4>
+                    </div>
+                  {% endif %}
+                </div>
+
+                <div style="position:relative;">
+                  <div class="title-desktop">
+                	<h1 {% if disabled_by_yoast_seo %}itemprop="name"{% endif %} class="product-details-product-title">{{ product.title }}</h1>
+                    <!-- TrustBox widget - Starter -->
+                    <h5 style="color: #00b67a; text-align: left;"><strong>4.7/5 Stars</strong></h5>
+            		<img src="https://cdn.shopify.com/s/files/1/0486/3282/3969/files/Screen_Shot_2022-06-28_at_1.31.06_PM.png?v=1656441096" alt="Trust Pilot Image" width="100px" />
+                	<h5 style="text-decoration: underline; font-weight: bold; font-size: 10px;">{{ section.settings.reviews_text }}</h5>
+                    <!-- End TrustBox widget -->
+                  </div>
+                  
+                <div name="secomapp-fg-image-{{ product.id }}" style="display: none;">{{ "icon-freegift.png" | asset_url | img_tag: "FG icon", "sca-fg-img-collect" }}</div></div>
+    
+
+                      {% render 'unit-price-measurement-variant', variant: current_variant %}
+
+                      {%- if shop.taxes_included or shop.shipping_policy.body != blank -%}
+                        <span class="product-page__policies rte">
+                          {%- if shop.taxes_included and section.settings.tax_included -%}
+                            {{ 'products.product.include_taxes' | t }}
+                          {%- endif -%}
+                          {%- if shop.shipping_policy.body != blank and section.settings.shipping_policy -%}
+                            {{ 'products.product.shipping_policy_html' | t: link: shop.shipping_policy.url }}
+                          {%- endif -%}
+                        </span>
+                      {%- endif -%}
+      
+
+                {% if section.settings.description_position == 'inline_top' %}
+                  <div class="product-description product-details--form-wrapper---below rte{% if section.settings.enable_readmore %} readmore closed{% endif %}" {% if disabled_by_yoast_seo %}itemprop="description"{% endif %}>
+                    {{ product.description }}
+                  </div>
+                {% endif %}
+
+                <div {% if disabled_by_yoast_seo %}itemprop="offers"{% endif %} {% if disabled_by_yoast_seo %}itemscope{% endif %} {% if disabled_by_yoast_seo %}itemtype="http://schema.org/Offer"{% endif %} class="product-details--form-wrapper{% if product.available %} product-details--form-wrapper---in-stock{% else %} product-details--form-wrapper---out-of-stock{% endif %}">
+                  {%- comment -%}Auto-disabled. Yoast plugin is taking care of Meta Tags output.{%- endcomment -%}
+{%- if disabled_by_yoast_seo -%}
+<meta {% if disabled_by_yoast_seo %}itemprop="priceCurrency"{% endif %} content="{{ shop.currency }}">
+{%- comment -%} End Yoast auto-disable. {%- endcomment -%}
+{%- endif -%}
+                  {%- comment -%}Auto-disabled. Yoast plugin is taking care of Meta Tags output.{%- endcomment -%}
+{%- if disabled_by_yoast_seo -%}
+{%- comment -%}Auto-disabled. Yoast plugin is taking care of Meta Tags output.{%- endcomment -%}
+{%- if disabled_by_yoast_seo -%}
+<meta {% if disabled_by_yoast_seo %}itemprop="url"{% endif %} content="{{ shop.url }}{{ product.url }}">
+{%- comment -%} End Yoast auto-disable. {%- endcomment -%}
+{%- endif -%}
+{%- comment -%} End Yoast auto-disable. {%- endcomment -%}
+{%- endif -%}
+
+                  {%- comment -%}Auto-disabled. Yoast plugin is taking care of Meta Tags output.{%- endcomment -%}
+{%- if disabled_by_yoast_seo -%}
+<link {% if disabled_by_yoast_seo %}itemprop="availability"{% endif %} href="http://schema.org/{% if product.available %}InStock{% else %}OutOfStock{% endif %}">
+{%- comment -%} End Yoast auto-disable. {%- endcomment -%}
+{%- endif -%}
+
+                  <div class="form-vertical">
+                    {% form 'product', product, data-productid: product.id, id: "AddToCartForm" %}
+                    
+                    {% render 'product-options', product: product, variant_style: section.settings.product_variant_style, section_id: section.id, current_variant: current_variant, hide_soldout_variants: section.settings.hide_soldout_variants %}
+
+                    <!-- Drivers - Checkmark Items -->
+                    <div class="mini-header" style="padding-bottom: 12px;">Why Choose Us: </div>
+                    <div class="sub-drivers"><i class="fa fa-check"></i><p>{{ section.settings.checkmark_1 }}</p></div>
+                    <div class="sub-drivers"><i class="fa fa-check"></i><p>{{ section.settings.checkmark_2 }}</p></div>
+                    <div class="sub-drivers"><i class="fa fa-check"></i><p>{{ section.settings.checkmark_3 }}</p></div>
+                    <div class="sub-drivers"><i class="fa fa-check"></i><p>{{ section.settings.checkmark_4 }}</p></div>
+
+                    <!-- Add to Cart Button -->
+                      <a href="{{ section.settings.btn_link }}" class="abtest-original homepage-featured-box-btn subscription-btn plus-animated-button">
+                        {{ section.settings.btn_label | default: 'Shop Now' }}
+                        {%- render 'plus-animated-button', context: 'markup' -%}
+                      </a>  
+
+                    <!-- Objection Description -->
+                    <p id="sub-objection">{{ section.settings.below_button }}</p>
+
+                    <!-- FAQ Dropdown Start -->
+                    <section class="accordion-wrapper" data-accordion>
+                      <details>
+                        <summary>
+                          {{ section.settings.question_1 }}
+                          <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd" />
+                          </svg>
+                        </summary>
+                        <div class="details-info">
+                          <div class="rte textarea">{{ section.settings.answer_1 }}</div>
+                        </div>
+                      </details>
+                      <details>
+                        <summary>
+                          {{ section.settings.question_2 }}
+                          <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd" />
+                          </svg>
+                        </summary>
+                        <div class="details-info">
+                          <div class="rte textarea">{{ section.settings.answer_2 }}</div>
+                        </div>
+                      </details>
+                    </section>
+                    
+                    <!-- FAQ Dropdown End -->
+                    {% endform %}
+
+                    <div class="sca-fg-cat-list" style="display:none;" name="secomapp-fg-data-{{ product.id }}"></div>
+
+                    {% if section.settings.enable_out_of_stock_form %}
+                      {% render 'out-of-stock-form' %}
+                    {% endif %}
+
+                    {% if section.settings.trust-badge %}
+                      <span class="trust-badge-container">
+                        {% capture styles %}width: {{ section.settings.trust-badge_max_width | escape }}px{% endcapture %}
+                        {% render 'responsive-image' with section.settings.trust-badge, class:'trust-badge', alt: '', blur: false, styles: styles %}
+                      </span>
+                    {% endif %}
+                  </div>
+                </div>
+
+                {% if section.settings.description_position == 'inline_bottom' %}
+                  <div class="product-description rte{% if section.settings.enable_readmore %} readmore closed{% endif %}" {% if disabled_by_yoast_seo %}itemprop="description"{% endif %}>
+                  {{ product.description }}
+                  </div>
+                {% endif %}
+
+                <div class="grid product__meta">
+
+                  {% if section.settings.show_tags and product.tags.size > 0 %}
+                    <div class="grid__item product__meta--tags large--one-whole">
+                      <span><strong>{{ 'products.product.tags' | t }}:</strong> </span>
+                      {% for tag in product.tags %}
+                        <a href="{{ routes.all_products_collection_url }}/{{ tag | handleize }}"><span>{{ tag }}</span></a>{% if forloop.last == false %}, {% endif %}
+                      {% endfor %}
+                    </div>
+                  {% endif %}
+
+                  {% if section.settings.show_collections and product.collections.size > 0 %}
+                    <div class="grid__item product__meta--tags large--one-whole">
+                      <span><strong>{{ 'products.product.category' | t }}:</strong> </span>
+                      {% for collection in product.collections %}
+                        <a href="{{ collection.url }}"><span>{{ collection.title }}</span></a>{% if forloop.last == false %}, {% endif %}
+                      {% endfor %}
+                    </div>
+                  {% endif %}
+
+                  {% if section.settings.show_type and product.type != "" %}
+                    <div class="grid__item product__meta--type large--one-whole">
+                      <span><strong>{{ 'products.product.type' | t }}: </strong></span>
+                      <span>{{ product.type }}</span>
+                    </div>
+                  {% endif %}
+
+                </div>
+
+                <!-- {% if settings.social_sharing_product %}
+                  {% render 'social-share' %}
+                {% endif %} -->
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {% if section.settings.description_position == 'full_width' %}
+          <div class="product-description-container">
+            <div class="product-description product-description_full-width rte{% if section.settings.enable_readmore %} readmore closed{% endif %}" {% if disabled_by_yoast_seo %}itemprop="description"{% endif %}>
+              {{ product.description }}
+            </div>
+          </div>
+        {% endif %}
+
+      </div>
+    </wetheme-product-form>
+    
+  </div>
+  
+  <!-- TrustBox widget - Slider -->
+  <div class="trustpilot-widget" data-locale="en-US" data-template-id="54ad5defc6454f065c28af8b" data-businessunit-id="5d4c95a03343a200014bac27" data-style-height="240px" data-style-width="100%" data-theme="light" data-stars="4,5" data-review-languages="en">
+    <a href="https://www.trustpilot.com/review/sea2table.com" target="_blank" rel="noopener">Trustpilot</a>
+  </div>
+  <!-- End TrustBox widget -->
+
+  {% if settings.show_reviews %}
+    <div id="shopify-product-reviews--wrapper" v-if="!isFeaturedProduct">
+      <div class="sitewide--title-wrapper">
+        <h2 class="page--title">{{ 'products.general.product_reviews' | t }}</h2>
+      </div>
+      <div id="shopify-product-reviews" data-id="{{product.id}}">{{ product.metafields.spr.reviews }}</div>
+    </div>
+  {% endif %}
+
+  {% unless product == empty %}
+    <script type="application/json" class="product-json" id="ProductJson-{{ section.id }}">
+      {{ product | json }}
+    </script>
+  {% endunless %}
+</div>
+
+{% schema %}
+{
+    "name": {
+        "en": "Product pages",
+        "de": "Produktseiten",
+        "es": "Páginas de producto",
+        "fr": "Pages des produits",
+        "pt-PT": "Páginas de produtos"
+    },
+    "settings": [
+        {
+            "type": "checkbox",
+            "id": "show_quantity_selector",
+            "label": {
+                "en": "Show quantity selector",
+                "de": "Anzahlauswähler anzeigen",
+                "es": "Mostrar selector de cantidad",
+                "fr": "Afficher le sélecteur de quantité",
+                "pt-PT": "Mostrar selecionador de quantidade"
+            },
+            "default": true
+        },
+        {
+            "type": "checkbox",
+            "id": "show_tags",
+            "label": {
+                "en": "Show tags",
+                "de": "Tags anzeigen",
+                "es": "Mostrar etiquetas",
+                "fr": "Afficher les étiquettes",
+                "pt-PT": "Mostrar etiquetas"
+            },
+            "default": false
+        },
+        {
+            "type": "checkbox",
+            "id": "show_collections",
+            "label": {
+                "en": "Show collections",
+                "de": "Kollektionen anzeigen",
+                "es": "Mostrar colecciones",
+                "fr": "Afficher les collections",
+                "pt-PT": "Mostrar coleções"
+            },
+            "default": false
+        },
+        {
+            "type": "checkbox",
+            "id": "show_type",
+            "label": {
+                "en": "Show type",
+                "de": "Typ anzeigen",
+                "es": "Mostrar tipo",
+                "fr": "Type d'affichage",
+                "pt-PT": "Mostrar tipo"
+            },
+            "default": false
+        },
+        {
+            "type": "checkbox",
+            "id": "show_vendor",
+            "label": {
+                "en": "Show vendor",
+                "de": "Verkäufer anzeigen",
+                "es": "Mostrar vendedor",
+                "fr": "Afficher le vendeur",
+                "pt-PT": "Mostrar vendedor"
+            },
+            "default": false
+        },
+        {
+            "type": "checkbox",
+            "id": "show_sku",
+            "label": {
+                "en": "Show SKU",
+                "de": "Bestandseinheit anzeigen",
+                "es": "Mostrar SKU",
+                "fr": "Afficher SKU",
+                "pt-PT": "Mostrar SKU"
+            },
+            "default": false
+        },
+        {
+            "type": "checkbox",
+            "id": "shipping_policy",
+            "label": {
+                "en": "Show shipping policy link",
+                "de": "Link zur Versandrichtlinie anzeigen",
+                "es": "Mostrar enlace de política de envío",
+                "fr": "Afficher le lien de la politique d'expédition",
+                "pt-PT": "Mostrar hiperligação da política de envios"
+            },
+            "default": true
+        },
+        {
+            "type": "checkbox",
+            "id": "tax_included",
+            "label": {
+                "en": "Show 'tax included' message",
+                "de": "Nachricht \"Steuer enthalten\" anzeigen",
+                "es": "Mostrar mensaje \"impuesto incluido\"",
+                "fr": "Afficher le message « taxe incluse »",
+                "pt-PT": "Mostrar mensagem de 'impostos incluídos'"
+            },
+            "default": true
+        },
+        {
+            "type": "checkbox",
+            "id": "show_smart_checkout",
+            "label": {
+                "en": "Show dynamic checkout button",
+                "de": "Dynamischen Bezahlbutton anzeigen",
+                "es": "Mostar el botón de compra dinámica",
+                "fr": "Afficher le bouton de paiement dynamique",
+                "pt-PT": "Mostrar botão de checkout dinâmico"
+            },
+            "default": true,
+            "info": {
+                "en": "Lets customers check out directly using a familiar payment method. [Learn more](https://help.shopify.com/manual/using-themes/change-the-layout/dynamic-checkout)",
+                "de": "Lässt Kunden direkt unter Verwendung einer bekannten Zahlungsmethode bezahlen. [Mehr erfahren](https://help.shopify.com/manual/using-themes/change-the-layout/dynamic-checkout)",
+                "es": "Permita a los clientes finalizar su compra directamente utilizando un método de pago que les sea familiar. [Aprenda más](https://help.shopify.com/manual/using-themes/change-the-layout/dynamic-checkout)",
+                "fr": "Permet aux clients de payer directement en utilisant un mode de paiement familier. [En savoir plus](https://help.shopify.com/manual/using-themes/change-the-layout/dynamic-checkout)",
+                "pt-PT": "Permita que os clientes façam checkout diretamente utilizando um método de pagamento familiar. [Saber mais](https://help.shopify.com/manual/using-themes/change-the-layout/dynamic-checkout)"
+            }
+        },
+        {
+            "type": "checkbox",
+            "id": "plus_enable_animated_button",
+            "label": "Enable animated add-to-cart button",
+            "info": "This will add an animated hook to the add-to-cart button.",
+            "default": true
+        },
+        {
+            "type": "image_picker",
+            "id": "trust-badge",
+            "label": {
+                "en": "Trust badge",
+                "de": "Vertrauenssiegel",
+                "es": "Distintivo de confianza",
+                "fr": "Badge de confiance",
+                "pt-PT": "Crachá de confiança"
+            },
+            "info": {
+                "en": "100 x 300px recommended. [Learn more](https://flowdocs.wetheme.com/templates/product-pages/trust-badges)",
+                "de": "100 x 300 px empfohlen. [Mehr erfahren](https://flowdocs.wetheme.com/templates/product-pages/trust-badges)",
+                "es": "Recomendado: 100 x 300px. [Aprenda más](https://flowdocs.wetheme.com/templates/product-pages/trust-badges)",
+                "fr": "100 x 300 px recommandé. [En savoir plus] (https://flowdocs.wetheme.com/templates/product-pages/trust-badges)",
+                "pt-PT": "100 x 300px recomendado. [Saiba mais](https://flowdocs.wetheme.com/templates/product-pages/trust-badges)"
+            }
+        },
+        {
+            "type": "range",
+            "id": "trust-badge_max_width",
+            "min": 10,
+            "max": 920,
+            "step": 10,
+            "unit": {
+                "en": "px",
+                "de": "px",
+                "es": "px",
+                "fr": "px",
+                "pt-PT": "px"
+            },
+            "label": {
+                "en": "Width",
+                "de": "Breite",
+                "es": "Ancho",
+                "fr": "Largeur",
+                "pt-PT": "Largura"
+            },
+            "default": 260
+        },
+        {
+            "type": "select",
+            "id": "show_discount",
+            "label": {
+                "en": "Enable discount savings?",
+                "de": "Rabattersparnisse aktivieren?",
+                "es": "¿Habilitar ahorros por descuentos?",
+                "fr": "Permettre des économies de rabais ?",
+                "pt-PT": "Ativar promoções?"
+            },
+            "options": [
+                {
+                    "value": "hide",
+                    "label": {
+                        "en": "Hide",
+                        "de": "Verbergen",
+                        "es": "Ocultar",
+                        "fr": "Cacher",
+                        "pt-PT": "Ocultar"
+                    }
+                },
+                {
+                    "value": "percentage",
+                    "label": {
+                        "en": "Percentage",
+                        "de": "Prozentsatz",
+                        "es": "Porcentaje",
+                        "fr": "Pourcentage",
+                        "pt-PT": "Percentagem"
+                    }
+                },
+                {
+                    "value": "value",
+                    "label": {
+                        "en": "Value",
+                        "de": "Wert",
+                        "es": "Valor",
+                        "fr": "Valeur",
+                        "pt-PT": "Valor"
+                    }
+                }
+            ],
+            "default": "percentage",
+            "info": {
+                "en": "Discounts will only be shown on variants that are on sale",
+                "de": "Rabatte werden nur auf Varianten angezeigt, die im Angebot sind",
+                "es": "Los descuentos solo se mostrarán en las variantes que están de oferta.",
+                "fr": "Les remises ne s'appliqueront qu'aux variantes en vente.",
+                "pt-PT": "Os descontos apenas serão exibidos em variantes que estejam à venda"
+            }
+        },
+        {
+          "type": "select",
+          "id": "description_position",
+          "label": {
+              "en": "Description position",
+              "de": "Beschreibung Position",
+              "es": "Descripción de la posición",
+              "fr": "Position de la description",
+              "pt-PT": "Descrição posição"
+          },
+          "options": [
+            {
+              "value": "inline_top",
+              "label": {
+                  "en": "Above add to cart button",
+                  "de": "Über der Schaltfläche \"Zum Einkaufskorb hinzufügen\"",
+                  "es": "Arriba añadir al botón del carrito",
+                  "fr": "Ci-dessus, le bouton Ajouter au panier",
+                  "pt-PT": "Acima do botão adicionar ao carrinho"
+              }
+            },
+            {
+              "value": "inline_bottom",
+              "label": {
+                  "en": "Below add to cart button",
+                  "de": "Unter der Schaltfläche \"Zum Einkaufskorb hinzufügen\"",
+                  "es": "Abajo añadir al botón del carrito",
+                  "fr": "Ci-dessous, le bouton Ajouter au panier",
+                  "pt-PT": "Abaixo do botão adicionar ao carrinho"
+              }
+            },
+            {
+              "value": "full_width",
+              "label": {
+                  "en": "Below product image",
+                  "de": "Unter dem Produktbild",
+                  "es": "Debajo de la imagen del producto",
+                  "fr": "Ci-dessous, l’Image du produit",
+                  "pt-PT": "Abaixo da imagem do produto"
+              }
+            }
+          ],
+          "default": "inline_bottom"
+        },
+        {
+            "type": "checkbox",
+            "id": "enable_readmore",
+            "label": {
+                "en": "Enable 'read more' for description",
+                "de": "'Mehr erfahren' für eine Beschreibung aktivieren",
+                "es": "Habilitar «más información» para la descripción",
+                "fr": "Activer « Lire la suite » pour la description",
+                "pt-PT": "Ativar \"ler mais\" para descrição"
+            },
+            "default": false
+        },
+        {
+            "type": "checkbox",
+            "id": "enable_sticky",
+            "label": {
+                "en": "Enable sticky description",
+                "de": "Sticky-Beschreibung aktivieren",
+                "es": "Habilitar descripción pegajosa",
+                "fr": "Activer la description collante",
+                "pt-PT": "Ativar descrição fixa"
+            },
+            "default": true
+        },
+        {
+          "type": "checkbox",
+          "id": "enable_out_of_stock_form",
+          "label": {
+              "en": "Enable out of stock email",
+              "de": "Die E-Mail \"Nicht lieferbar\" aktivieren",
+              "es": "Habilitar correo electrónico agotado",
+              "fr": "Activer le courriel Rupture de stock",
+              "pt-PT": "Ativar e-mail de esgotado"
+          },
+          "default": false
+        },
+        {
+            "type": "header",
+            "content": {
+                "en": "Product variants",
+                "de": "Produktvarianten",
+                "es": "Variantes del producto",
+                "fr": "Variantes de produits",
+                "pt-PT": "Variantes do produto"
+            }
+        },
+        {
+            "type": "radio",
+            "id": "product_variant_style",
+            "label": {
+                "en": "Product variant style",
+                "de": "Produkt Variante Stil",
+                "es": "Variante de estilo del producto",
+                "fr": "Style de la variante du produit",
+                "pt-PT": "Estilo da variante de produtos"
+            },
+            "options": [
+                {
+                    "value": "dropdowns",
+                    "label": {
+                        "en": "Dropdowns",
+                        "de": "Drop-down-Menüs",
+                        "es": "Menú desplegable",
+                        "fr": "Menus déroulants",
+                        "pt-PT": "Pendentes"
+                    }
+                },
+                {
+                    "value": "swatches",
+                    "label": {
+                        "en": "Swatches",
+                        "de": "Muster",
+                        "es": "Muestras",
+                        "fr": "Échantillons",
+                        "pt-PT": "Amostras"
+                    }
+                }
+            ],
+            "default": "swatches",
+            "info": {
+                "en": "You may need to upload custom swatch images. [Learn more](https://flowdocs.wetheme.com/faqs/color-swatch-images)",
+                "de": "Es könnte sein, dass Sie kundenspezifische Musterbilder hochladen müssen. [Mehr erfahren](https://flowdocs.wetheme.com/faqs/color-swatch-images)",
+                "es": "Puede que necesite subir imágenes de muestra personalizadas. [Aprenda más](https://flowdocs.wetheme.com/faqs/color-swatch-images)",
+                "fr": "Il se peut que vous ayez besoin de télécharger des images d'échantillons personnalisées. [En savoir plus](https://flowdocs.wetheme.com/faqs/color-swatch-images)",
+                "pt-PT": "Poderá ser necessário carregar imagens de amostra personalizadas. [Saber mais](https://flowdocs.wetheme.com/faqs/color-swatch-images)"
+            }
+        },
+        {
+            "type": "checkbox",
+            "id": "thumbnail_changes_variant",
+            "label": {
+                "en": "Change variant based on the thumbnail",
+                "de": "Variante basierend auf Thumbnail verändern",
+                "es": "Cambiar variante en base a la imagen en miniatura",
+                "fr": "Modifier la variante en fonction de la vignette",
+                "pt-PT": "Alterar base da variante na imagem em miniatura"
+            },
+            "default": false
+        },
+        {
+            "type": "checkbox",
+            "id": "hide_soldout_variants",
+            "label": {
+                "en": "Hide sold-out variants",
+                "de": "Ausverkaufte Varianten verbergen",
+                "es": "Ocultar variantes agotadas",
+                "fr": "Masquer les variantes épuisées",
+                "pt-PT": "Ocultar variantes esgotadas"
+            },
+            "default": false
+        },
+        {
+            "type": "header",
+            "content": {
+                "en": "Media",
+                "de": "Medien",
+                "es": "Medios",
+                "fr": "Médias",
+                "pt-PT": "Media"
+            },
+            "info": {
+                "en": "Learn more about [media types](https://help.shopify.com/en/manual/products/product-media)",
+                "de": "Mehr erfahren über [Medientypen](https://help.shopify.com/en/manual/products/product-media)",
+                "es": "Obtenga más información sobre [tipos de medios](https://help.shopify.com/en/manual/products/product-media)",
+                "fr": "En savoir plus sur [types de médias](https://help.shopify.com/en/manual/products/product-media)",
+                "pt-PT": "Saiba mais sobre [tipos de media](https://help.shopify.com/en/manual/products/product-media)"
+            }
+        },
+        {
+            "type": "select",
+            "id": "image_size",
+            "label": {
+                "en": "Size",
+                "de": "Größe",
+                "es": "Tamaño",
+                "fr": "Taille",
+                "pt-PT": "Tamanho"
+            },
+            "info": {
+                "en": "Recommended 950px minimum width. [Learn more](https://flowdocs.wetheme.com/faqs/image-sizes)",
+                "de": "950 px Mindestbreite empfohlen. [Mehr erfahren](https://flowdocs.wetheme.com/faqs/image-sizes)",
+                "es": "Anchura mínima recomendada: 950px. [Aprenda más](https://flowdocs.wetheme.com/faqs/image-sizes)",
+                "fr": "Largeur minimale recommandée : 950 px. [En savoir plus] (https://flowdocs.wetheme.com/faqs/image-sizes)",
+                "pt-PT": "950px de largura mínima (recomendado). [Saiba mais](https://flowdocs.wetheme.com/faqs/image-sizes)"
+            },
+            "options": [
+                {
+                    "value": "small",
+                    "label": {
+                        "en": "Small",
+                        "de": "Klein",
+                        "es": "Pequeño",
+                        "fr": "Petite",
+                        "pt-PT": "Pequeno"
+                    }
+                },
+                {
+                    "value": "medium",
+                    "label": {
+                        "en": "Medium",
+                        "de": "Mittel",
+                        "es": "Mediano",
+                        "fr": "Moyenne",
+                        "pt-PT": "Médio"
+                    }
+                },
+                {
+                    "value": "large",
+                    "label": {
+                        "en": "Large",
+                        "de": "Groß",
+                        "es": "Grande",
+                        "fr": "Grande",
+                        "pt-PT": "Grande"
+                    }
+                }
+            ],
+            "default": "medium"
+        },
+        {
+            "type": "radio",
+            "id": "image-display",
+            "label": {
+                "en": "Secondary media display",
+                "de": "Sekundäre Mediendarstellung",
+                "es": "Visualización de medios secundarios",
+                "fr": "Affichage des médias secondaires",
+                "pt-PT": "Exibição de media secundária"
+            },
+            "options": [
+                {
+                    "value": "full-size",
+                    "label": {
+                        "en": "Full size",
+                        "de": "Vollständige Größe",
+                        "es": "Tamaño completo",
+                        "fr": "Pleine grandeur",
+                        "pt-PT": "Tamanho completo"
+                    }
+                },
+                {
+                    "value": "thumbnails",
+                    "label": {
+                        "en": "Thumbnails",
+                        "de": "Thumbnails",
+                        "es": "Imagen en miniatura",
+                        "fr": "Vignettes",
+                        "pt-PT": "Miniaturas"
+                    }
+                }
+            ],
+            "default": "full-size"
+        },
+        {
+            "type": "select",
+            "id": "thumbnail_position",
+            "label": {
+                "en": "Thumbnail position",
+                "de": "Thumbnail-Position",
+                "es": "Posición de la imagen en miniatura",
+                "fr": "Position de la vignette",
+                "pt-PT": "Posição da imagem em miniatura"
+            },
+            "options": [
+                {
+                    "value": "below",
+                    "label": {
+                        "en": "Below main media",
+                        "de": "Unterhalb Hauptmedien",
+                        "es": "Por debajo de los principales",
+                        "fr": "Sous les principaux médias",
+                        "pt-PT": "Abaixo da media principal"
+                    }
+                },
+                {
+                    "value": "left",
+                    "label": {
+                        "en": "Left of main media",
+                        "de": "Links von Hauptmedien",
+                        "es": "A la izquierda de los principales",
+                        "fr": "À gauche des principaux médias",
+                        "pt-PT": "À esquerda da media principal"
+                    }
+                },
+                {
+                    "value": "right",
+                    "label": {
+                        "en": "Right of main media",
+                        "de": "Rechts von Hauptmedien",
+                        "es": "A la derecha de los principales",
+                        "fr": "À droite des principaux médias",
+                        "pt-PT": "À direita da media principal"
+                    }
+                }
+            ],
+            "default": "below"
+        },
+        {
+            "type": "checkbox",
+            "id": "enable_image_zoom",
+            "label": {
+                "en": "Enable zoom for product images",
+                "de": "Zoom für Produktbilder aktivieren",
+                "es": "Habilitar zoom para la imágenes de los productos",
+                "fr": "Activer le zoom pour les images de produits",
+                "pt-PT": "Ativar zoom para imagens de produtos"
+            },
+            "default": false
+        },
+        {
+            "type": "checkbox",
+            "id": "enable_video_loop",
+            "label": {
+                "en": "Enable video looping",
+                "de": "Videoschleife erlauben",
+                "es": "Habilitar bucle de vídeo",
+                "fr": "Activer la boucle vidéo",
+                "pt-PT": "Ativar loop de vídeo"
+            },
+            "default": false
+        },
+        {
+          "type": "text",
+          "id": "checkmark_1",
+          "label": "First Description Checkmark",
+          "default": "E.g. Easy one-time orders"
+        },
+        {
+          "type": "text",
+          "id": "checkmark_2",
+          "label": "Second Description Checkmark",
+          "default": "E.g. Easy one-time orders"
+        },
+        {
+          "type": "text",
+          "id": "checkmark_3",
+          "label": "Third Description Checkmark",
+          "default": "E.g. Easy one-time orders"
+        },
+        {
+          "type": "text",
+          "id": "checkmark_4",
+          "label": "Fourth Description Checkmark",
+          "default": "E.g. Easy one-time orders"
+        },
+        {
+          "type": "text",
+          "id": "below_button",
+          "label": "Below Button Text",
+          "default": "One-Time Delivery - Subscriber Save 5% - Cancel Anytime"
+        },
+        {
+          "type": "url",
+          "id": "btn_link",
+          "label": "Checkout Link"
+        },
+        {
+          "type": "text",
+          "id": "btn_label",
+          "label": "Checkout Label"
+        },
+        {
+          "type": "text",
+          "id": "reviews_text",
+          "label": "Reviews Count"
+        },
+        {
+          "type": "text",
+          "id": "question_1",
+          "label": "Question 1",
+          "default": "E.g. Delivery Details"
+        },
+        {
+          "type": "richtext",
+          "id": "answer_1",
+          "label": "First Description Checkmark",
+		  "default": "<p>E.g. Your answer goes here</p>"
+        },
+        {
+          "type": "text",
+          "id": "question_2",
+          "label": "Question 2",
+          "default": "E.g. Our Guarantee"
+        },
+        {
+          "type": "richtext",
+          "id": "answer_2",
+          "label": "First Description Checkmark",
+          "default": "<p>E.g. Your answer goes here</p>"
+        }
+    ]
+}
+{% endschema %}

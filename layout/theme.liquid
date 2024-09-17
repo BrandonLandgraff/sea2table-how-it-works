@@ -1,0 +1,671 @@
+{% include 'shogun-content-handler' %}
+<!doctype html>
+<html class="no-js" lang="{{ request.locale.iso_code }}">
+<head>
+{% render 'replo-head' %}
+  
+
+  <!-- Account snippet -->
+<script>
+function myAccountInfo() {
+
+  var x = document.getElementById("CustomerLoginForm");
+  
+  if (x.style.display === "none") {
+    x.style.display = "block";
+    document.getElementById("oneTimeButton").style.display = "none";
+  } else {
+    x.style.display = "none";
+  }
+}
+</script>
+  
+
+  <!-- Hotjar Tracking Code for https://sea2table.com/ -->
+<script async>
+    (function(h,o,t,j,a,r){
+        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+        h._hjSettings={hjid:2880970,hjsv:6};
+        a=o.getElementsByTagName('head')[0];
+        r=o.createElement('script');r.async=1;
+        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+        a.appendChild(r);
+    })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+</script>
+  <!-- Hotjar Tracking Code for https://sea2table.com/ -->
+<script>
+    (function(h,o,t,j,a,r){
+        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+        h._hjSettings={hjid:3054792,hjsv:6};
+        a=o.getElementsByTagName('head')[0];
+        r=o.createElement('script');r.async=1;
+        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+        a.appendChild(r);
+    })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+</script>
+  <!-- Basic page needs ================================================== -->
+    {% comment -%}Auto-disabled. Yoast plugin is taking care of Meta Tags output.{%- endcomment -%}
+{%- assign yoast_seo_settings = shop.metafields.yoast_seo.settings.value | default: shop.metafields.yoast_seo.settings -%}
+{%- if disabled_by_yoast_seo or yoast_seo_settings.integrations.webmasterVerification.google == blank or yoast_seo_settings.integrations.webmasterVerification.google == null -%}
+<meta name="google-site-verification" content="oYfl-lxdD1YkhyBY-RE3u5fY9J27qTeCj6kJoINA43o" />
+{%- comment -%} End Yoast auto-disable. {%- endcomment -%}
+{%- endif -%}
+  <meta charset="utf-8">
+  {%- comment -%}DemoStoreRequirements{%- endcomment -%}
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
+  {%- unless settings.type_header_font.system? -%}
+    <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
+  {%- endunless -%}
+
+  <link rel="preload" href="{{ 'theme.min.css' | asset_url }}" as="style" />
+  <link rel="preload" href="{{ 'swiper.min.css' | asset_url }}" as="style" onload="this.onload=null;this.rel='stylesheet'"/>
+  <link rel="preload" href="{{ 'custom.css' | asset_url }}" as="style" onload="this.onload=null;this.rel='stylesheet'"/>
+  <link rel="stylesheet" href="{{ 'style.css' | asset_url }}" as="style" onload="this.onload=null;this.rel='stylesheet'"/>
+    <link rel="stylesheet" href="{{ 'media.css' | asset_url }}" as="style" onload="this.onload=null;this.rel='stylesheet'"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  {% if settings.animations_enabled %}
+  	<link rel="preload" href="{{ 'animate.min.css' | asset_url }}" as="style" onload="this.onload=null;this.rel='stylesheet'"/>
+  {% endif %}
+
+  {% if settings.popup--enable %}
+  	<link rel="preload" href="{{ 'fancybox.min.css' | asset_url }}" as="style" onload="this.onload=null;this.rel='stylesheet'"/>
+  {% endif %}
+
+  {% if settings.favicon != blank %}
+    <link rel="shortcut icon" href="{{ settings.favicon | img_url: '180x180', crop: 'center' }}" type="image/png">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ settings.favicon | img_url: '180x180', crop: 'center'  }}">
+    <link rel="apple-touch-icon-precomposed" sizes="180x180" href="{{ settings.favicon | img_url: '180x180', crop: 'center'  }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ settings.favicon | img_url: '32x32', crop: 'center'  }}">
+    <link rel="icon" type="image/png" sizes="194x194" href="{{ settings.favicon | img_url: '194x194', crop: 'center'  }}">
+    <link rel="icon" type="image/png" sizes="192x192" href="{{ settings.favicon | img_url: '192x192', crop: 'center'  }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ settings.favicon | img_url: '16x16', crop: 'center'  }}">
+  {% endif %}
+
+  {%- unless settings.type_header_font.system? -%}
+    <link rel="preload" as="font" href="{{ settings.type_header_font | font_url }}" type="font/woff2" crossorigin>
+  {%- endunless -%}
+  {%- unless settings.type_base_font.system? -%}
+    <link rel="preload" as="font" href="{{ settings.type_base_font | font_url }}" type="font/woff2" crossorigin>
+  {%- endunless -%}
+  {%- unless settings.type_navigation_font.system? -%}
+    <link rel="preload" as="font" href="{{ settings.type_navigation_font | font_url }}" type="font/woff2" crossorigin>
+  {%- endunless -%}
+
+  <!-- Title and description ================================================== -->
+  {%- comment -%}Auto-disabled. Yoast plugin is taking care of SEO output.{%- endcomment -%}
+<title>
+    {{ page_title }}{% if current_tags %}{% assign meta_tags = current_tags | join: ', ' %} &ndash; {{ 'general.meta.tags' | t: tags: meta_tags }}{% endif %}{% if current_page != 1 %} &ndash; {{ 'general.meta.page' | t: page: current_page }}{% endif %}
+  </title>
+{%- comment -%} End Yoast auto-disable. {%- endcomment -%}
+
+  {% if page_description %}
+<meta name="description" content="{{ page_description | escape }}"> 
+  {% endif %} 
+
+  <!-- Site Verification Meta Tags ================================================== -->
+  {% comment -%}Auto-disabled. Yoast plugin is taking care of Meta Tags output.{%- endcomment -%}
+{%- assign yoast_seo_settings = shop.metafields.yoast_seo.settings.value | default: shop.metafields.yoast_seo.settings -%}
+{%- if disabled_by_yoast_seo or yoast_seo_settings.integrations.webmasterVerification.google == blank or yoast_seo_settings.integrations.webmasterVerification.google == null -%}
+<meta name="google-site-verification" content="iPq5HdV_bKl7tLM3iMlF8a1-Uzwa0lS00w0v7UemD-8" />
+{%- comment -%} End Yoast auto-disable. {%- endcomment -%}
+{%- endif -%}
+ 
+   <!-- Google Verification Meta Tags ================================================== -->
+  {% comment -%}Auto-disabled. Yoast plugin is taking care of Meta Tags output.{%- endcomment -%}
+{%- assign yoast_seo_settings = shop.metafields.yoast_seo.settings.value | default: shop.metafields.yoast_seo.settings -%}
+{%- if disabled_by_yoast_seo or yoast_seo_settings.integrations.webmasterVerification.google == blank or yoast_seo_settings.integrations.webmasterVerification.google == null -%}
+<meta name="google-site-verification" content="rvV93Hs9SmdAQ5AkCmUuIRG_HPS9jNhcyBEqHCFFgPg" />
+{%- comment -%} End Yoast auto-disable. {%- endcomment -%}
+{%- endif -%}
+
+  {% comment -%}Auto-disabled. Yoast plugin is taking care of Meta Tags output.{%- endcomment -%}
+{%- assign yoast_seo_settings = shop.metafields.yoast_seo.settings.value | default: shop.metafields.yoast_seo.settings -%}
+{%- if disabled_by_yoast_seo or yoast_seo_settings.integrations.webmasterVerification.google == blank or yoast_seo_settings.integrations.webmasterVerification.google == null -%}
+<meta name="google-site-verification" content="cPG8QdszwpZNN_PfdSzcFel_F0Z8FIq0bUCJnYeLg7E" />
+{%- comment -%} End Yoast auto-disable. {%- endcomment -%}
+{%- endif -%}
+  
+   <!-- Facebook Verification Meta Tags ================================================== -->
+  <meta name="facebook-domain-verification" content="tkba7xasexy2rm4b7w7qgmyf7yy2r0" />
+  
+  <!-- Helpers ================================================== -->
+  {% render 'social-meta-tags' %}
+  {%- comment -%}Auto-disabled. Yoast plugin is taking care of Meta Tags output.{%- endcomment -%}
+{%- if disabled_by_yoast_seo -%}
+<link rel="canonical" href="{{ canonical_url }}"/>
+{%- comment -%} End Yoast auto-disable. {%- endcomment -%}
+{%- endif -%}
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="theme-color" content="{{ settings.color_primary }}">
+
+    {% if settings.favicon != blank %}
+    <link rel="shortcut icon" href="{{ settings.favicon | img_url: '180x180', crop: 'center' }}" type="image/png">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ settings.favicon | img_url: '180x180', crop: 'center'  }}">
+    <link rel="apple-touch-icon-precomposed" sizes="180x180" href="{{ settings.favicon | img_url: '180x180', crop: 'center'  }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ settings.favicon | img_url: '32x32', crop: 'center'  }}">
+    <link rel="icon" type="image/png" sizes="194x194" href="{{ settings.favicon | img_url: '194x194', crop: 'center'  }}">
+    <link rel="icon" type="image/png" sizes="192x192" href="{{ settings.favicon | img_url: '192x192', crop: 'center'  }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ settings.favicon | img_url: '16x16', crop: 'center'  }}">
+  {% endif %}
+  <!-- CSS ================================================== -->
+  {% render 'css-variables' %}
+  {% style %}
+    *,
+    *::before,
+    *::after {
+      box-sizing: inherit;
+    }
+
+    html {
+      box-sizing: border-box;
+      background-color: var(--body-color);
+      height: 100%;
+      margin: 0;
+    }
+
+    body {
+      background-color: var(--body-color);
+      min-height: 100%;
+      margin: 0;
+      display: grid;
+      grid-template-rows: auto auto 1fr auto;
+      grid-template-columns: 100%;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      border: 0;
+    }
+
+    .sr-only-focusable:active, .sr-only-focusable:focus {
+      position: static;
+      width: auto;
+      height: auto;
+      margin: 0;
+      overflow: visible;
+      clip: auto;
+    }
+  {% endstyle %}
+
+  <!-- Header hook for plugins ================================================== -->
+  {{ content_for_header }}
+
+  <script type="text/javascript">
+		window.wetheme = {
+			name: 'Flow',
+			webcomponentRegistry: {
+        registry: {},
+				checkScriptLoaded: function(key) {
+					return window.wetheme.webcomponentRegistry.registry[key] ? true : false
+				},
+        register: function(registration) {
+            if(!window.wetheme.webcomponentRegistry.checkScriptLoaded(registration.key)) {
+              window.wetheme.webcomponentRegistry.registry[registration.key] = registration
+            }
+        }
+      }
+    };
+	</script>
+
+  {% if template contains 'customers' %}
+    {{ 'shopify_common.js' | shopify_asset_url | script_tag }}
+  {% endif %}
+
+  {% if template.name == 'article' %}
+    <script src="{{ 'textSlideshow.js' | asset_url }}" defer="defer"></script>
+  {% endif %}
+
+  <script>document.documentElement.className = document.documentElement.className.replace('no-js', 'js');</script>
+
+  {% render 'shogun-head' %}
+
+  <!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MB443WR');</script>
+<!-- End Google Tag Manager -->
+
+
+<!-- Start of Add Shoppers / Safe Opt code -->
+<script type="text/javascript">
+    var AddShoppersWidgetOptions = { 'loadCss': false, 'pushResponse': false };
+    (!function(){
+        var t=document.createElement("script");
+        t.type="text/javascript",
+        t.async=!0,
+        t.id="AddShoppers",
+        t.src="https://shop.pe/widget/widget_async.js#64183e93f8e39a03f3bf735c",
+        document.getElementsByTagName("head")[0].appendChild(t)
+    }());
+</script>
+  {{ 'theme.min.css' | asset_url | stylesheet_tag }}
+  {{ 'awtomatic-subs.css' | asset_url | stylesheet_tag }}
+  <noscript>{{ 'swiper.min.css' | asset_url | stylesheet_tag }}</noscript>
+  {% if settings.animations_enabled %}
+  	<noscript>{{ 'animate.min.css' | asset_url | stylesheet_tag }}</noscript>
+  {% endif %}
+  {% if settings.popup--enable %}
+  	<noscript>{{ 'fancybox.min.css' | asset_url | stylesheet_tag }}</noscript>
+  {% endif %}
+  <noscript>{{ 'custom.css' | asset_url | stylesheet_tag }}</noscript>
+<!-- End of Add Shoppers / Safe Opt code -->
+
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-862107898"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'AW-862107898');
+</script>
+  
+
+  {% include 'friendbuy' %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+  <!-- TrustBox script -->
+    <script type="text/javascript" src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js" async></script>
+  <!-- End TrustBox script -->
+
+
+{% render 'gsf-conversion-pixels' %}
+  {% comment %} Awtomic Subscriptions {% endcomment %}
+  {% capture awtomic-translations %}{% render 'awtomic-translations' %}{% endcapture %}
+  {% unless awtomic-translations contains "Liquid error" %}
+    {{ awtomic-translations }}
+  {% endunless %}
+  {% comment %} End Awtomic Subscriptions {% endcomment %}
+  <style>
+    .fulltextdiv {
+        text-align: center;
+        padding: 0px 5.9vw 50px;
+    }
+    .fulltextdiv p{
+        color: #1A4760;
+        text-align: center;
+        font-family: var(--body-font-stack);
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 32px; /* 160% */
+        letter-spacing: 0.8px;
+        padding: 15px 0px 0px;
+        margin: 0;
+        width: 70%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .fulltextdiv h1{
+      color: #1A4760;
+      font-family: var(--body-font-stack);
+      font-size: 42px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+      letter-spacing: 1.68px;
+      padding: 0;
+      margin: 0;
+    }
+    .fulltextdiv p br{
+        display: none !important;
+      }
+    @media only screen and (max-width: 1300px){
+      .fulltextdiv p br{
+        display: none !important;
+      }
+      .fulltextdiv p{
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
+  </style>
+</head>
+
+{% comment %}
+  Add the page template as a class for easy page or template specific styling.
+{% endcomment %}
+<body id="{{ page_title | handle }}" class=" {{ template | handleize }} {% if template == 'page.contact' %}contact-page {% endif %}{% if customer %}customer-logged-in {% endif %}template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }}{% unless settings.animations_enabled %} animations-disabled{% endunless %}{% if settings.page_fade_enabled %} page-fade{% endif %}{% if settings.color_body_bg == settings.header-bg-color %} white--match{% endif %}{% if settings.product-grid != 'natural' %} images-aspect-ratio{% endif %} ">
+<script>
+    var classList = document.documentElement.classList;
+    classList.add('supports-js')
+    classList.add('js');
+    classList.remove('no-js');
+    {% comment %}It's supported well enough, we won't detect it{% endcomment %}
+  </script>
+
+
+  {% comment %}
+  Cart Drawer, also used by 'Quick View', 'LogIn', and 'Search'
+  {% endcomment %}
+
+  {% if settings.slide_out_cart %}
+      {% render 'right-drawer' %}
+      <div id="DrawerOverlay" class="drawer-overlay"></div>
+  {% endif %}
+
+  <div id="PageContainer" data-editor-open="{{ request.design_mode }}" data-cart-action="{{ settings.ajax_cart_method }}" data-language-url="{{ localization.language.root_url }}">
+    <div class="no-js disclaimer">
+      <p>This store requires javascript to be enabled for some features to work correctly.</p>
+    </div>
+
+    {% sections 'header-group' %}
+    
+    {% unless template.name == 'collection' or template == 'list-collections' or template contains 'contact' %}
+      {% if settings.enable_breadcrumbs %}
+        {% render 'breadcrumb' %}
+      {% endif %}
+    {% endunless%}
+    {% if request.path contains '/tools/bundle-subscriptions/bundle/7421575397537' %}
+      <div class="custom-bundle" style="display:none;">
+        {% section 'flexi-image-with-blocks' %}
+      </div>
+      <script src="{{ 'awtomic-customizations.js' | asset_url }}"></script>
+    {% endif %}
+    {% if template == 'index' %}
+      <div class="flow-homepage">
+    {% elsif template == 'cart' or template contains 'customers/' %}
+      <div class="main-content page-main--wrapper">
+        
+    {% else %}
+      <div class="wrapper main-content page-main--wrapper">
+
+    {% endif %}
+
+        {{ content_for_layout }}
+      </div>
+  </div>
+
+  <div class="footer-wrapper">
+      {% sections 'footer-group' %}
+    </div>
+  <script type="text/javascript">
+    window.lazySizesConfig = window.lazySizesConfig || {};
+    window.lazySizesConfig.rias = window.lazySizesConfig.rias || {};
+
+    // configure available widths to replace with the {width} placeholder
+    window.lazySizesConfig.rias.widths = [150, 300, 600, 900, 1200, 1500, 1800, 2100];
+
+    document.addEventListener('lazyriasmodifyoptions', function (e) {
+      // convert width to width specification for shopify
+      var widthmap = {}
+      var aspect = parseFloat(e.target.dataset.aspectratio); // classList.contains('lazyload-square');
+      var forceHeight = parseInt(e.target.dataset.forceHeight, 10);
+      window.lazySizesConfig.rias.widths.forEach(function (width) {
+        if (forceHeight) {
+          var heightForWidth = width / aspect;
+          var newWidth, newHeight;
+          if (heightForWidth < forceHeight) {
+            newWidth = forceHeight / heightForWidth * width;
+          } else {
+            newWidth = width;
+          }
+          newHeight = newWidth / aspect;
+          widthmap[width] = newWidth.toFixed(0) + 'x' + newHeight.toFixed(0)
+        } else {
+          widthmap[width] = width.toString() + 'x';
+        }
+      });
+      e.detail.widthmap = widthmap;
+    });
+  </script>
+  <script defer type="module" src="{{ 'theme.min.js' | asset_url }}"></script>
+  <script defer src="{{ 'SafeLoadScripts.js' | asset_url }}"></script>
+  <script defer nomodule src="{{ 'theme.legacy.min.js' | asset_url }}"></script> 
+
+  {% if settings.popup--enable %}
+    {% render 'popup' %}
+  {% endif %}
+
+  {% if settings.enable_verification_popup %}
+    {% render 'verification-popup' %}
+  {% endif %}
+
+  {% render 'back-to-top-button' %}
+
+  <script type="application/json" id="wetheme-global">
+    {
+      {% comment %}Translations that will be used in javascript section handling{% endcomment %}
+      "translations": {
+        "addToCart": {{ 'products.product.add_to_cart' | t | json }},
+        "added": {{ 'products.product.added' | t | json }},
+        "soldOut": {{ 'products.product.sold_out' | t | json }},
+        "unavailable": {{ 'products.product.unavailable' | t | json }},
+        "no_results_html": {{ 'general.search.no_results_html' | t | json }},
+        "results_for_html": {{ 'general.search.results_for_html' | t | json }},
+        "products": {{ 'general.search.products' | t | json }},
+        "pages": {{ 'general.search.pages' | t | json }},
+        "collections": {{ 'general.search.collections' | t | json }},
+        "articles": {{ 'general.search.articles' | t | json }},
+        "suggestions": {{ 'general.search.suggestions' | t | json }},
+        "quick_shop": {{ 'products.product.quick_shop' | t | json }},
+        "view_options": {{ 'products.product.view_options' | t | json }},
+        "read_more_html": {{ 'products.product.read_more_html' | t | json }},
+        "read_less_html": {{ 'products.product.read_less_html' | t | json }},
+        "youve_viewed": {{ 'collections.paginate.youve_viewed' | t | json }},
+        "load_more": {{ 'collections.paginate.load_more' | t | json }},
+        "productAdded": {{ 'products.product.added' | t | json }},
+        "loading": {{ 'collections.paginate.loading' | t | json }},
+        "giftwrap_label": {{ 'products.general.giftwrap_label' | t | json }},
+        "yes": {{ 'products.general.yes' | t | json }},
+        "days": {{ 'general.time.days' | t | json }},
+        "hours": {{ 'general.time.hours' | t | json }},
+        "minutes": {{ 'general.time.minutes' | t | json }},
+        "seconds": {{ 'general.time.seconds' | t | json }}
+      },
+      "moneyFormat": {{ shop.money_format | json }},
+      "giftwrapProduct": {{ settings.giftwrap_product_selector | json }}
+    }
+  </script>
+  {% if request.design_mode %}<script src="{{ 'theme-editor.js' | asset_url }}" defer="defer"></script>{% endif %}
+
+
+        
+<!-- Begin Klaviyo code -->
+    <script async type="text/javascript"
+ src="//static.klaviyo.com/onsite/js/klaviyo.js?company_id=HznYEU"></script>
+<script>
+ var _learnq = _learnq || [];
+ if ('{{ customer.email }}') {
+   _learnq.push(['identify', {
+       '$email' : '{{ customer.email }}'
+     }]);
+  }
+</script>
+<!-- End Klaviyo code -->
+
+<!-- **BEGIN** Hextom FSB Integration // Main Include - DO NOT MODIFY -->
+    {% render 'hextom_fsb_main', product: product, customer: customer %}
+    <!-- **END** Hextom FSB Integration // Main Include - DO NOT MODIFY -->
+ {% render 'smile-initializer' %}
+
+{% include 'subscribe-it-helper' %}
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MB443WR"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+        
+
+{% comment %} Awtomic Subscriptions {% endcomment %}
+{% capture awtomic-theme-custom %}{% render 'awtomic-theme-custom' %}{% endcapture %}
+{% unless awtomic-theme-custom contains "Liquid error" %}
+  {{ awtomic-theme-custom }}
+{% endunless %}
+{% comment %} End Awtomic Subscriptions {% endcomment %}
+
+
+
+        
+  {% include 'revy-discounts-script' %}
+  <script>
+    $(document).ready(function(){
+      var location = window.location.href ;
+      if(location.match("/tools/bundle-subscriptions/bundle/7421575397537")){
+        var html = $('.custom-bundle').html();
+        setTimeout(() => {
+          $(html).insertAfter('.bundleapp-modal__container--complete-screen--header-container');
+        }, "1000");
+      }
+
+       // readmore content 
+      $('.more-text').hide();
+          $('.myreadbut').click(function() {
+        $(this).prev().find('.more-text').toggle();
+        var textN = $(this).text() === 'Read more' ? 'Read Less' : 'Read more';
+        $(this).text(textN);
+    });
+      // readmore content 
+      
+    });
+    $(document).on('click', '.product-reviews', function(){
+      $('html,body').animate({
+        scrollTop: $(".custom-product-reviews-section").offset().top - 150},
+        'slow');
+    });
+    $(document).on('click', '.swiper-button--next', function(){
+      $('.swiper-pagination-bullet-active').next().trigger('click');
+    });
+    $(document).on('click', '.swiper-button--prev', function(){
+      $('.swiper-pagination-bullet-active').prev().trigger('click');
+    });
+  </script>
+  {{ 'custom-shogun-styles.css' | asset_url | stylesheet_tag }}
+  {% if request.path == '/tools/bundle-subscriptions/bundle/7421575397537' %}
+    {{ 'custom-bundle-styles.css' | asset_url | stylesheet_tag }}
+    <script>
+      // Function to apply modifications to the given element
+      const modifyElement = (element) => {
+        const originalText = element.innerHTML;
+        const modifiedText = originalText.replace(/(\(.*?\))/, '<small>$1</small>');
+        element.innerHTML = modifiedText;
+      };
+  
+      // Function to check if elements with the specified class are available
+      const checkElementsAndModify = () => {
+        const elements = document.querySelectorAll('.bundle-product-card__title');
+        if (elements.length > 0) {
+          clearInterval(interval);
+          elements.forEach(element => {
+            modifyElement(element);
+          });
+        }
+      };
+  
+      // Check elements and modify every 1 second
+      const interval = setInterval(checkElementsAndModify, 1000);
+    </script>
+  {% endif %}
+  {% render 'junip-store-key' %}
+  {% if template == 'cart' %}
+    <script>
+      // Check if the cookie exists and perform actions accordingly
+      const checkoutRedirectCookie = getCookie("checkoutRedirect");
+      if (checkoutRedirectCookie) {
+        // Delete the cookie
+        document.cookie = "checkoutRedirect=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        
+        // Redirect to '/checkout'
+        window.location.href = '/checkout';
+      }
+      
+      // Function to get cookie value by name
+      function getCookie(name) {
+        const value = "; " + document.cookie;
+        const parts = value.split("; " + name + "=");
+        if (parts.length === 2) return parts.pop().split(";").shift();
+      }
+
+    </script>
+  {% endif %}
+        
+<!-- Rebuy  START -->
+          {% render 'rebuy-extensions' %}
+          {% render 'smart-cart-template' %}
+<!-- Rebuy  END-->
+
+<!-- Read More & Read Less  -->
+        
+<style>
+
+.myreadbut {
+  
+  font-size: .97vw !important;
+  font-weight: bold;
+  letter-spacing: 0.7px;
+  color: #F5660E !important;
+  text-transform: uppercase;
+  padding: 0px !important;
+  margin: 0px !important; 
+  cursor: pointer;
+  }
+
+  
+ @media screen and ( max-width: 768px) {
+
+.product .product-description.product-description_full-width.rte div, .product .product-description.product-description_full-width.rte div+div {
+        padding: 0.94vw 0.39vw !important;
+    } 
+
+.product .product-description.product-description_full-width.rte div:not(.hidden-on-bundle), .product .product-description.product-description_full-width.rte  {
+    padding: 10px 10px !important;
+     margin: 15px 0 !important;
+    } 
+
+.rte>div {
+   margin-bottom: 0px !important; 
+    } 
+  
+.product-description.mobile-desc div, .product-description.mobile-desc div+div {
+        background: #f2f7fa !important;
+        border-radius: 8px !important;
+        padding: 2.65vw 1.51vw !important;
+        margin: 0px 0 1.65vw !important;
+    }
+
+.myreadbut {
+    font-size: 1.97vw !important;
+    }
+
+ }
+
+
+
+  @media screen and ( max-width: 480px) {
+        .product-description.mobile-desc div, .product-description.mobile-desc div+div {
+        background: #f2f7fa !important;
+        border-radius: 8px !important;
+        padding: 0.65vw 1.51vw !important;
+        margin: 0px 0 3.65vw !important;
+       
+    }
+    
+    .myreadbut {
+    font-size: 2.97vw !important;
+    }
+   
+  } 
+
+  .rte.footer-article a {
+    display: block;
+    padding: 0;
+    margin: 0;
+}
+  .rte.footer-article br {
+    display: none;
+}
+  
+  </style>
+
+        
+</body>
+</html>
