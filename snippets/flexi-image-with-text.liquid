@@ -1,0 +1,154 @@
+
+{%- liquid
+    assign blockid = block.id
+    
+    assign title_color = block.settings.title_color
+    assign description_color = block.settings.description_color
+
+    assign scaled_font_size = block.settings.font_size | times: 0.95 | round
+
+    assign background_color = block.settings.background_color
+
+    assign json_data = shop.metafields.flexi.flexistyling.value
+    assign borderRadius = json_data.borderRadius
+
+    if json_data == blank
+      assign borderRadius = 8
+    endif
+    
+-%}
+
+{% style %}
+
+.flexi-column-block-{{ blockid }} {
+    width: 100%;
+    height: 100%;
+    padding-top: {{ block.settings.top_padding }}px; 
+    padding-bottom: {{ block.settings.bottom_padding }}px; 
+} 
+
+.flexi-card-wrapper--{{ blockid }} {
+    width: 100%;
+    height: 100%;
+}
+
+.content-{{ blockid }} {
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+    text-align: left;
+    border-radius: {{ borderRadius }}px;
+    height: 100%;
+    align-items: center;
+
+    {% if background_color != blank and background_color != 'rgba(0,0,0,0)' %}
+        background-color: {{ background_color }};
+        padding: 12px;
+        height: calc(100% - 24px);
+    {% endif %}
+}
+
+.text-wrapper {
+    height: fit-content;
+    width: 100%;
+}
+
+.bl-image-{{ block.id }} {
+    width: 100%;
+    height: 100%;
+    max-width: {{ block.settings.max_width }}px;
+    margin-left: 0px;
+}
+.bl-image-{{ block.id }} img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: {{ block.settings.border_radius }}px;
+}
+.bl-image-{{ block.id }} svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: {{ block.settings.border_radius }}px;
+    background-color: #D4D4D4;
+    margin: 0px;
+}
+.bl-image-{{ block.id }} a {
+    display: block;
+    position: relative;
+    width: 100%;
+    height: auto;
+    margin: 0px;
+}
+
+.flexi-text,
+.flexi-text p {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
+    background: none;
+    text-decoration: none;
+    text-align: inherit;
+}
+
+.title-{{ blockid }} {
+    color: {{ title_color }};
+    font-size: {{ block.settings.font_size }}px;
+}
+
+@media only screen and (max-width: 768px) {
+    .title-{{ blockid }} {
+        font-size: {{ scaled_font_size }}px;
+    }
+}
+
+.description-{{ blockid }},
+.description-{{ blockid }} p {
+    color: {{ description_color }};
+    font-size: {{ block.settings.description_font_size }}px;
+    line-height: 1.3em;
+}
+
+{% endstyle %}
+
+<div 
+    class="flexi-column-block-{{ blockid }}"
+  >
+    <div class="flexi-card-wrapper--{{ blockid }}">
+        <div class="content-{{ blockid }}">
+
+            {% if block.settings.image != blank %}
+                <div id="flexi-image" class="bl-image-{{ block.id }} {{ block.settings.display_options }}">
+                    {% if block.settings.link != blank %}
+                        <a href="{{ block.settings.link }}">
+                            {{ block.settings.image | image_url: width: 300 | image_tag: loading: 'lazy', class: 'lazy-load' }}
+                        </a>
+                    {% else %}
+                        {{ block.settings.image | image_url: width: 300 | image_tag: loading: 'lazy', class: 'lazy-load' }}
+                    {% endif %}
+                </div>
+            {% else %}
+              <div id="flexi-image" class="bl-image-{{ block.id }} {{ block.settings.display_options }}">
+                {% if block.settings.link != blank %}
+                    <a href="{{ block.settings.link }}">
+                        {{ 'product-1' | placeholder_svg_tag }}  
+                    </a>
+                {% else %}
+                    {{ 'product-1' | placeholder_svg_tag }}  
+                {% endif %}
+              </div> 
+            {% endif %}
+
+            <div class="text-wrapper">
+                {% if block.settings.title %}
+                    <h4 class="title-{{ blockid }} flexi-text">{{ block.settings.title }}</h4>
+                {% endif %}
+                {% if block.settings.description %}
+                    <span class="description-{{ blockid }} flexi-text"><p>{{ block.settings.description }}</p></span>
+                {% endif %}
+            </div>
+
+        </div>
+    </div>
+</div>
