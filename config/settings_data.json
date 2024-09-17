@@ -393,6 +393,23 @@
               "text_align": "left"
             }
           },
+          "custom_description_94cnXm": {
+            "type": "custom-description",
+            "settings": {
+              "description": "<p><strong>That's it! 100% proudly USA seafood will be delivered to your doorstep.<\/strong><\/p>",
+              "font_size": 18,
+              "mb_font_size": "0.95",
+              "font_color": "#1a4760",
+              "text_align": "center",
+              "justify_content": "center",
+              "max_width": 384,
+              "line_height": 50,
+              "letter_spacing": 0,
+              "display_options": "bl-hide-desktop",
+              "padding_top": 6,
+              "padding_bottom": 6
+            }
+          },
           "custom_image_eiygNA": {
             "type": "custom-image",
             "settings": {
@@ -415,6 +432,7 @@
           "flexi_heading_n38BYG",
           "flexi_description_xk3JQf",
           "custom_steps_gMGBUp",
+          "custom_description_94cnXm",
           "custom_image_eiygNA"
         ],
         "settings": {
