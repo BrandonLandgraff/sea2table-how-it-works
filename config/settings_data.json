@@ -350,7 +350,7 @@
               "font_color": "#1a4760",
               "line_height": 10,
               "letter_spacing": 0,
-              "display_options": "bl-hide-none",
+              "display_options": "bl-hide-mobile",
               "padding_top": 0,
               "padding_bottom": 0
             }
@@ -367,7 +367,7 @@
               "max_width": 384,
               "line_height": 50,
               "letter_spacing": 0,
-              "display_options": "bl-hide-none",
+              "display_options": "bl-hide-mobile",
               "padding_top": 6,
               "padding_bottom": 6
             }
@@ -406,7 +406,7 @@
               "line_height": 50,
               "letter_spacing": 0,
               "display_options": "bl-hide-desktop",
-              "padding_top": 6,
+              "padding_top": 24,
               "padding_bottom": 6
             }
           },
