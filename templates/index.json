@@ -221,7 +221,7 @@
         "html_Cazy9W": {
           "type": "html",
           "settings": {
-            "code": "<div class=\"fulltextdiv\">\n<h1>Shop Fresh Seafood Online<\/h1>\n<p>If you’re craving the best wild-caught seafood, we’ve got it! Experts from Epicurious to Bon Appétit and others agree that we offer the best seafood online. Our family-owned business works closely with American fishermen up and down our own coasts to conveniently deliver fresh, responsibly-caught seafood that you and your family will love.<\/p>\n<\/div>",
+            "code": "<div class=\"fulltextdiv\" style=\"padding-top: 40px;\"> \n<h1>Shop Fresh Seafood Online<\/h1>\n<p>If you’re craving the best wild-caught seafood, we’ve got it! Experts from Epicurious to Bon Appétit and others agree that we offer the best seafood online. Our family-owned business works closely with American fishermen up and down our own coasts to conveniently deliver fresh, responsibly-caught seafood that you and your family will love.<\/p>\n<\/div>",
             "width": "100%"
           }
         }
