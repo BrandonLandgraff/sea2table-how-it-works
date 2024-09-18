@@ -94,14 +94,14 @@
       ],
       "settings": {
         "image": "shopify:\/\/shop_images\/halibut.webp",
-        "dt_reverse_order": "right",
+        "dt_reverse_order": "left",
         "mb_reverse_order": "bottom",
         "grid_layout": "1fr 1fr",
         "bg_color": "",
         "display_options": "bl-hide-none",
         "self_alignment": "center",
         "padding_top": 0,
-        "padding_bottom": 0
+        "padding_bottom": 22
       }
     },
     "flexi_image_with_blocks_zqrRDi": {
