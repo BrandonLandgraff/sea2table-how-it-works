@@ -300,7 +300,7 @@
         "flexi_description_tngAFf": {
           "type": "flexi-description",
           "settings": {
-            "description": "<p>To celebrating our 7th Anniversary, and we're offering you one free pack of Pacific Northwest Halibut with every delivery for the life of your subscription!<\/p>",
+            "description": "<p>To celebrating our 7th Anniversary,  we're offering new subscribers one free pack of Pacific Northwest Halibut with every delivery for the life of your subscription.<\/p>",
             "font_size": 18,
             "mb_font_size": "0.95",
             "font_color": "#1a4760",
@@ -317,9 +317,9 @@
         "flexi_button_EKLPdd": {
           "type": "flexi-button",
           "settings": {
-            "first_button_text": "Shop Now",
-            "first_button_url": "",
-            "btn_1_style": "primary",
+            "first_button_text": "SHOP THE SALE",
+            "first_button_url": "https:\/\/sea2table.com\/tools\/bundle-subscriptions\/bundle\/7421575397537?selling_plan=1116799137&variant=42180756013217&d=5-p&product=build-your-first-box-1",
+            "btn_1_style": "secondary",
             "second_button_text": "",
             "second_button_url": "",
             "btn_2_style": "primary",
@@ -333,7 +333,7 @@
             "full_width": false,
             "flex_direction": false,
             "gap": 12,
-            "top_padding": 0,
+            "top_padding": 10,
             "bottom_padding": 0
           }
         },
@@ -343,13 +343,13 @@
             "justify_content": "left",
             "star_type": "4.5",
             "icon_size": 16,
-            "reviews_text": "based on 3,210 reviews",
+            "reviews_text": "Based on 6385 reviews",
             "review_url": "",
             "font_size": 16,
-            "font_color": "#000000",
-            "star_color": "#000000",
+            "font_color": "#1a4760",
+            "star_color": "#1a4760",
             "display_options": "bl-hide-none",
-            "top_padding": 6,
+            "top_padding": 22,
             "bottom_padding": 6
           }
         }
