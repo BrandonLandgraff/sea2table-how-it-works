@@ -9,6 +9,101 @@
 */
 {
   "sections": {
+    "flexi_hero_with_blocks_FDYTXR": {
+      "type": "flexi-hero-with-blocks",
+      "blocks": {
+        "flexi_heading_BmAgW9": {
+          "type": "flexi-heading",
+          "settings": {
+            "heading": "<strong>Free Halibut For Life<\/strong>",
+            "font_size": 46,
+            "mb_font_size": "0.8",
+            "text_align": "left",
+            "max_width": 432,
+            "justify_content": "left",
+            "font_color": "#1a4760",
+            "line_height": 10,
+            "letter_spacing": 20,
+            "display_options": "bl-hide-none",
+            "padding_top": 0,
+            "padding_bottom": 0
+          }
+        },
+        "flexi_description_tngAFf": {
+          "type": "flexi-description",
+          "settings": {
+            "description": "<p>To celebrating our 7th Anniversary,  we're offering new subscribers one free pack of Pacific Northwest Halibut with every delivery for the life of your subscription.<\/p>",
+            "font_size": 18,
+            "mb_font_size": "0.95",
+            "font_color": "#1a4760",
+            "text_align": "left",
+            "justify_content": "left",
+            "max_width": 2400,
+            "line_height": 50,
+            "letter_spacing": 0,
+            "display_options": "bl-hide-none",
+            "padding_top": 6,
+            "padding_bottom": 12
+          }
+        },
+        "flexi_button_EKLPdd": {
+          "type": "flexi-button",
+          "settings": {
+            "first_button_text": "SHOP THE SALE",
+            "first_button_url": "https:\/\/sea2table.com\/tools\/bundle-subscriptions\/bundle\/7421575397537?selling_plan=1116799137&variant=42180756013217&d=5-p&product=build-your-first-box-1",
+            "btn_1_style": "secondary",
+            "second_button_text": "",
+            "second_button_url": "",
+            "btn_2_style": "primary",
+            "third_button_text": "",
+            "third_button_url": "",
+            "btn_3_style": "primary",
+            "btn_size": "10px 24px",
+            "justify_content": "left",
+            "font_color": "#FFFFFF",
+            "display_options": "bl-hide-none",
+            "full_width": false,
+            "flex_direction": false,
+            "gap": 12,
+            "top_padding": 10,
+            "bottom_padding": 0
+          }
+        },
+        "flexi_review_zUXyGx": {
+          "type": "flexi-review",
+          "settings": {
+            "justify_content": "left",
+            "star_type": "4.5",
+            "icon_size": 16,
+            "reviews_text": "Based on 6385 reviews",
+            "review_url": "",
+            "font_size": 16,
+            "font_color": "#1a4760",
+            "star_color": "#1a4760",
+            "display_options": "bl-hide-none",
+            "top_padding": 22,
+            "bottom_padding": 6
+          }
+        }
+      },
+      "block_order": [
+        "flexi_heading_BmAgW9",
+        "flexi_description_tngAFf",
+        "flexi_button_EKLPdd",
+        "flexi_review_zUXyGx"
+      ],
+      "settings": {
+        "image": "shopify:\/\/shop_images\/halibut.webp",
+        "dt_reverse_order": "right",
+        "mb_reverse_order": "bottom",
+        "grid_layout": "1fr 1fr",
+        "bg_color": "",
+        "display_options": "bl-hide-none",
+        "self_alignment": "center",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
     "flexi_image_with_blocks_zqrRDi": {
       "type": "flexi-image-with-blocks",
       "blocks": {
@@ -95,6 +190,7 @@
         "flexi_button_7gdpfD",
         "flexi_review_GXPkBE"
       ],
+      "disabled": true,
       "settings": {
         "image": "shopify:\/\/shop_images\/take_50_off.webp",
         "hide_image": "visible",
@@ -276,104 +372,10 @@
       ],
       "settings": {
       }
-    },
-    "flexi_hero_with_blocks_FDYTXR": {
-      "type": "flexi-hero-with-blocks",
-      "blocks": {
-        "flexi_heading_BmAgW9": {
-          "type": "flexi-heading",
-          "settings": {
-            "heading": "<strong>Free Halibut For Life<\/strong>",
-            "font_size": 46,
-            "mb_font_size": "0.8",
-            "text_align": "left",
-            "max_width": 432,
-            "justify_content": "left",
-            "font_color": "#1a4760",
-            "line_height": 10,
-            "letter_spacing": 20,
-            "display_options": "bl-hide-none",
-            "padding_top": 0,
-            "padding_bottom": 0
-          }
-        },
-        "flexi_description_tngAFf": {
-          "type": "flexi-description",
-          "settings": {
-            "description": "<p>To celebrating our 7th Anniversary,  we're offering new subscribers one free pack of Pacific Northwest Halibut with every delivery for the life of your subscription.<\/p>",
-            "font_size": 18,
-            "mb_font_size": "0.95",
-            "font_color": "#1a4760",
-            "text_align": "left",
-            "justify_content": "left",
-            "max_width": 2400,
-            "line_height": 50,
-            "letter_spacing": 0,
-            "display_options": "bl-hide-none",
-            "padding_top": 6,
-            "padding_bottom": 12
-          }
-        },
-        "flexi_button_EKLPdd": {
-          "type": "flexi-button",
-          "settings": {
-            "first_button_text": "SHOP THE SALE",
-            "first_button_url": "https:\/\/sea2table.com\/tools\/bundle-subscriptions\/bundle\/7421575397537?selling_plan=1116799137&variant=42180756013217&d=5-p&product=build-your-first-box-1",
-            "btn_1_style": "secondary",
-            "second_button_text": "",
-            "second_button_url": "",
-            "btn_2_style": "primary",
-            "third_button_text": "",
-            "third_button_url": "",
-            "btn_3_style": "primary",
-            "btn_size": "10px 24px",
-            "justify_content": "left",
-            "font_color": "#FFFFFF",
-            "display_options": "bl-hide-none",
-            "full_width": false,
-            "flex_direction": false,
-            "gap": 12,
-            "top_padding": 10,
-            "bottom_padding": 0
-          }
-        },
-        "flexi_review_zUXyGx": {
-          "type": "flexi-review",
-          "settings": {
-            "justify_content": "left",
-            "star_type": "4.5",
-            "icon_size": 16,
-            "reviews_text": "Based on 6385 reviews",
-            "review_url": "",
-            "font_size": 16,
-            "font_color": "#1a4760",
-            "star_color": "#1a4760",
-            "display_options": "bl-hide-none",
-            "top_padding": 22,
-            "bottom_padding": 6
-          }
-        }
-      },
-      "block_order": [
-        "flexi_heading_BmAgW9",
-        "flexi_description_tngAFf",
-        "flexi_button_EKLPdd",
-        "flexi_review_zUXyGx"
-      ],
-      "settings": {
-        "image": "shopify:\/\/shop_images\/halibut.webp",
-        "dt_reverse_order": "right",
-        "mb_reverse_order": "bottom",
-        "grid_layout": "1fr 1fr",
-        "bg_color": "",
-        "display_options": "bl-hide-none",
-        "self_alignment": "center",
-        "padding_top": 0,
-        "padding_bottom": 0
-      }
     }
   },
   "order": [
+    "flexi_hero_with_blocks_FDYTXR",
     "flexi_image_with_blocks_zqrRDi",
     "8f20cf89-9dcf-47b5-bea1-7412cb30d300",
     "advanced_layout_custom_html_bVCgfX",
@@ -382,7 +384,6 @@
     "1691783087c7e19593",
     "1dcf9ee2-c686-4b1f-b24a-d00b9d4d98a4",
     "image-image-with-text-1",
-    "image_text_evenodd_Wzw3me",
-    "flexi_hero_with_blocks_FDYTXR"
+    "image_text_evenodd_Wzw3me"
   ]
 }
