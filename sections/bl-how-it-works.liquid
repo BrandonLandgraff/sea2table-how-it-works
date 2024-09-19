@@ -31,7 +31,7 @@
 
   if json_data == blank
     assign borderRadius = 8
-    assign animation = true
+    assign animation = false
   endif
 
   if section.index <= 3
@@ -39,7 +39,7 @@
     assign loading_strategy = 'eager'
     assign fetch_priority = 'high'
   else
-    assign limit_animation = true
+    assign limit_animation = false
     assign loading_strategy = 'lazy'
     assign fetch_priority = 'auto'
   endif
