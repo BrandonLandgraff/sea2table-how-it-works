@@ -49,6 +49,12 @@
     text-align: inherit;
 }
 
+.top-content {
+    {% if block.settings.center_title %}
+        text-align: center;
+    {% endif %}
+}
+
 .column-item-{{ blockid }} {
     display: flex;
     flex-direction: column;
@@ -93,7 +99,14 @@
 }
 
 .description-{{ blockid }},
-.description-{{ blockid }} p {
+.description-{{ blockid }} p,
+.description-{{ blockid }} h1,
+.description-{{ blockid }} h2,
+.description-{{ blockid }} h3,
+.description-{{ blockid }} h4,
+.description-{{ blockid }} h5,
+.description-{{ blockid }} h6,
+.description-{{ blockid }} li {
     color: {{ block.settings.font_color }};
     font-size: {{ block.settings.description_font_size }}px;
     line-height: 1.3em;
@@ -120,6 +133,9 @@
             </div>
 
             <div class="bottom-content">
+                {% if block.settings.short_description %}
+                    <span class="description-{{ blockid }} flexi-text">{{ block.settings.short_description }}</span>
+                {% endif %}
                 {% if block.settings.description_1 %}
                     <span class="description-{{ blockid }} flexi-text"><p>{{ block.settings.description_1 }}</p></span>
                 {% endif %}
@@ -128,10 +144,11 @@
                 {% endif %}
                 {% if block.settings.description_3 %}
                     <span class="description-{{ blockid }} flexi-text">
-                        <p>{{ block.settings.description_3 }} 
-                            <span class="description-{{ blockid }} flexi-text" style="color: {{ block.settings.code_color }};">{{ block.settings.code }}</span>
-                        </p>
+                        <p>{{ block.settings.description_3 }}</p>
                     </span>
+                {% endif %}
+                {% if block.settings.code != blank %}
+                    <span class="description-{{ blockid }} flexi-text" style="color: {{ block.settings.code_color }};">{{ block.settings.code }}</span>
                 {% endif %}
             </div>
 
