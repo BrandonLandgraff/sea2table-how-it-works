@@ -80,12 +80,12 @@
     "predictive_search_enabled": false,
     "predictive_search_show_vendor": false,
     "predictive_search_show_price": false,
-    "sm_facebook_link": "https:\/\/www.facebook.com\/sea2table",
-    "sm_twitter_link": "https:\/\/twitter.com\/Sea2Table",
-    "sm_instagram_link": "https:\/\/www.instagram.com\/sea2table",
-    "sm_pinterest_link": "https:\/\/www.pinterest.com\/sea2table\/",
-    "sm_youtube_link": "https:\/\/www.youtube.com\/c\/sea2table",
-    "sm_linkedin_link": "https:\/\/www.linkedin.com\/company\/sea-to-table",
+    "sm_facebook_link": "https://www.facebook.com/sea2table",
+    "sm_twitter_link": "https://twitter.com/Sea2Table",
+    "sm_instagram_link": "https://www.instagram.com/sea2table",
+    "sm_pinterest_link": "https://www.pinterest.com/sea2table/",
+    "sm_youtube_link": "https://www.youtube.com/c/sea2table",
+    "sm_linkedin_link": "https://www.linkedin.com/company/sea-to-table",
     "social_sharing_blog": true,
     "share_facebook": true,
     "share_twitter": true,
@@ -97,11 +97,11 @@
     "desktop-popup-style": "slide-up",
     "pop-up-delay": 5,
     "popup--test-mode": false,
-    "favicon": "shopify:\/\/shop_images\/favicon.png",
+    "favicon": "shopify://shop_images/favicon.png",
     "animations_enabled": true,
     "page_fade_enabled": true,
     "ken_burns_enabled": true,
-    "checkout_logo_image": "shopify:\/\/shop_images\/blue_logo.png",
+    "checkout_logo_image": "shopify://shop_images/blue_logo.png",
     "checkout_accent_color": "#1a4760",
     "checkout_button_color": "#f9660d",
     "checkout_error_color": "#e32c2b",
@@ -188,13 +188,13 @@
           "checkmark_3": "Easy one-time orders",
           "checkmark_4": "Easy delivery and order management (Subscribe & Save)",
           "below_button": "Shop All Seafood & Top Combos Here",
-          "btn_link": "https:\/\/sea2table.com\/tools\/bundle-subscriptions\/bundle\/7421575397537?selling_plan=1116799137&variant=42180756013217&d=5-p&product=build-your-first-box-1",
+          "btn_link": "https://sea2table.com/tools/bundle-subscriptions/bundle/7421575397537?selling_plan=1116799137&variant=42180756013217&d=5-p&product=build-your-first-box-1",
           "btn_label": "BUILD YOUR BOX",
           "reviews_text": "Based on 3,699 reviews",
           "question_1": "Shipping Details",
-          "answer_1": "<p><strong>Free shipping on orders over $99+. <\/strong>Flash frozen orders ship within 1-3 business days of purchase, and deliver within 1-3 days of shipment. Click <a href=\"https:\/\/sea2table.com\/apps\/faqs\/#hc-where-does-my-fish-ship-from\" target=\"_blank\" title=\"https:\/\/sea2table.com\/apps\/faqs\/#hc-where-does-my-fish-ship-from\">here<\/a> for more details.<\/p>",
+          "answer_1": "<p><strong>Free shipping on orders over $99+. </strong>Flash frozen orders ship within 1-3 business days of purchase, and deliver within 1-3 days of shipment. Click <a href=\"https://sea2table.com/apps/faqs/#hc-where-does-my-fish-ship-from\" target=\"_blank\" title=\"https://sea2table.com/apps/faqs/#hc-where-does-my-fish-ship-from\">here</a> for more details.</p>",
           "question_2": "100% Risk Free Guarantee",
-          "answer_2": "<p>We care about the fish you eat and work closely with our supply partners to provide you with the very best. If you are not 100% satisfied, <strong>we will replace or refund any item within 30 days.<\/strong><\/p>"
+          "answer_2": "<p>We care about the fish you eat and work closely with our supply partners to provide you with the very best. If you are not 100% satisfied, <strong>we will replace or refund any item within 30 days.</strong></p>"
         }
       },
       "custom-how-it-works": {
@@ -203,7 +203,7 @@
           "2f84db35-1f5b-4d77-853f-831e996283ad": {
             "type": "tab_content",
             "settings": {
-              "step_image": "shopify:\/\/shop_images\/helm.png",
+              "step_image": "shopify://shop_images/helm.png",
               "step_count": "1",
               "step_caption": "Select delivery frequency."
             }
@@ -211,7 +211,7 @@
           "2b2c2be9-6d41-4850-ad89-efab6f784854": {
             "type": "tab_content",
             "settings": {
-              "step_image": "shopify:\/\/shop_images\/steak.png",
+              "step_image": "shopify://shop_images/steak.png",
               "step_count": "2",
               "step_caption": "Pick your favorites from our selection of combos & seafood"
             }
@@ -219,7 +219,7 @@
           "df232520-bc87-412d-8953-7f4b09fc404b": {
             "type": "tab_content",
             "settings": {
-              "step_image": "shopify:\/\/shop_images\/stamp.png",
+              "step_image": "shopify://shop_images/stamp.png",
               "step_count": "3",
               "step_caption": "Your seafood gets delivered to your doorstep"
             }
@@ -233,8 +233,8 @@
         "settings": {
           "heading": "Wildly Convenient Seafood Delivery",
           "subheading": "HOW IT WORKS",
-          "caption": "<p>IN THREE SIMPLE STEPS:<\/p><h3><strong>100% Proudly USA<\/strong><\/h3>",
-          "ryt_image": "shopify:\/\/shop_images\/wild_american_seafood.gif",
+          "caption": "<p>IN THREE SIMPLE STEPS:</p><h3><strong>100% Proudly USA</strong></h3>",
+          "ryt_image": "shopify://shop_images/wild_american_seafood.gif",
           "button_label": "",
           "button_link": "",
           "button_bottom_text": ""
@@ -246,7 +246,7 @@
           "flexi_heading_JkEMBD": {
             "type": "flexi-heading",
             "settings": {
-              "heading": "<strong>Wildly Convenient Seafood Delivery<\/strong>",
+              "heading": "<strong>Wildly Convenient Seafood Delivery</strong>",
               "font_size": 54,
               "mb_font_size": "0.7",
               "text_align": "left",
@@ -263,7 +263,7 @@
           "flexi_description_x9nrV4": {
             "type": "flexi-description",
             "settings": {
-              "description": "<h3>Just select your delivery frequency, pick your favorite seafood, and it will show up at your doorstep.<\/h3>",
+              "description": "<h3>Just select your delivery frequency, pick your favorite seafood, and it will show up at your doorstep.</h3>",
               "font_size": 27,
               "mb_font_size": "0.8",
               "font_color": "#1c465f",
@@ -280,7 +280,7 @@
           "flexi_image_z8mi4K": {
             "type": "flexi-image",
             "settings": {
-              "image": "shopify:\/\/shop_images\/sea2table_box.png",
+              "image": "shopify://shop_images/sea2table_box.png",
               "link": "",
               "position": "left",
               "max_width": 320,
@@ -293,7 +293,7 @@
           "flexi_subheading_hkUJXP": {
             "type": "flexi-subheading",
             "settings": {
-              "subheading": "🇺🇸 <strong>100% Proudly USA<\/strong>",
+              "subheading": "🇺🇸 <strong>100% Proudly USA</strong>",
               "font_size": 20,
               "mb_font_size": "0.95",
               "position": "left",
@@ -317,13 +317,13 @@
           "flexi_subheading_hkUJXP"
         ],
         "settings": {
-          "image": "shopify:\/\/shop_images\/subscription_page_hero_600x_d1c0c7d5-8dd6-429b-9b36-4d4beab6f348.webp",
+          "image": "shopify://shop_images/subscription_page_hero_600x_d1c0c7d5-8dd6-429b-9b36-4d4beab6f348.webp",
           "hide_image": "visible",
           "dt_reverse_order": "right",
           "mb_reverse_order": "bottom",
           "grid_layout": "1fr 1fr",
           "bg_color": "#b2cadf",
-          "bg_image": "shopify:\/\/shop_images\/gradient_smaller.png",
+          "bg_image": "shopify://shop_images/gradient_smaller.png",
           "bg_image_size": "cover",
           "image_alignment_x": "center",
           "image_alignment_y": "center",
@@ -341,7 +341,7 @@
           "flexi_heading_n38BYG": {
             "type": "flexi-heading",
             "settings": {
-              "heading": "<strong>Wildly Convenient Seafood Delivery<\/strong>",
+              "heading": "<strong>Wildly Convenient Seafood Delivery</strong>",
               "font_size": 38,
               "mb_font_size": "0.8",
               "text_align": "left",
@@ -358,7 +358,7 @@
           "flexi_description_xk3JQf": {
             "type": "flexi-description",
             "settings": {
-              "description": "<p>Just select your delivery frequency, pick your favorite seafood, and it will show up at your doorstep!<\/p>",
+              "description": "<p>Just select your delivery frequency, pick your favorite seafood, and it will show up at your doorstep!</p>",
               "font_size": 18,
               "mb_font_size": "0.95",
               "font_color": "#1a4760",
@@ -376,16 +376,16 @@
             "type": "custom-steps",
             "settings": {
               "center_title": true,
-              "title": "<strong>7th Anniversary Sale<\/strong>",
+              "title": "<strong>FREE SHRIMP FOR LIFE</strong>",
               "font_size": 24,
-              "title_font_color": "#1a4760",
-              "subtitle": "<strong>FREE HALIBUT FOR LIFE<\/strong>",
+              "title_font_color": "#f9660d",
+              "subtitle": "<strong>When You Start A Subscription</strong>",
               "subtitle_font_size": 18,
-              "subtitle_font_color": "#f9660d",
+              "subtitle_font_color": "#1a4760",
               "short_description": "",
-              "description_1": "<strong>1. Add at least $179 of seafood to your cart.<\/strong>",
-              "description_2": "<strong>2. Add a 2-pack of Halibut to your cart.<\/strong>",
-              "description_3": "<strong>3. Enter the coupon code 7YEARS at checkout<\/strong>",
+              "description_1": "<strong>1. Add at least $179 of seafood to your cart.</strong>",
+              "description_2": "<strong>2. Add a 2-pack of Wild Gulf Shrimp to your cart.</strong>",
+              "description_3": "<strong>3. Enter the coupon code SHRIMP4LIFE at checkout.</strong>",
               "code": "",
               "code_color": "#f9660d",
               "description_font_size": 18,
@@ -398,7 +398,7 @@
           "custom_description_94cnXm": {
             "type": "custom-description",
             "settings": {
-              "description": "<p><strong>That's it! 100% proudly USA seafood will be delivered to your doorstep.<\/strong><\/p>",
+              "description": "<p><strong>That's it! 100% proudly USA seafood will be delivered to your doorstep.</strong></p>",
               "font_size": 18,
               "mb_font_size": "0.95",
               "font_color": "#1a4760",
@@ -415,7 +415,7 @@
           "custom_image_eiygNA": {
             "type": "custom-image",
             "settings": {
-              "image": "shopify:\/\/shop_images\/box_with_transparent_background.png",
+              "image": "shopify://shop_images/box_with_transparent_background.png",
               "link": "",
               "position": "left",
               "max_width": 400,
@@ -459,26 +459,26 @@
     ],
     "blocks": {
       "855628211100114053": {
-        "type": "shopify:\/\/apps\/klaviyo-email-marketing-sms\/blocks\/klaviyo-onsite-embed\/2632fe16-c075-4321-a88b-50b567f42507",
+        "type": "shopify://apps/klaviyo-email-marketing-sms/blocks/klaviyo-onsite-embed/2632fe16-c075-4321-a88b-50b567f42507",
         "disabled": false,
         "settings": {
         }
       },
       "16017602894386113438": {
-        "type": "shopify:\/\/apps\/junip-product-reviews-ugc\/blocks\/junip-store-key\/dc14f5a8-ed15-41b1-ad08-cfba23f9789b",
+        "type": "shopify://apps/junip-product-reviews-ugc/blocks/junip-store-key/dc14f5a8-ed15-41b1-ad08-cfba23f9789b",
         "disabled": false,
         "settings": {
           "enablePreviewMode": true
         }
       },
       "17174303574952363282": {
-        "type": "shopify:\/\/apps\/fondue-cashback-promotions\/blocks\/caseback-embed\/dcfd972d-99c5-4526-b55b-2d76e990dec8",
+        "type": "shopify://apps/fondue-cashback-promotions/blocks/caseback-embed/dcfd972d-99c5-4526-b55b-2d76e990dec8",
         "disabled": false,
         "settings": {
         }
       },
       "15683396631634586217": {
-        "type": "shopify:\/\/apps\/inbox\/blocks\/chat\/841fc607-4181-4ad1-842d-e24d7f8bad6b",
+        "type": "shopify://apps/inbox/blocks/chat/841fc607-4181-4ad1-842d-e24d7f8bad6b",
         "disabled": false,
         "settings": {
           "button_color": "#1a4760",
@@ -490,19 +490,19 @@
         }
       },
       "10641372206048101839": {
-        "type": "shopify:\/\/apps\/rebuy-personalization-engine\/blocks\/rebuy-global-embed\/a26ae9b9-933b-40bf-bbc6-bf1220bbc4dc",
+        "type": "shopify://apps/rebuy-personalization-engine/blocks/rebuy-global-embed/a26ae9b9-933b-40bf-bbc6-bf1220bbc4dc",
         "disabled": false,
         "settings": {
         }
       },
       "2728461494843721857": {
-        "type": "shopify:\/\/apps\/amped-email-sms-popups\/blocks\/app-embed\/d9d8f140-4443-4f6c-a16a-95357ecc2125",
+        "type": "shopify://apps/amped-email-sms-popups/blocks/app-embed/d9d8f140-4443-4f6c-a16a-95357ecc2125",
         "disabled": false,
         "settings": {
         }
       },
       "6992312409616185448": {
-        "type": "shopify:\/\/apps\/flexi-theme-library\/blocks\/app-embed\/5a4df4d6-1efe-4f41-80b3-12e6a6deefaf",
+        "type": "shopify://apps/flexi-theme-library/blocks/app-embed/5a4df4d6-1efe-4f41-80b3-12e6a6deefaf",
         "disabled": false,
         "settings": {
         }
