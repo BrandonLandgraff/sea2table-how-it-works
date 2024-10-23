@@ -1,12 +1,12 @@
 /*
-* ------------------------------------------------------------
-* IMPORTANT: The contents of this file are auto-generated.
-*
-* This file may be updated by the Shopify admin theme editor
-* or related systems. Please exercise caution as any changes
-* made to this file may be overwritten.
-* ------------------------------------------------------------
-*/
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "current": {
     "color_body_text": "#1a4760",
@@ -376,16 +376,16 @@
             "type": "custom-steps",
             "settings": {
               "center_title": true,
-              "title": "<strong>FREE SHRIMP FOR LIFE</strong>",
+              "title": "<strong>FREE KING SALMON </strong>",
               "font_size": 24,
               "title_font_color": "#f9660d",
-              "subtitle": "<strong>When You Start A Subscription</strong>",
+              "subtitle": "<strong>FOR LIFE!</strong>",
               "subtitle_font_size": 18,
               "subtitle_font_color": "#1a4760",
               "short_description": "",
-              "description_1": "<strong>1. Add at least $199 of seafood to your cart.</strong>",
-              "description_2": "<strong>2. Add a 2-pack of Wild Gulf Shrimp to your cart.</strong>",
-              "description_3": "<strong>3. Enter the coupon code SHRIMP4LIFE at checkout.</strong>",
+              "description_1": "<strong>1. Add at least $219 of seafood to your cart.</strong>",
+              "description_2": "<strong>2. Add a 2-pack of Wild King Salmon to your cart.</strong>",
+              "description_3": "<strong>3. Enter the coupon code </strong><span style=\"text-decoration:underline\"><strong>KING4LIFE</strong></span><strong> at checkout.</strong>",
               "code": "",
               "code_color": "#f9660d",
               "description_font_size": 18,
