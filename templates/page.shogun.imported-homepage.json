@@ -15,7 +15,7 @@
         "flexi_heading_BmAgW9": {
           "type": "flexi-heading",
           "settings": {
-            "heading": "<strong>Free Halibut For Life<\/strong>",
+            "heading": "<strong>Free King Salmon For Life<\/strong>",
             "font_size": 46,
             "mb_font_size": "0.8",
             "text_align": "left",
@@ -32,7 +32,7 @@
         "flexi_description_tngAFf": {
           "type": "flexi-description",
           "settings": {
-            "description": "<p>To celebrating our 7th Anniversary,  we're offering new subscribers one free pack of Pacific Northwest Halibut with every delivery for the life of your subscription.<\/p>",
+            "description": "<p>Claim this new subscriber special offer! Start a subscription today and get a FREE pack of King Salmon with every delivery for the life of your subscription.<\/p>",
             "font_size": 18,
             "mb_font_size": "0.95",
             "font_color": "#1a4760",
@@ -60,7 +60,7 @@
             "btn_3_style": "primary",
             "btn_size": "10px 24px",
             "justify_content": "left",
-            "font_color": "#FFFFFF",
+            "font_color": "#ffffff",
             "display_options": "bl-hide-none",
             "full_width": false,
             "flex_direction": false,
@@ -93,7 +93,7 @@
         "flexi_review_zUXyGx"
       ],
       "settings": {
-        "image": "shopify:\/\/shop_images\/halibut.webp",
+        "image": "shopify:\/\/shop_images\/Untitled_2500_x_2500_px.png",
         "dt_reverse_order": "left",
         "mb_reverse_order": "bottom",
         "grid_layout": "1fr 1fr",
