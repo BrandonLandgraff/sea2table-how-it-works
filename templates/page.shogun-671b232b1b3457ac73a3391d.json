@@ -1,0 +1,419 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "flexi_hero_with_blocks_f9288fae-96f8-468b-a117-07ea25220c5c": {
+      "type": "flexi-hero-with-blocks",
+      "settings": {
+        "image": "shopify://shop_images/cod_lander.webp",
+        "dt_reverse_order": "left",
+        "mb_reverse_order": "bottom",
+        "grid_layout": "1fr 1fr",
+        "bg_color": "",
+        "display_options": "bl-hide-none",
+        "self_alignment": "center",
+        "padding_top": 0,
+        "padding_bottom": 0
+      },
+      "blocks": {
+        "flexi_heading_BmAgW9": {
+          "type": "flexi-heading",
+          "settings": {
+            "heading": "<strong>Free Northwest Pacific Cod For Life</strong>",
+            "font_size": 46,
+            "mb_font_size": "0.8",
+            "text_align": "left",
+            "max_width": 432,
+            "justify_content": "left",
+            "font_color": "#1a4760",
+            "line_height": 10,
+            "letter_spacing": 20,
+            "display_options": "bl-hide-none",
+            "padding_top": 0,
+            "padding_bottom": 0
+          }
+        },
+        "flexi_description_tngAFf": {
+          "type": "flexi-description",
+          "settings": {
+            "description": "<p>Claim this new subscriber special offer! Start a subscription today and get a FREE pack of Northwest Pacific Cod with every delivery for the life of your subscription.</p>",
+            "font_size": 18,
+            "mb_font_size": "0.95",
+            "font_color": "#1a4760",
+            "text_align": "left",
+            "justify_content": "left",
+            "max_width": 2400,
+            "line_height": 50,
+            "letter_spacing": 0,
+            "display_options": "bl-hide-none",
+            "padding_top": 6,
+            "padding_bottom": 12
+          }
+        },
+        "flexi_button_EKLPdd": {
+          "type": "flexi-button",
+          "settings": {
+            "first_button_text": "SHOP THE SALE",
+            "first_button_url": "https://sea2table.com/discount/CODLIFE?redirect=/tools/bundle-subscriptions/bundle/7421575397537?d=5-p&product=build-your-first-box-1&selling_plan=1116799137&37005601931425=1&cod",
+            "btn_1_style": "secondary",
+            "second_button_text": "",
+            "second_button_url": "",
+            "btn_2_style": "primary",
+            "third_button_text": "",
+            "third_button_url": "",
+            "btn_3_style": "primary",
+            "btn_size": "10px 24px",
+            "justify_content": "left",
+            "font_color": "#ffffff",
+            "display_options": "bl-hide-none",
+            "full_width": false,
+            "flex_direction": false,
+            "gap": 12,
+            "top_padding": 10,
+            "bottom_padding": 0
+          }
+        },
+        "flexi_review_zUXyGx": {
+          "type": "flexi-review",
+          "settings": {
+            "justify_content": "left",
+            "star_type": "4.5",
+            "icon_size": 16,
+            "reviews_text": "Based on 6385 reviews",
+            "review_url": "",
+            "font_size": 16,
+            "font_color": "#1a4760",
+            "star_color": "#1a4760",
+            "display_options": "bl-hide-none",
+            "top_padding": 22,
+            "bottom_padding": 6
+          }
+        }
+      },
+      "block_order": [
+        "flexi_heading_BmAgW9",
+        "flexi_description_tngAFf",
+        "flexi_button_EKLPdd",
+        "flexi_review_zUXyGx"
+      ],
+      "custom_css": [
+
+      ]
+    },
+    "flexi_image_with_blocks_ecacbc76-602e-4ff1-ac90-004392cdf294": {
+      "type": "flexi-image-with-blocks",
+      "settings": {
+        "image": "shopify://shop_images/take_50_off.webp",
+        "hide_image": "visible",
+        "dt_reverse_order": "left",
+        "mb_reverse_order": "top",
+        "grid_layout": "60% 40%",
+        "bg_color": "#fafafa",
+        "bg_image": "shopify://shop_images/texture_background.webp",
+        "bg_image_size": "cover",
+        "image_alignment_x": "center",
+        "image_alignment_y": "center",
+        "overlay_color": "#000000",
+        "opacity": 0,
+        "display_options": "bl-hide-none",
+        "width": 1440,
+        "padding_top": 60,
+        "padding_bottom": 60
+      },
+      "blocks": {
+        "flexi_heading_UXLd4g": {
+          "type": "flexi-heading",
+          "settings": {
+            "heading": "<strong>$50 Off Your First Delivery</strong>",
+            "font_size": 47,
+            "mb_font_size": "0.8",
+            "text_align": "left",
+            "max_width": 2400,
+            "justify_content": "left",
+            "font_color": "#1a4760",
+            "line_height": 10,
+            "letter_spacing": 0,
+            "display_options": "bl-hide-none",
+            "padding_top": 0,
+            "padding_bottom": 0
+          }
+        },
+        "flexi_description_BcbA48": {
+          "type": "flexi-description",
+          "settings": {
+            "description": "<h3>Take $50 off the first delivery of a new subscription of $199+ when you sign up today. Use coupon code GREATCATCH at checkout.</h3>",
+            "font_size": 20,
+            "mb_font_size": "0.95",
+            "font_color": "#1a4760",
+            "text_align": "left",
+            "justify_content": "left",
+            "max_width": 384,
+            "line_height": 50,
+            "letter_spacing": 3,
+            "display_options": "bl-hide-none",
+            "padding_top": 6,
+            "padding_bottom": 6
+          }
+        },
+        "flexi_button_7gdpfD": {
+          "type": "flexi-button",
+          "settings": {
+            "first_button_text": "Shop With $50 Off",
+            "bold_1": true,
+            "first_button_url": "https://sea2table.com/discount/GREATCATCH?redirect=/tools/bundle-subscriptions/bundle/7421575397537?selling_plan=1116799137&variant=42180756013217&d=5-p&product=build-your-first-box-1",
+            "btn_1_style": "secondary",
+            "second_button_text": "",
+            "bold_2": false,
+            "second_button_url": "",
+            "btn_2_style": "primary",
+            "third_button_text": "",
+            "bold_3": false,
+            "third_button_url": "",
+            "btn_3_style": "primary",
+            "btn_size": "12px 36px",
+            "justify_content": "left",
+            "font_color": "#ffffff",
+            "display_options": "bl-hide-none",
+            "full_width": false,
+            "flex_direction": false,
+            "gap": 12,
+            "top_padding": 0,
+            "bottom_padding": 0
+          }
+        },
+        "flexi_review_GXPkBE": {
+          "type": "flexi-review",
+          "settings": {
+            "justify_content": "left",
+            "star_type": "4.5",
+            "icon_size": 17,
+            "reviews_text": "based on 5000+ reviews",
+            "review_url": "",
+            "font_size": 20,
+            "font_color": "#1a4760",
+            "star_color": "#fcb52b",
+            "display_options": "bl-hide-none",
+            "top_padding": 38,
+            "bottom_padding": 6
+          }
+        }
+      },
+      "block_order": [
+        "flexi_heading_UXLd4g",
+        "flexi_description_BcbA48",
+        "flexi_button_7gdpfD",
+        "flexi_review_GXPkBE"
+      ],
+      "custom_css": [
+
+      ],
+      "disabled": true
+    },
+    "shogun_custom_63c714966566ae00e706164e_f1759af7-e14a-4cf8-93e8-e4dd4b997d36": {
+      "type": "shogun-custom-63c714966566ae00e706164e",
+      "settings": {
+      },
+      "custom_css": [
+
+      ]
+    },
+    "advanced_layout_custom_html_af71b8f9-5241-4ac8-ae3f-40159dedafe0": {
+      "type": "advanced-layout--custom-html",
+      "settings": {
+      },
+      "blocks": {
+        "html_Cazy9W": {
+          "type": "html",
+          "settings": {
+            "code": "<div class=\"fulltextdiv\" style=\"padding-top: 40px;\"> \n<h1>Shop Fresh Seafood Online</h1>\n<p>If you’re craving the best wild-caught seafood, we’ve got it! Experts from Epicurious to Bon Appétit and others agree that we offer the best seafood online. Our family-owned business works closely with American fishermen up and down our own coasts to conveniently deliver fresh, responsibly-caught seafood that you and your family will love.</p>\n</div>",
+            "width": "100%"
+          }
+        }
+      },
+      "block_order": [
+        "html_Cazy9W"
+      ],
+      "custom_css": [
+
+      ]
+    },
+    "custom_how_it_works_835edfea-5a76-40de-850b-1fc41fd9244e": {
+      "type": "custom-how-it-works",
+      "settings": {
+        "heading": "Wildly Convenient Seafood Delivery",
+        "subheading": "HOW IT WORKS",
+        "caption": "<p>IN THREE SIMPLE STEPS:</p><h3><strong>100% Proudly USA</strong></h3>",
+        "ryt_image": "shopify://shop_images/wild_american_seafood.webp",
+        "button_label": "SHOP SEAFOOD",
+        "button_link": "https://sea2table.com/tools/bundle-subscriptions/bundle/7421575397537?selling_plan=1116799137&variant=42180756013217&d=5-p&product=build-your-first-box-1",
+        "button_bottom_text": ""
+      },
+      "blocks": {
+        "87116649-9b69-4db4-a12f-5ca554be27ce": {
+          "type": "tab_content",
+          "settings": {
+            "step_image": "shopify://shop_images/helm.png",
+            "step_count": "1",
+            "step_caption": "Select delivery frequency."
+          }
+        },
+        "d4a57fcd-7b85-49d2-bbf7-e1c5cf3740e7": {
+          "type": "tab_content",
+          "settings": {
+            "step_image": "shopify://shop_images/steak.png",
+            "step_count": "2",
+            "step_caption": "Pick your favorites from our selection of combos & seafood"
+          }
+        },
+        "bfda17d8-d0d4-455a-ab4c-7ba1f24dadaf": {
+          "type": "tab_content",
+          "settings": {
+            "step_image": "shopify://shop_images/stamp.png",
+            "step_count": "3",
+            "step_caption": "Your seafood gets delivered to your doorstep"
+          }
+        }
+      },
+      "block_order": [
+        "87116649-9b69-4db4-a12f-5ca554be27ce",
+        "d4a57fcd-7b85-49d2-bbf7-e1c5cf3740e7",
+        "bfda17d8-d0d4-455a-ab4c-7ba1f24dadaf"
+      ],
+      "custom_css": [
+
+      ]
+    },
+    "apps_af033ddd-2f53-412d-a838-aacc369cd0b9": {
+      "type": "apps",
+      "settings": {
+        "include_margins": true
+      },
+      "blocks": {
+        "rebuy_personalization_engine_rebuy_widget_A8W7zP": {
+          "type": "shopify://apps/rebuy-personalization-engine/blocks/rebuy-widget/a26ae9b9-933b-40bf-bbc6-bf1220bbc4dc",
+          "settings": {
+            "enabled": true,
+            "id": "162931",
+            "product_id_enabled": true,
+            "collection_id_enabled": false
+          }
+        }
+      },
+      "block_order": [
+        "rebuy_personalization_engine_rebuy_widget_A8W7zP"
+      ],
+      "custom_css": [
+
+      ]
+    },
+    "apps_192560b7-f5a1-43f0-823f-d73af1c2da8e": {
+      "type": "apps",
+      "settings": {
+        "include_margins": true
+      },
+      "blocks": {
+        "d4165422-d149-4aca-89cc-2c60a22a7431": {
+          "type": "shopify://apps/junip-product-reviews-ugc/blocks/junip-review-carousel/dc14f5a8-ed15-41b1-ad08-cfba23f9789b",
+          "settings": {
+            "reviewsType": "store_reviews",
+            "product": "",
+            "showSummary": true,
+            "title": "What Our Customers Say About Sea to Table",
+            "paddingTop": 29,
+            "paddingBottom": 27,
+            "containerClass": ""
+          }
+        }
+      },
+      "block_order": [
+        "d4165422-d149-4aca-89cc-2c60a22a7431"
+      ],
+      "custom_css": [
+
+      ]
+    },
+    "image_comparison_ae295b83-7ad6-4ad1-83d3-f688c8b38389": {
+      "type": "image-comparison",
+      "settings": {
+        "colors": "white",
+        "title": "What Sets Us Apart:",
+        "image": "shopify://shop_images/comparison_chart_sans_otp.webp",
+        "mob_image": "shopify://shop_images/comparison_chart_mobile.webp",
+        "subtitle": "WHY US?",
+        "btn_link": "https://sea2table.com/tools/bundle-subscriptions/bundle/7421575397537?selling_plan=1116799137&variant=42180756013217&d=5-p&product=build-your-first-box-1",
+        "btn_label": "Shop Seafood",
+        "btn_under": ""
+      },
+      "custom_css": [
+
+      ]
+    },
+    "image_image_with_text_4c75e7bd-1833-4660-a5d6-82f039df4667": {
+      "type": "image--image-with-text",
+      "settings": {
+        "colors": "light",
+        "image": "shopify://shop_images/100_guaranteed_4271481c-2cf7-44ab-a420-072a68b7b775.png",
+        "text_overlapping_image": false,
+        "section-width": "content",
+        "layout": "left",
+        "text_alignment": "left",
+        "title": "",
+        "text": "<p>When you shop with Sea to Table, your purchase is guaranteed to please. <strong>We stand by our products 100%</strong>, and will refund, replace or exchange any item that doesn’t arrive in perfect condition within 30 days of purchase.</p>",
+        "button_label": "Learn more",
+        "button_link": ""
+      },
+      "custom_css": [
+
+      ]
+    },
+    "image_text_evenodd_7addbe15-ba72-4d83-a557-5fc187b9ebb1": {
+      "type": "image-text-evenodd",
+      "settings": {
+      },
+      "blocks": {
+        "image_aCWtiC": {
+          "type": "image",
+          "settings": {
+            "images": "shopify://shop_images/Mask_group.png",
+            "heading": "From Ocean to Your Doorstep: Order Seafood Online",
+            "content": "It’s like having the best seafood jump out of the ocean and right into your freezer! Our wild-caught seafood delivery service makes it easy and convenient to enjoy a variety of delicious fish at any time. We’re a family-owned business working with a network of experienced fishermen around America. This lets you buy their fresh seafood online (and support them at the same time), then have their delicious, flash-frozen catch sent right to your home. Our customers tell us it’s some of the best seafood they’ve ever had: their five-star reviews use words like “delicious,” “excellent” and most importantly, “fresh.”"
+          }
+        },
+        "image_AbGqUL": {
+          "type": "image",
+          "settings": {
+            "images": "shopify://shop_images/grillmaster_1.png",
+            "heading": "Explore Our Wild Caught Seafood Collection",
+            "content": "What are you hungry for? Jumbo Maine Lobster tails? Wild-caught salmon? Sushi-grade Albacore Tuna or delicious Wild Gulf shrimp? Indulge yourself and buy fresh seafood online! 90% of Seafood consumed in the US is  imported, Sea to Table only sources the best American wild-caught seafood and delivers it (flash-frozen) to your home. All of our fish is traceable and we make ordering super-convenient. Our family business is passionate about supporting American fishermen as well as giving our customers the best online seafood delivery experience anywhere."
+          }
+        }
+      },
+      "block_order": [
+        "image_aCWtiC",
+        "image_AbGqUL"
+      ],
+      "custom_css": [
+
+      ]
+    }
+  },
+  "order": [
+    "flexi_hero_with_blocks_f9288fae-96f8-468b-a117-07ea25220c5c",
+    "flexi_image_with_blocks_ecacbc76-602e-4ff1-ac90-004392cdf294",
+    "shogun_custom_63c714966566ae00e706164e_f1759af7-e14a-4cf8-93e8-e4dd4b997d36",
+    "advanced_layout_custom_html_af71b8f9-5241-4ac8-ae3f-40159dedafe0",
+    "custom_how_it_works_835edfea-5a76-40de-850b-1fc41fd9244e",
+    "apps_af033ddd-2f53-412d-a838-aacc369cd0b9",
+    "apps_192560b7-f5a1-43f0-823f-d73af1c2da8e",
+    "image_comparison_ae295b83-7ad6-4ad1-83d3-f688c8b38389",
+    "image_image_with_text_4c75e7bd-1833-4660-a5d6-82f039df4667",
+    "image_text_evenodd_7addbe15-ba72-4d83-a557-5fc187b9ebb1"
+  ]
+}
