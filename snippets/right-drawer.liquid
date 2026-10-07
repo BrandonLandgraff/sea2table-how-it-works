@@ -117,7 +117,7 @@
                               v-on:click="setQuantity(index + 1, item.quantity - 1); setSubtotal();"
                               v-if="!isGiftwrapProduct(item)"
                             >
-                              {% render 'theme-icon' with icon: 'minus', iconClasses: 'flex-full', iconAttributes: 'aria-hidden="true"' %}
+                              {% render 'theme-icon' with icon, icon: 'minus', iconClasses: 'flex-full', iconAttributes: 'aria-hidden="true"' %}
                               <span class="fallback-text">&minus;</span>
                             </button>
                             <input
@@ -137,7 +137,7 @@
                               v-on:click="setQuantity(index + 1, item.quantity + 1); setSubtotal();"
                               v-if="!isGiftwrapProduct(item)"
                             >
-                              {% render 'theme-icon' with icon: 'plus', iconClasses: 'flex-full', iconAttributes: 'aria-hidden="true"' %}
+                              {% render 'theme-icon' with icon, icon: 'plus', iconClasses: 'flex-full', iconAttributes: 'aria-hidden="true"' %}
                               <span class="fallback-text">+</span>
                             </button>
                           </div>
@@ -244,7 +244,7 @@
             <div class="input-group">
               <span class="input-group-btn">
                 <button type="submit" class="btn icon-fallback-text" v-on:click="onSearchSubmit" tabindex="0">
-                  {% render 'theme-icon' with icon: 'search', iconSize: 24 %}
+                  {% render 'theme-icon' with icon, icon: 'search', iconSize: 24 %}
                   <span class="fallback-text">{{ 'general.search.submit' | t }}</span>
                 </button>
               </span>
@@ -262,7 +262,7 @@
             <div class="wrapper-padded">
               <div id="search-results" class="grid-uniform">
                 <div v-if="searching" class="search-loading">
-                  {% render 'theme-icon' with icon: 'circle-notch', iconClasses: 'spin flex-full', icon_fill: settings.color_primary_button_text %}<span class="sr-only">{{ 'collections.paginate.loading' | t }}</span>
+                  {% render 'theme-icon' with icon, icon: 'circle-notch', iconClasses: 'spin flex-full', icon_fill: settings.color_primary_button_text %}<span class="sr-only">{{ 'collections.paginate.loading' | t }}</span>
                 </div>
                 <div v-text="searchSummary" v-if="!searching"></div>
                 <div class="search-results__meta top" v-if="searchHasResults">
@@ -314,3 +314,28 @@
     </transition>
   </div>
 </script>
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: '{% render ''theme-icon'' with icon: ''minus'', iconClasses: ''flex-full'',
+    iconAttributes: ''aria-hidden="true"'' %}'
+  to: '{% render ''theme-icon'' with icon, icon: ''minus'', iconClasses: ''flex-full'',
+    iconAttributes: ''aria-hidden="true"'' %}'
+  position: 8098..8212
+- from: '{% render ''theme-icon'' with icon: ''plus'', iconClasses: ''flex-full'',
+    iconAttributes: ''aria-hidden="true"'' %}'
+  to: '{% render ''theme-icon'' with icon, icon: ''plus'', iconClasses: ''flex-full'',
+    iconAttributes: ''aria-hidden="true"'' %}'
+  position: 9316..9429
+- from: "{% render 'theme-icon' with icon: 'search', iconSize: 24 %}"
+  to: "{% render 'theme-icon' with icon, icon: 'search', iconSize: 24 %}"
+  position: 15020..15085
+- from: "{% render 'theme-icon' with icon: 'circle-notch', iconClasses: 'spin flex-full',
+    icon_fill: settings.color_primary_button_text %}"
+  to: "{% render 'theme-icon' with icon, icon: 'circle-notch', iconClasses: 'spin
+    flex-full', icon_fill: settings.color_primary_button_text %}"
+  position: 16098..16233
+{% endcomment %}

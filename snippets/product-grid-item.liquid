@@ -59,7 +59,7 @@
                style="max-width: {{ image.width }}px"
             {% endcapture %}
             {% assign image_alt = image.alt | default: product.title %}
-            {% render 'responsive-image' with image, alt: image_alt | escape, props: props, allow_stretch: image_stretch %}
+            {% render 'responsive-image' with image, alt: image_alt, props: props, allow_stretch: image_stretch %}
 
             {% if settings.hover-effect and product.media.size > 1 %}
               <div class="hidden">
@@ -68,7 +68,7 @@
                   style="max-width: {{ image.width }}px"
                 {% endcapture %}
             {% assign hover_alt = image.alt | default: product.title %}
-            {% render 'responsive-image' with image, alt: hover_alt | escape, props: props %}
+            {% render 'responsive-image' with image, alt: hover_alt, props: props %}
           </div>
         {% endif %}
 
@@ -122,3 +122,19 @@
 	</div>
 
 </div>
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{% render 'responsive-image' with image, alt: image_alt | escape, props:
+    props, allow_stretch: image_stretch %}"
+  to: "{% render 'responsive-image' with image, alt: image_alt, props: props, allow_stretch:
+    image_stretch %}"
+  position: 2392..2494
+- from: "{% render 'responsive-image' with image, alt: hover_alt | escape, props:
+    props %}"
+  to: "{% render 'responsive-image' with image, alt: hover_alt, props: props %}"
+  position: 2879..2951
+{% endcomment %}

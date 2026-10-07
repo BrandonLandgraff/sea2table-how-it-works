@@ -14,7 +14,7 @@
     >
       <div aria-hidden="true">
         {% comment %} Fallback html when JS is disabled. {% endcomment %}
-        {% form 'product', product, id: {{product.id}} %}
+        {% form 'product', product, id: product.id %}
           {%- assign variant = product.selected_or_first_available_variant -%}
 
           <div class="thumbnail">
@@ -52,4 +52,13 @@
     </cross-sell>
 
   {%- endif -%}
-{%- endif -%}
+{%- endif -%}{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{% form 'product', product, id: {{product.id}} %}"
+  to: "{% form 'product', product, id: product.id %}"
+  position: 765..810
+{%- endcomment -%}

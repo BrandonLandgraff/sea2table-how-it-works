@@ -71,7 +71,7 @@ Parameters:
                   />
                   {% if enable_image_zoom %}
                     <div class="hidden featured-image-loader">
-                      {% render 'theme-icon' with icon: 'circle-notch', iconClasses: 'spin fa-3x flex-full', icon_fill: settings.color_primary_button_text %}
+                      {% render 'theme-icon' with icon, icon: 'circle-notch', iconClasses: 'spin fa-3x flex-full', icon_fill: settings.color_primary_button_text %}
                       <span class="sr-only">{{ 'collections.paginate.load_more' | t }}</span>
                     </div>
                   {% endif %}
@@ -88,7 +88,7 @@ Parameters:
                   data-shopify-title="{{ product.title | escape }}"
                   data-shopify-xr-hidden
                 >
-                  {% render 'theme-icon' with icon: 'cube', iconAttributes: 'aria-hidden="true"', iconSize: settings.typography-body-font-size %}
+                  {% render 'theme-icon' with icon, icon: 'cube', iconAttributes: 'aria-hidden="true"', iconSize: settings.typography-body-font-size %}
                   {{ 'products.product.view_in_space' | t }}
                 </button>
             </div>
@@ -187,7 +187,7 @@ Parameters:
                     {{ media.alt }}
                   {% endif %}
                 {% endcapture %}
-                {% render 'responsive-image' with media.preview_image, class: class, alt: thumbalt | escape, default_size: '300x', props: props, blur: false, styles: styles %}
+                {% render 'responsive-image' with media.preview_image, class: class, alt: thumbalt, default_size: '300x', props: props, blur: false, styles: styles %}
               </a>
             {% endunless %}
         {% endfor %}
@@ -195,3 +195,26 @@ Parameters:
     {% endif %}
   </div>
 </div>
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{% render 'theme-icon' with icon: 'circle-notch', iconClasses: 'spin fa-3x
+    flex-full', icon_fill: settings.color_primary_button_text %}"
+  to: "{% render 'theme-icon' with icon, icon: 'circle-notch', iconClasses: 'spin
+    fa-3x flex-full', icon_fill: settings.color_primary_button_text %}"
+  position: 4144..4285
+- from: '{% render ''theme-icon'' with icon: ''cube'', iconAttributes: ''aria-hidden="true"'',
+    iconSize: settings.typography-body-font-size %}'
+  to: '{% render ''theme-icon'' with icon, icon: ''cube'', iconAttributes: ''aria-hidden="true"'',
+    iconSize: settings.typography-body-font-size %}'
+  position: 5022..5155
+- from: "{% render 'responsive-image' with media.preview_image, class: class, alt:
+    thumbalt | escape, default_size: '300x', props: props, blur: false, styles: styles
+    %}"
+  to: "{% render 'responsive-image' with media.preview_image, class: class, alt: thumbalt,
+    default_size: '300x', props: props, blur: false, styles: styles %}"
+  position: 10082..10232
+{% endcomment %}

@@ -82,8 +82,8 @@
             <summary role="button" aria-expanded="false" tabindex="0">
               {{ block.settings.question }}<span>
                 {% if section.settings.faq_icon == "plus_minus" %}
-                  {% render 'theme-icon' with icon: 'minus', iconClasses: 'minus-icon flex-full' %}
-                  {% render 'theme-icon' with icon: 'plus', iconClasses: 'plus-icon flex-full' %}
+                  {% render 'theme-icon' with icon, icon: 'minus', iconClasses: 'minus-icon flex-full' %}
+                  {% render 'theme-icon' with icon, icon: 'plus', iconClasses: 'plus-icon flex-full' %}
                 {% elsif section.settings.faq_icon == "caret" %}
                   {% render 'theme-icon', icon: 'chevron_up', iconClasses: 'chevron-up flex-full' %}
                   {% render 'theme-icon', icon: 'chevron_down', iconClasses: 'chevron-down flex-full' %}
@@ -270,4 +270,20 @@
       "groups": ["header"]
     }
   }
-{% endschema %}
+{% endschema %}{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{% render 'theme-icon' with icon: 'minus', iconClasses: 'minus-icon flex-full'
+    %}"
+  to: "{% render 'theme-icon' with icon, icon: 'minus', iconClasses: 'minus-icon flex-full'
+    %}"
+  position: 2899..2986
+- from: "{% render 'theme-icon' with icon: 'plus', iconClasses: 'plus-icon flex-full'
+    %}"
+  to: "{% render 'theme-icon' with icon, icon: 'plus', iconClasses: 'plus-icon flex-full'
+    %}"
+  position: 3005..3090
+{%- endcomment -%}

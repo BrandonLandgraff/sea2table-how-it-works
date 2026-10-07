@@ -106,7 +106,7 @@
               <div class="swiper-controls">
                 <div class="thumbs-direction-nav">
                   <span class="thumbs-direction-nav--prev" href="#">
-                    {% render 'theme-icon' with icon: 'chevron_left', widthUnset: true, iconClasses: 'chevron-left', iconAttributes: 'style="max-height:18px;"' %}
+                    {% render 'theme-icon' with icon, icon: 'chevron_left', widthUnset: true, iconClasses: 'chevron-left', iconAttributes: 'style="max-height:18px;"' %}
                   </span>
                 </div>
 
@@ -114,7 +114,7 @@
 
                 <div class="thumbs-direction-nav">
                   <span class="thumbs-direction-nav--next" href="#">
-                    {% render 'theme-icon' with icon: 'chevron_right', widthUnset: true, iconClasses: 'chevron-right', iconAttributes: 'style="max-height:18px;"' %}
+                    {% render 'theme-icon' with icon, icon: 'chevron_right', widthUnset: true, iconClasses: 'chevron-right', iconAttributes: 'style="max-height:18px;"' %}
                   </span>
                 </div>
               </div>
@@ -125,3 +125,20 @@
 </div>
 
 <script src="{{ 'component-complementary-products.js' | asset_url }}" defer="defer" type="module" data-internal-script></script>
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: '{% render ''theme-icon'' with icon: ''chevron_left'', widthUnset: true, iconClasses:
+    ''chevron-left'', iconAttributes: ''style="max-height:18px;"'' %}'
+  to: '{% render ''theme-icon'' with icon, icon: ''chevron_left'', widthUnset: true,
+    iconClasses: ''chevron-left'', iconAttributes: ''style="max-height:18px;"'' %}'
+  position: 3644..3792
+- from: '{% render ''theme-icon'' with icon: ''chevron_right'', widthUnset: true,
+    iconClasses: ''chevron-right'', iconAttributes: ''style="max-height:18px;"'' %}'
+  to: '{% render ''theme-icon'' with icon, icon: ''chevron_right'', widthUnset: true,
+    iconClasses: ''chevron-right'', iconAttributes: ''style="max-height:18px;"'' %}'
+  position: 4038..4188
+{% endcomment %}

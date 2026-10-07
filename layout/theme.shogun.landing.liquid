@@ -349,7 +349,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     classList.remove('no-js');
     {% comment %}It's supported well enough, we won't detect it{% endcomment %}
   </script>
-<script src="{{%20'awtomic-customizations.js'%20|%20asset_url%20}}"></script>
+<script src="{{ renamed_variable_20.awtomic-customizations.js['20'] }}"></script>
 <script type="text/javascript">
     window.lazySizesConfig = window.lazySizesConfig || {};
     window.lazySizesConfig.rias = window.lazySizesConfig.rias || {};
@@ -380,9 +380,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       e.detail.widthmap = widthmap;
     });
   </script>
-<script defer type="module" src="{{%20'theme.min.js'%20|%20asset_url%20}}"></script>
-<script defer src="{{%20'SafeLoadScripts.js'%20|%20asset_url%20}}"></script>
-<script defer nomodule src="{{%20'theme.legacy.min.js'%20|%20asset_url%20}}"></script>
+<script defer type="module" src="{{ renamed_variable_20.theme.min.js['20'] }}"></script>
+<script defer src="{{ renamed_variable_20.SafeLoadScripts.js['20'] }}"></script>
+<script defer nomodule src="{{ renamed_variable_20.theme.legacy.min.js['20'] }}"></script>
 <script type="application/json" id="wetheme-global">
     {
       {% comment %}Translations that will be used in javascript section handling{% endcomment %}
@@ -417,7 +417,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       "giftwrapProduct": {{ settings.giftwrap_product_selector | json }}
     }
   </script>
-<script src="{{%20'theme-editor.js'%20|%20asset_url%20}}" defer></script>
+<script src="{{ renamed_variable_20.theme-editor.js['20'] }}" defer></script>
 <script async type="text/javascript" src="//static.klaviyo.com/onsite/js/klaviyo.js?company_id=HznYEU"></script>
 <script>
  var _learnq = _learnq || [];
@@ -509,3 +509,25 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     
   </body>
 </html>
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{{%20'awtomic-customizations.js'%20|%20asset_url%20}}"
+  to: "{{ renamed_variable_20.awtomic-customizations.js['20'] }}"
+  position: 14960..15017
+- from: "{{%20'theme.min.js'%20|%20asset_url%20}}"
+  to: "{{ renamed_variable_20.theme.min.js['20'] }}"
+  position: 16316..16360
+- from: "{{%20'SafeLoadScripts.js'%20|%20asset_url%20}}"
+  to: "{{ renamed_variable_20.SafeLoadScripts.js['20'] }}"
+  position: 16391..16441
+- from: "{{%20'theme.legacy.min.js'%20|%20asset_url%20}}"
+  to: "{{ renamed_variable_20.theme.legacy.min.js['20'] }}"
+  position: 16481..16532
+- from: "{{%20'theme-editor.js'%20|%20asset_url%20}}"
+  to: "{{ renamed_variable_20.theme-editor.js['20'] }}"
+  position: 18589..18636
+{% endcomment %}

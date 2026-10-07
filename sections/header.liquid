@@ -153,7 +153,7 @@ Testing Cypress integration
             </style>
             {% assign mobile_alt = section.settings.logo.alt | default: shop.name %}
             <a href="{{ routes.root_url }}" {% if disabled_by_yoast_seo %}itemprop="url"{% endif %}>
-              {% include 'responsive-image' with section.settings.logo, alt: mobile_alt | escape, props: 'itemprop="logo"', blur: false, class: "mobile_menu_logo", sizes: '100vw' %}
+              {% include 'responsive-image' with section.settings.logo, alt: mobile_alt, props: 'itemprop="logo"', blur: false, class: "mobile_menu_logo", sizes: '100vw' %}
             </a>
           {% else %}
             <a class="h1 mobile-menu__text-logo site-header__logo-link" href="{{ routes.root_url }}" {% if disabled_by_yoast_seo %}itemprop="url"{% endif %}>{{ shop.name }}</a>
@@ -301,7 +301,7 @@ Testing Cypress integration
           }
         </style>
         {% assign alt = section.settings.logo.alt | default: shop.name %}
-        {% render 'responsive-image' with section.settings.logo, alt: alt |escape, props: 'itemprop="logo"', blur: false, class: 'logo_image' %}
+        {% render 'responsive-image' with section.settings.logo, alt: alt, props: 'itemprop="logo"', blur: false, class: 'logo_image' %}
       </a>
     {% else %}
       <a class="site-header__logo-link" href="{{ routes.root_url }}" {% if disabled_by_yoast_seo %}itemprop="url"{% endif %}>{{ shop.name }}</a>
@@ -348,12 +348,12 @@ Testing Cypress integration
 
             <span class="opacity-logo">
               {% assign opacity_alt = img.alt | default: shop.name %}
-              {% render 'responsive-image' with img, alt: opacity_alt | escape, props: 'itemprop="logo"', blur: false, class: 'logo_overlay' %}
+              {% render 'responsive-image' with img, alt: opacity_alt, props: 'itemprop="logo"', blur: false, class: 'logo_overlay' %}
             </span>
             {% if section.settings.overlay_logo and section.settings.logo %}
               <span class="hover-logo">
                 {% assign hover_alt = section.settings.logo.alt | default: shop.name %}
-                {% render 'responsive-image' with section.settings.logo, alt: hover_alt | escape, props: 'itemprop="logo"', blur: false, class: 'logo_hover' %}
+                {% render 'responsive-image' with section.settings.logo, alt: hover_alt, props: 'itemprop="logo"', blur: false, class: 'logo_hover' %}
               </span>
             {% endif %}
           </a>
@@ -441,7 +441,7 @@ Testing Cypress integration
           <div class="grid__item three-twelfths">
             <div class="site-nav--mobile">
               <button type="button" aria-label="{{ 'layout.navigation.menu' | t }}" class="icon-fallback-text site-nav__link js-drawer-open-left-link" aria-controls="NavDrawer" aria-expanded="false">
-                {% render 'theme-icon' with icon: 'hamburger_nav', iconClasses: 'fa-2x', widthUnset: true %}
+                {% render 'theme-icon' with icon, icon: 'hamburger_nav', iconClasses: 'fa-2x', widthUnset: true %}
                 <span class="fallback-text">{{ 'layout.navigation.menu' | t }}</span>
               </button>
             </div>
@@ -457,7 +457,7 @@ Testing Cypress integration
               {% if section.settings.enable_search %}
               <a href="{{ routes.search_url }}" class="search-button" aria-label="{{ 'layout.header.search' | t }}" aria-controls="SearchDrawer" aria-expanded="false">
                 <span class="icon-fallback-text">
-                  {% render 'theme-icon' with icon: 'search', iconSize: 20 %}
+                  {% render 'theme-icon' with icon, icon: 'search', iconSize: 20 %}
                   <span class="fallback-text">{{ 'layout.header.search' | t }}</span>
                 </span>
               </a>
@@ -465,7 +465,7 @@ Testing Cypress integration
 
               <a href="{{ routes.cart_url }}" aria-label="{{ 'layout.cart.title' | t }}" class="{% if settings.ajax_cart_method == 'drawer' %}js-drawer-open-right-link {% endif %}site-nav__link" aria-controls="CartDrawer" aria-expanded="false">
                 <span class="icon-fallback-text">
-                  {% render 'theme-icon' with icon: section.settings.cart-style, iconClasses: 'fa-2x' %}
+                  {% render 'theme-icon' with icon, icon: section.settings.cart-style, iconClasses: 'fa-2x' %}
                   {% if section.settings.cart-number == 'quantity' %}
                       <span class="cart-item-count-header--quantity site-header__cart-indicator{% if cart.item_count == 0 %} hide{% endif %}">{{ cart.item_count }}</span>
                   {% endif %}
@@ -1276,3 +1276,45 @@ Testing Cypress integration
     ]
 }
 {% endschema %}
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: '{% include ''responsive-image'' with section.settings.logo, alt: mobile_alt
+    | escape, props: ''itemprop="logo"'', blur: false, class: "mobile_menu_logo",
+    sizes: ''100vw'' %}'
+  to: '{% include ''responsive-image'' with section.settings.logo, alt: mobile_alt,
+    props: ''itemprop="logo"'', blur: false, class: "mobile_menu_logo", sizes: ''100vw''
+    %}'
+  position: 6474..6632
+- from: '{% render ''responsive-image'' with section.settings.logo, alt: alt |escape,
+    props: ''itemprop="logo"'', blur: false, class: ''logo_image'' %}'
+  to: '{% render ''responsive-image'' with section.settings.logo, alt: alt, props:
+    ''itemprop="logo"'', blur: false, class: ''logo_image'' %}'
+  position: 14142..14270
+- from: '{% render ''responsive-image'' with img, alt: opacity_alt | escape, props:
+    ''itemprop="logo"'', blur: false, class: ''logo_overlay'' %}'
+  to: '{% render ''responsive-image'' with img, alt: opacity_alt, props: ''itemprop="logo"'',
+    blur: false, class: ''logo_overlay'' %}'
+  position: 15940..16060
+- from: '{% render ''responsive-image'' with section.settings.logo, alt: hover_alt
+    | escape, props: ''itemprop="logo"'', blur: false, class: ''logo_hover'' %}'
+  to: '{% render ''responsive-image'' with section.settings.logo, alt: hover_alt,
+    props: ''itemprop="logo"'', blur: false, class: ''logo_hover'' %}'
+  position: 16302..16436
+- from: "{% render 'theme-icon' with icon: 'hamburger_nav', iconClasses: 'fa-2x',
+    widthUnset: true %}"
+  to: "{% render 'theme-icon' with icon, icon: 'hamburger_nav', iconClasses: 'fa-2x',
+    widthUnset: true %}"
+  position: 20126..20224
+- from: "{% render 'theme-icon' with icon: 'search', iconSize: 20 %}"
+  to: "{% render 'theme-icon' with icon, icon: 'search', iconSize: 20 %}"
+  position: 20965..21030
+- from: "{% render 'theme-icon' with icon: section.settings.cart-style, iconClasses:
+    'fa-2x' %}"
+  to: "{% render 'theme-icon' with icon, icon: section.settings.cart-style, iconClasses:
+    'fa-2x' %}"
+  position: 21500..21592
+{% endcomment %}

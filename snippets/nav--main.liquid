@@ -25,7 +25,7 @@
             {{ link.title }}
           </span>
           <span class="icon-dropdown">
-            {% render 'theme-icon' with icon: 'chevron_down', iconSize: 1, iconClasses: 'chevron-down', widthUnset: true %}
+            {% render 'theme-icon' with icon, icon: 'chevron_down', iconSize: 1, iconClasses: 'chevron-down', widthUnset: true %}
           </span>
         </div>
       </a>
@@ -47,7 +47,7 @@
                       {{ sub_link.title | escape }}
                     </span>
                     <span class="icon-dropdown">
-                      {% render 'theme-icon' with icon: 'chevron_right', iconSize: 1, iconClasses: 'chevron-right', widthUnset: true %}
+                      {% render 'theme-icon' with icon, icon: 'chevron_right', iconSize: 1, iconClasses: 'chevron-right', widthUnset: true %}
                     </span>
                   </div>
                 </a>
@@ -77,3 +77,20 @@
     {% endunless %}
   {% endif %}
 {% endfor %}
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{% render 'theme-icon' with icon: 'chevron_down', iconSize: 1, iconClasses:
+    'chevron-down', widthUnset: true %}"
+  to: "{% render 'theme-icon' with icon, icon: 'chevron_down', iconSize: 1, iconClasses:
+    'chevron-down', widthUnset: true %}"
+  position: 906..1023
+- from: "{% render 'theme-icon' with icon: 'chevron_right', iconSize: 1, iconClasses:
+    'chevron-right', widthUnset: true %}"
+  to: "{% render 'theme-icon' with icon, icon: 'chevron_right', iconSize: 1, iconClasses:
+    'chevron-right', widthUnset: true %}"
+  position: 1890..2009
+{% endcomment %}

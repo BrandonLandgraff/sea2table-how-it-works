@@ -35,7 +35,7 @@
         {% when 'social-icons' %}
         {% if settings.sm_facebook_link != blank or settings.sm_twitter_link != blank or settings.sm_youtube_link != blank or settings.sm_flickr_link != blank or settings.sm_pinterest_link != blank or settings.sm_instagram_link != blank or settings.sm_tumblr_link != blank or settings.sm_pinterest_link != blank or settings.sm_youtube_link != blank or settings.sm_vimeo_link != blank or settings.sm_flickr_link != blank or settings.sm_snapchat_link != blank or settings.sm_houzz_link != blank or settings.sm_linkedin_link != blank or settings.sm_tiktok_link != blank %}
           <div class="announcement-bar--social-icons">
-            {% render 'social-icons' with icon_classes: 'fa-2x' %}
+            {% render 'social-icons' with icon_classes, icon_classes: 'fa-2x' %}
           </div>
         {% endif %}
 
@@ -175,4 +175,13 @@
       }
     ]
   }
-{% endschema %}
+{% endschema %}{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{% render 'social-icons' with icon_classes: 'fa-2x' %}"
+  to: "{% render 'social-icons' with icon_classes, icon_classes: 'fa-2x' %}"
+  position: 2622..2690
+{%- endcomment -%}

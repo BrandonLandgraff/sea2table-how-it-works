@@ -56,7 +56,7 @@
               {% endif %}
           {% endif %}
 
-          {% render 'responsive-image' with block.settings.mega_image_1, alt: img_alt | escape, props: img_props  %}
+          {% render 'responsive-image' with block.settings.mega_image_1, alt: img_alt, props: img_props %}
           {% if block.settings.mega_image_link_1 %}
             </a>
           {% endif %}
@@ -107,7 +107,7 @@
               {% endif %}
           {% endif %}
 
-          {% render 'responsive-image' with block.settings.mega_image_2, alt: img_alt | escape, props: img_props %}
+          {% render 'responsive-image' with block.settings.mega_image_2, alt: img_alt, props: img_props %}
           {% if block.settings.mega_image_link_2 %}
             </a>
           {% endif %}
@@ -139,3 +139,20 @@
   {% endif %}
 
 </div>
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{% render 'responsive-image' with block.settings.mega_image_1, alt: img_alt
+    | escape, props: img_props  %}"
+  to: "{% render 'responsive-image' with block.settings.mega_image_1, alt: img_alt,
+    props: img_props %}"
+  position: 2567..2663
+- from: "{% render 'responsive-image' with block.settings.mega_image_2, alt: img_alt
+    | escape, props: img_props %}"
+  to: "{% render 'responsive-image' with block.settings.mega_image_2, alt: img_alt,
+    props: img_props %}"
+  position: 4632..4728
+{% endcomment %}

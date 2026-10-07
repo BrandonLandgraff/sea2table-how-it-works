@@ -1,9 +1,9 @@
 {% capture icon_caret %}
-  {% render 'theme-icon' with icon: 'chevron_down', iconSize: settings.typography-body-font-size, iconClasses: 'icon icon-caret' %}
+  {% render 'theme-icon' with icon, icon: 'chevron_down', iconSize: settings.typography-body-font-size, iconClasses: 'icon icon-caret' %}
 {% endcapture %}
 
 {% capture icon_close %}
-  {% render 'theme-icon' with icon: 'close', iconSize: 12, iconClasses: 'icon icon-close-small' %}
+  {% render 'theme-icon' with icon, icon: 'close', iconSize: 12, iconClasses: 'icon icon-close-small' %}
 {% endcapture %}
 
 <style>
@@ -1798,4 +1798,20 @@
     }
   ]
 }
-{% endschema %}
+{% endschema %}{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{% render 'theme-icon' with icon: 'chevron_down', iconSize: settings.typography-body-font-size,
+    iconClasses: 'icon icon-caret' %}"
+  to: "{% render 'theme-icon' with icon, icon: 'chevron_down', iconSize: settings.typography-body-font-size,
+    iconClasses: 'icon icon-caret' %}"
+  position: 27..162
+- from: "{% render 'theme-icon' with icon: 'close', iconSize: 12, iconClasses: 'icon
+    icon-close-small' %}"
+  to: "{% render 'theme-icon' with icon, icon: 'close', iconSize: 12, iconClasses:
+    'icon icon-close-small' %}"
+  position: 208..310
+{%- endcomment -%}

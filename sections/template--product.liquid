@@ -420,7 +420,7 @@
 
                           <div class="js-qty">
                             <button type="button" aria-label="-" class="js-qty__adjust js-qty__adjust--minus icon-fallback-text" v-on:click="decreaseQuantity">
-                              {% render 'theme-icon' with icon: 'minus', iconClasses: 'flex-full', iconAttributes: 'aria-hidden="true"' %}
+                              {% render 'theme-icon' with icon, icon: 'minus', iconClasses: 'flex-full', iconAttributes: 'aria-hidden="true"' %}
                               <span class="fallback-text">−</span>
                             </button>
                             <input
@@ -435,7 +435,7 @@
                               id="Quantity"
                             >
                             <button type="button" aria-label="+" class="js-qty__adjust js-qty__adjust--plus icon-fallback-text" v-on:click="increaseQuantity">
-                              {% render 'theme-icon' with icon: 'plus', iconClasses: 'flex-full', iconAttributes: 'aria-hidden="true"' %}
+                              {% render 'theme-icon' with icon, icon: 'plus', iconClasses: 'flex-full', iconAttributes: 'aria-hidden="true"' %}
                               <span class="fallback-text">+</span>
                             </button>
                           </div>
@@ -507,7 +507,7 @@
                             v-bind:disabled="addToCartDisabled"
                           >
                             {% assign icon_attrs = 'v-if="state === ' | append: "'adding'" | append: '" v-cloak' %}
-                            {% render 'theme-icon' with icon: 'circle-notch', iconClasses: 'spin js fa-2x flex-full', iconAttributes: icon_attrs, icon_fill: settings.color_primary_button_text %}<span class="sr-only">{{ 'collections.paginate.loading' | t }}</span>
+                            {% render 'theme-icon' with icon, icon: 'circle-notch', iconClasses: 'spin js fa-2x flex-full', iconAttributes: icon_attrs, icon_fill: settings.color_primary_button_text %}<span class="sr-only">{{ 'collections.paginate.loading' | t }}</span>
                             {% if current_variant.available %}
                               <span class="{% if current_variant.available %}js{% endif %}" v-if="state === 'ready'">{{ 'products.product.add_to_cart' | t }}</span>
                             {% endif %}
@@ -551,7 +551,7 @@
                     {%- when 'local_pickup' -%}
                       <div class="product-page--local-pickup" v-if="hasLocalPickup" v-html="hasLocalPickup" {{ block.shopify_attributes }}></div>
                       <div id="initialPickupInfo">
-                        {% render 'store-availability-placeholder' with product_variant: current_variant %}
+                        {% render 'store-availability-placeholder' with product_variant, product_variant: current_variant %}
                       </div>
 
                     {%- when 'trust_badges' -%}
@@ -728,11 +728,11 @@
     </style>
   {% when 'cross-sells' %}
     <div class="cross-sell-block" id="cross-sell-{{block.id}}">
-      {% render 'cross-sells' with block_settings: block.settings %}
+      {% render 'cross-sells' with block_settings, block_settings: block.settings %}
     </div>
   {% when 'complementary-products' %}
     <div class="complementary-products-block" id="complementary-products-{{block.id}}">
-      {% render 'complementary-products-block' with block_settings: block.settings %}
+      {% render 'complementary-products-block' with block_settings, block_settings: block.settings %}
     </div>
 {% endcase %}
 {% endfor %}
@@ -2380,3 +2380,41 @@
     text-align: center;
 }
 </style>
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: '{% render ''theme-icon'' with icon: ''minus'', iconClasses: ''flex-full'',
+    iconAttributes: ''aria-hidden="true"'' %}'
+  to: '{% render ''theme-icon'' with icon, icon: ''minus'', iconClasses: ''flex-full'',
+    iconAttributes: ''aria-hidden="true"'' %}'
+  position: 24944..25058
+- from: '{% render ''theme-icon'' with icon: ''plus'', iconClasses: ''flex-full'',
+    iconAttributes: ''aria-hidden="true"'' %}'
+  to: '{% render ''theme-icon'' with icon, icon: ''plus'', iconClasses: ''flex-full'',
+    iconAttributes: ''aria-hidden="true"'' %}'
+  position: 25829..25942
+- from: "{% render 'theme-icon' with icon: 'circle-notch', iconClasses: 'spin js fa-2x
+    flex-full', iconAttributes: icon_attrs, icon_fill: settings.color_primary_button_text
+    %}"
+  to: "{% render 'theme-icon' with icon, icon: 'circle-notch', iconClasses: 'spin
+    js fa-2x flex-full', iconAttributes: icon_attrs, icon_fill: settings.color_primary_button_text
+    %}"
+  position: 30186..30358
+- from: "{% render 'store-availability-placeholder' with product_variant: current_variant
+    %}"
+  to: "{% render 'store-availability-placeholder' with product_variant, product_variant:
+    current_variant %}"
+  position: 33321..33421
+- from: "{% render 'cross-sells' with block_settings: block.settings %}"
+  to: "{% render 'cross-sells' with block_settings, block_settings: block.settings
+    %}"
+  position: 42195..42273
+- from: "{% render 'complementary-products-block' with block_settings: block.settings
+    %}"
+  to: "{% render 'complementary-products-block' with block_settings, block_settings:
+    block.settings %}"
+  position: 42417..42512
+{% endcomment %}

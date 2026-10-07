@@ -120,11 +120,11 @@
                                             {% elsif block.settings.mobile_image %}
                                                 {% assign img-mobile_alt = block.settings.mobile_image.alt | default: shop.name %}
                                                 {% assign img-desktop_alt = block.settings.image.alt | default: shop.name %}
-                                                {% render 'responsive-image' with block.settings.mobile_image, alt: img-mobile_alt | escape, wrapper_class: ' slideshow-mobile-image', sizes: '100vw' %}
-                                                {% render 'responsive-image' with block.settings.image, alt: img-desktop_alt | escape, wrapper_class: ' slideshow-desktop-image', allow_stretch: true, sizes: '100vw' %}
+                                                {% render 'responsive-image' with block.settings.mobile_image, alt: img-mobile_alt, wrapper_class: ' slideshow-mobile-image', sizes: '100vw' %}
+                                                {% render 'responsive-image' with block.settings.image, alt: img-desktop_alt, wrapper_class: ' slideshow-desktop-image', allow_stretch: true, sizes: '100vw' %}
                                             {% else %}
                                                 {% assign img_alt = block.settings.image.alt | default: shop.name %}
-                                                {% render 'responsive-image' with block.settings.image, alt: img_alt | escape, wrapper_class: ' slideshow-desktop-as-mobile-image', allow_stretch: true, sizes: '100vw' %}
+                                                {% render 'responsive-image' with block.settings.image, alt: img_alt, wrapper_class: ' slideshow-desktop-as-mobile-image', allow_stretch: true, sizes: '100vw' %}
                                             {% endif %}
 
                                                 <div class="homepage-featured-content-box{% if overlay_text %} slideshow-mobile-overlay-text{% endif %}">
@@ -786,3 +786,28 @@
     }
 }
 {% endschema %}
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{% render 'responsive-image' with block.settings.mobile_image, alt: img-mobile_alt
+    | escape, wrapper_class: ' slideshow-mobile-image', sizes: '100vw' %}"
+  to: "{% render 'responsive-image' with block.settings.mobile_image, alt: img-mobile_alt,
+    wrapper_class: ' slideshow-mobile-image', sizes: '100vw' %}"
+  position: 8528..8671
+- from: "{% render 'responsive-image' with block.settings.image, alt: img-desktop_alt
+    | escape, wrapper_class: ' slideshow-desktop-image', allow_stretch: true, sizes:
+    '100vw' %}"
+  to: "{% render 'responsive-image' with block.settings.image, alt: img-desktop_alt,
+    wrapper_class: ' slideshow-desktop-image', allow_stretch: true, sizes: '100vw'
+    %}"
+  position: 8720..8879
+- from: "{% render 'responsive-image' with block.settings.image, alt: img_alt | escape,
+    wrapper_class: ' slideshow-desktop-as-mobile-image', allow_stretch: true, sizes:
+    '100vw' %}"
+  to: "{% render 'responsive-image' with block.settings.image, alt: img_alt, wrapper_class:
+    ' slideshow-desktop-as-mobile-image', allow_stretch: true, sizes: '100vw' %}"
+  position: 9100..9261
+{% endcomment %}

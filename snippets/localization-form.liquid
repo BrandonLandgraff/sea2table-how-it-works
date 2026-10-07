@@ -24,7 +24,7 @@
 
                 <span class="icon-dropdown">
                     {% assign icon_size = settings.header_font_size %}
-                    {% render 'theme-icon' with icon: 'chevron_down', iconSize: icon_size, iconClasses: 'chevron-down', widthUnset: true %}
+                    {% render 'theme-icon' with icon, icon: 'chevron_down', iconSize: icon_size, iconClasses: 'chevron-down', widthUnset: true %}
                 </span>
             </button>
 
@@ -71,7 +71,7 @@
 
                         <span class="icon-dropdown">
                             {% assign icon_size = settings.header_font_size %}
-                            {% render 'theme-icon' with icon: 'chevron_down', iconSize: icon_size, iconClasses: 'chevron-down', widthUnset: true %}
+                            {% render 'theme-icon' with icon, icon: 'chevron_down', iconSize: icon_size, iconClasses: 'chevron-down', widthUnset: true %}
                         </span>
                     </button>
 
@@ -94,3 +94,20 @@
 
 
 <script src="{{ 'component-localization-form.js' | asset_url }}" defer="defer" type="module" data-internal-script></script>
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{% render 'theme-icon' with icon: 'chevron_down', iconSize: icon_size, iconClasses:
+    'chevron-down', widthUnset: true %}"
+  to: "{% render 'theme-icon' with icon, icon: 'chevron_down', iconSize: icon_size,
+    iconClasses: 'chevron-down', widthUnset: true %}"
+  position: 1636..1761
+- from: "{% render 'theme-icon' with icon: 'chevron_down', iconSize: icon_size, iconClasses:
+    'chevron-down', widthUnset: true %}"
+  to: "{% render 'theme-icon' with icon, icon: 'chevron_down', iconSize: icon_size,
+    iconClasses: 'chevron-down', widthUnset: true %}"
+  position: 4257..4382
+{% endcomment %}
